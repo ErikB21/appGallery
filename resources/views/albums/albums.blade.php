@@ -14,19 +14,14 @@
                     @endif
                     <div class="card-body">
                         <h3 class="card-title">{{$album->album_name}}</h3>
-                        <p class="card-text">Id: <strong>{{ $album->id }}</strong></p>
-                        <div class="d-flex flex-column justify-content-center">
-                            <a href="{{route('photos.create')}}?album_id={{ $album->id }}" class="btn btn-primary mt-2">NEW IMAGE</a>
-                            @if($album->photos_count)
-                                <a href="{{route('albums.images',$album)}}" class="btn btn-success mt-2">VIEW IMAGES
-                                    ({{$album->photos_count}})</a>
-                            @else
-                                <a href="#" disabled class="btn btn-default mt-2">NO IMAGES</a>
-                            @endif
-                            <div class="d-flex div-body mt-2 justify-content-between">
-                                <a href="{{route('albums.edit',$album)}}" class="btn btn-warning">UPDATE</a>
-                                <a href="{{route('albums.destroy', $album)}}" class="btn btn-danger">DELETE</a>
-                            </div>
+                        <h5 class="card-subtitle muted">Id: <strong>{{ $album->id }}</strong></h5>
+                        <p class="card-text">{{ $album->created_at->diffForHumans() }}</p>
+                        <p class="card-text">{{ $album->description }}</p>
+                        <div class="d-flex justify-content-between div-body">
+                            <a href="{{route('photos.create')}}?album_id={{ $album->id }}" data-bs-toggle="tooltip" data-bs-title="New Image" class="btn btn-primary mt-2"><i class="bi bi-plus-circle"></i></a>
+                            <a href="{{route('albums.images',$album)}}" data-bs-toggle="tooltip" data-bs-title="View Album's Image" class="btn btn-success mt-2"><i class="bi bi-eye"></i> ({{$album->photos_count}})</a>
+                            <a href="{{route('albums.edit',$album)}}" data-bs-toggle="tooltip" data-bs-title="Update Album" class="btn btn-warning mt-2"><i class="bi bi-recycle"></i></a>
+                            <a href="{{route('albums.destroy', $album)}}" data-bs-toggle="tooltip" data-bs-title="Delete Album" class="btn btn-danger mt-2"><i class="bi bi-trash3"></i></a>
                         </div>
                     </div>
                 </div>
@@ -41,6 +36,8 @@
     @parent
     <script>
         $('document').ready(function () {
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
             $('div.alert-info').fadeOut(4000)//uso per eliminare dopo 4 secondi l'alert dell'aggiornamento
             $('div.div-body').on('click', 'a.btn-danger', function (ele) {
                 ele.preventDefault();
