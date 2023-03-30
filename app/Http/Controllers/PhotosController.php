@@ -38,8 +38,8 @@ class PhotosController extends Controller
      */
     public function create(Request $request)
     {
-        $photo = new Photo();
         $album = $request->album_id ? Album::findOrFail($request->album_id) : new Album();
+        $photo = new Photo();
         $albums = $this->getAlbums();
         return view('images.editImages', compact('album', 'photo', 'albums'));
     }
@@ -82,8 +82,8 @@ class PhotosController extends Controller
      */
     public function edit(Photo $photo)
     {
-        $album = $photo->album;
         $albums = $this->getAlbums();
+        $album = $photo->album;
         return view('images.editImages', compact('photo', 'album', 'albums'));
     }
 
@@ -96,20 +96,20 @@ class PhotosController extends Controller
      */
     public function update(Request $request, Photo $photo)
     {
-        $data = $request->only(['name', 'description', 'album_id']);
+        unset($this->rules['img_path']);
         //$res = Album::where('id', $id)->update($data);
-        $photo->name = $data['name'];
-        $photo->description = $data['description'];
-        $photo->album_id = $data['album_id'];
-        if ($request->hasFile('img_path')) {
-            $this->processFile($request, $photo);
-        }
+        $this->validate($request, $this->rules);
+        $this->processFile($request, $photo);
+        $photo->name = $request->input('name');
+        $photo->description = $request->input('description');
+        $photo->album_id = $request->input('album_id');
 
         $res = $photo->save();
         $message = $res ? 'Immagine ' . $photo->name . ' modificata' : 'Immagine' . $photo->name . ' non modificata.';
         session()->flash('message', $message);
         return redirect()->route('albums.images', ['albums' => $photo->album]);
     }
+
 
     public function processFile(Request $request, Photo $photo): void
     {
@@ -130,7 +130,10 @@ class PhotosController extends Controller
     public function destroy(Photo $photo)
     {
         $res = $photo->delete();
-        return $res;
+        if($res){
+            $this->deleteFile($photo);
+        }
+        return ''.$res;
     }
 
     /**

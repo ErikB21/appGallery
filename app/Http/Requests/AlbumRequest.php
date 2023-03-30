@@ -14,7 +14,7 @@ class AlbumRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize(): bool
+    public function authorize()
     {
         $albumId = $this->route()->album;
 
@@ -43,7 +43,7 @@ class AlbumRequest extends FormRequest
         ];
 
         if($id){
-            $ret['album_name'][] = Rule::unique('albums')->ignore($id);
+            $ret['album_name'][] = Rule::unique('albums', 'album_name')->ignore($id);
 
         }else{
             $ret['album_thumb'] = 'required|image';

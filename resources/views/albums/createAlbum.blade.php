@@ -9,8 +9,8 @@
 
     <div class="d-flex justify-content-between align-items-center">
         <form class="my-4 pt-5" style="width: 50%;" action="{{route('albums.store')}}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="my-4">
+            {{ csrf_field() }}
+            <div class="my-4 form-group">
                 <label for="album_name" class="form-label">
                     <h4>Name</h4>
                 </label>
@@ -19,7 +19,7 @@
 
             @include('albums.partials.fileupload')
             
-            <div class="my-4">
+            <div class="my-4 form-group">
                 <label for="description" class="form-label">
                     <h4>Description</h4>
                 </label>
@@ -28,7 +28,7 @@
                 </textarea>
             </div>
             <div class="form-group my-4">
-                <button class="btn btn-primary">Invia</button>
+                <button type="submit" class="btn btn-primary">Invia</button>
             </div>
         </form>
         <div>

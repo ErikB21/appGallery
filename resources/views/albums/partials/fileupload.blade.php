@@ -1,4 +1,4 @@
-<div class="my-5">
+<div class="my-5 form-group">
     <label for="album_thumb" class="form-label">
         <h4>Thumbnail</h4>
     </label>

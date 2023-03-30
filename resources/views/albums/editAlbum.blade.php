@@ -17,25 +17,25 @@
         @method('PATCH')
         @csrf
         {{-- <input type="hidden" value="PATCH" name="_method" id=""> --}}
-        <div class="mb-3">
+        <div class="mb-3 form-group">
             <label for="album_name" class="form-label">
                 <h4>Name</h4>
             </label>
-            <input type="text" class="form-control" id="album_name" name="album_name" value="{{$album->album_name}}">
+            <input type="text" class="form-control" id="album_name" name="album_name" placeholder="Album name" value="{{$album->album_name}}">
         </div>
 
         @include('albums.partials.fileupload');
 
-        <div class="mb-3">
+        <div class="mb-3 form-group">
             <label for="description" class="form-label">
                 <h4>Description</h4>
             </label>
-            <textarea class="form-control" id="description" name="description">
+            <textarea placeholder="Album description" class="form-control" id="description" name="description">
                 {{$album->description}}
             </textarea>
         </div>
         <div class="form-group mb-3">
-            <button class="btn btn-primary">Invia</button>
+            <button type="submit"class="btn btn-primary">Invia</button>
         </div>
 
 

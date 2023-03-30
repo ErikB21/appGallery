@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AlbumRequest;
 use App\Models\Album;
 use App\Models\Photo;
+use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,7 @@ class AlbumsController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @return View
      */
     public function index(Request $request)
     {
@@ -28,7 +30,7 @@ class AlbumsController extends Controller
             $queryBuilder->where('id', '=', $request->input('id'));
         }
         if ($request->has('album_name')) {
-            $queryBuilder->where('album_name', 'LIKE', $request->input('album_name').'%');
+            $queryBuilder->where('album_name', 'LIKE', $request->input('album_name'). '%');
         }
         $albums = $queryBuilder->paginate($albumsPerPage);
         return view('albums.albums', ['albums' => $albums]);
@@ -61,9 +63,10 @@ class AlbumsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Album $album)
+    public function create()
     {
-        return view('albums.createAlbum', compact('album'));
+        $album = new Album();
+        return view('albums.createAlbum', ['album' => $album]);
     }
 
 
@@ -82,9 +85,9 @@ class AlbumsController extends Controller
         $this->authorize(Album::class);
         $album = new Album();
         $album->album_name = request()->input('album_name');
+        $album->album_thumb = '/';
         $album->description = request()->input('description');
         $album->user_id = Auth::id();
-        $album->album_thumb = '/';
         $res = $album->save();
         if ($res) {
             if ($this->processFile($album->id, $request, $album)) {
@@ -138,7 +141,7 @@ class AlbumsController extends Controller
         if(+$album->user_id === +Auth::id()){
             return $album;
         }
-        return abort('401');
+        abort('401');
     }
 
 

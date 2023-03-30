@@ -43,7 +43,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Album extends Model
 {
     use HasFactory;
-    use SoftDeletes;//trait
+    // use SoftDeletes;//trait
 
     protected $fillable =[
         'album_name',
@@ -63,7 +63,7 @@ class Album extends Model
     public function getPathAttribute()
     {
         $url = $this->album_thumb;
-        if (!str_starts_with($url, 'http')) {//se la stringa non inizia con HTTP
+        if(stristr($this->album_thumb, 'http') === false){
             $url = 'storage/' . $url;
         }
         return $url;

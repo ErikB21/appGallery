@@ -17,8 +17,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Model\Album' => 'App\Policies\AlbumPolicy',
-        // 'App\Model\Photo' => 'App\Policies\PhotoPolicy',
+        'App\Model\Album' => 'App\Policies\AlbumPolicy',
+        'App\Model\Photo' => 'App\Policies\PhotoPolicy',
         //non necessarie perchè laravel andrà a ispezionare la cartella delle policy in modo autonomo
     ];
 

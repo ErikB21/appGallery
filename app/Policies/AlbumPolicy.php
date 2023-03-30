@@ -41,7 +41,7 @@ class AlbumPolicy
      */
     public function create(User $user)
     {
-
+        return 1;
     }
 
     /**

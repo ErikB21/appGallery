@@ -30,7 +30,7 @@ class PhotoPolicy
      */
     public function view(User $user, Photo $photo)
     {
-        return $user->id === $photo->user_id;
+        return $user->id === $photo->album->user_id;
     }
 
     /**
@@ -41,7 +41,7 @@ class PhotoPolicy
      */
     public function create(User $user)
     {
-        return $user->role == 'writer';
+        
     }
 
     /**
@@ -53,7 +53,7 @@ class PhotoPolicy
      */
     public function update(User $user, Photo $photo)
     {
-        return $user->id === $photo->user_id;
+        return $user->id === $photo->album->user_id;
     }
 
     /**
@@ -65,7 +65,7 @@ class PhotoPolicy
      */
     public function delete(User $user, Photo $photo)
     {
-        return $user->id === $photo->user_id;
+        return $user->id === $photo->album->user_id;
     }
 
     /**
@@ -77,7 +77,7 @@ class PhotoPolicy
      */
     public function restore(User $user, Photo $photo)
     {
-        return $user->id === $photo->user_id;
+        return $user->id === $photo->album->user_id;
     }
 
     /**
@@ -89,6 +89,6 @@ class PhotoPolicy
      */
     public function forceDelete(User $user, Photo $photo)
     {
-        return $user->id === $photo->user_id;
+        return $user->id === $photo->album->user_id;
     }
 }
