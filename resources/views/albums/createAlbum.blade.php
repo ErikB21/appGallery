@@ -28,11 +28,11 @@
                 </textarea>
             </div>
             <div class="form-group my-4">
-                <button type="submit" class="btn btn-primary">Invia</button>
+                <button type="submit" class="btn btn-primary">Send</button>
             </div>
         </form>
         <div>
-            <img width="400" src="{{ asset('img/albums.png') }}" alt="">
+            <img width="300" src="{{ asset('img/albums.png') }}" alt="">
         </div>
     </div>
 </div>
