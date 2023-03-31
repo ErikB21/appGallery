@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -38,6 +39,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Album onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Album withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Album withoutTrashed()
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Photo> $photos
  * @mixin \Eloquent
  */
 class Album extends Model
@@ -56,6 +58,10 @@ class Album extends Model
 
     public function photos():HasMany{
         return $this->hasMany(Photo::class, 'album_id', 'id');
+    }
+
+    public function categories():BelongsToMany{
+        return $this->belongsToMany(Category::class);
     }
 
     //creo un metodo HELPER per la path delle immagini. Se la path inizia con HTTP
