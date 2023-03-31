@@ -32,6 +32,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Photo onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Photo withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Photo withoutTrashed()
+ * @property-read \App\Models\Album $album
+ * @property-read mixed $path
  * @mixin \Eloquent
  */
 class Photo extends Model
