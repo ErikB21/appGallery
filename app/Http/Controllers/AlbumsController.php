@@ -229,8 +229,11 @@ class AlbumsController extends Controller
         if($res && $thumbnail && Storage::exists($thumbnail)){
             Storage::delete($thumbnail);
         }
-
-        return $res;
+        if(request()->ajax()){
+            return $res;
+        }else{
+            return redirect()->route('albums.index');
+        }
 
 
         //usare int al posto di Album
