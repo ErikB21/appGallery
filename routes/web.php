@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{AlbumsController, GalleryController, PhotosController, ProfileController };
+use App\Http\Controllers\{AlbumsController, CategoryController, GalleryController, PhotosController, ProfileController };
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -38,5 +38,7 @@ Route::group(['prefix' => 'gallery'], function(){
     Route::get('/', [GalleryController::class, 'index'])->name('gallery.index');
     Route::get('album/{album}/images', [GalleryController::class, 'showAlbumImages'])->name('gallery.album.images');
 });
+
+Route::resource('categories', CategoryController::class);
 
 require __DIR__.'/auth.php';
