@@ -12,7 +12,7 @@ class GalleryController extends Controller
         return view('gallery.albums')->with('albums', Album::latest()->paginate());
     }
 
-    public function showAlbumImages($album){
-        return view('gallery.images')->with('images', Photo::whereAlbumId($album)->latest()->paginate(8));
+    public function showAlbumImages(Album $album){
+        return view('gallery.images',['images' => Photo::whereAlbumId($album->id)->paginate(8), 'album' => $album ]);
     }
 }

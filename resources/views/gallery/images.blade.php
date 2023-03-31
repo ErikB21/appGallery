@@ -6,9 +6,11 @@
             @forelse ($images as $image)
                 <div class="col-6 col-lg-4 col-xl-3">
                     <div class="card m-2" style="width: 18rem;">
-                        @if($image->img_path)
-                            <img class="card-img-top img-fluid rounded" src="{{asset($image->path)}}" alt="{{$image->name}}" title="{{$image->name}}">
-                        @endif
+                        <a href="{{asset($image->path)}}" data-lightbox="{{ $album->album_name }}">
+                            @if($image->img_path)
+                                <img class="card-img-top img-fluid rounded" src="{{asset($image->path)}}" alt="{{$image->name}}" title="{{$image->name}}">
+                            @endif
+                        </a>
                         <div class="card-body">
                             <h4 style="height: 100px" class="card-title">{{ $image->name }}</h4>
                             <p style="height: 100px" class="card-text">{{ $image->description }}</p>
@@ -28,3 +30,10 @@
         </div>
     </div>
 @endsection
+
+<script>
+    lightbox.option({
+      'maxWidth': 200,
+      'maxHeight': 200
+    })
+</script>
