@@ -17,7 +17,23 @@
                             </a> 
                             <p class="card-text">{{ $album->created_at->diffForHumans() }}</p>
                             <p style="height: 90px;" class="card-text">{{ $album->description }}</p>
-                            <p class="card-text">Creato da <strong>{{ $album->user->name }}</strong></p>
+                            <div class="my-4">
+                                @foreach ($album->categories as $cat )
+                                @if ($cat->id !== $category_id)
+                                    <a class="text-decoration-none" href="{{ route('gallery.categories.albums', $cat->id) }}">
+                                        <span class="badge text-bg-secondary">
+                                            {{ $cat->category_name }}
+                                        </span>
+                                    </a>
+                                @else
+                                    <span class="badge text-bg-success">
+                                        {{ $cat->category_name }}
+                                    </span>
+                                @endif
+                                    
+                                @endforeach
+                            </div>
+                            <span class="card-text">Creato da <strong>{{ $album->user->name }}</strong></span>
                         </div>
                     </div>
                 </div>
