@@ -37,6 +37,7 @@ Route::get('/dashboard', function () {
 Route::group(['prefix' => 'gallery'], function(){
     Route::get('/', [GalleryController::class, 'index'])->name('gallery.index');
     Route::get('album/{album}/images', [GalleryController::class, 'showAlbumImages'])->name('gallery.album.images');
+    Route::get('categories/{category}/albums', [GalleryController::class, 'showCategoryAlbums'])->name('gallery.categories.albums');
 });
 
 Route::resource('categories', CategoryController::class);
