@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AlbumRequest;
 use App\Models\Album;
+use App\Models\AlbumCategory;
+use App\Models\Category;
 use App\Models\Photo;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -66,7 +68,8 @@ class AlbumsController extends Controller
     public function create()
     {
         $album = new Album();
-        return view('albums.createAlbum', ['album' => $album]);
+        $categories = Category::orderBy('category_name')->get();
+        return view('albums.createAlbum', ['album' => $album, 'categories' => $categories]);
     }
 
 
@@ -90,6 +93,10 @@ class AlbumsController extends Controller
         $album->user_id = Auth::id();
         $res = $album->save();
         if ($res) {
+            if($request->has('categories')){
+                $album->categories()->attach($request->input('categories'));
+            }
+
             if ($this->processFile($album->id, $request, $album)) {
                 $album->save();
             }
