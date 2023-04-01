@@ -24,7 +24,7 @@
             <input type="text" class="form-control" id="album_name" name="album_name" placeholder="Album name" value="{{$album->album_name}}">
         </div>
 
-        @include('albums.partials.fileupload');
+        @include('albums.partials.fileupload')
 
         <div class="mb-3 form-group">
             <label for="description" class="form-label">
