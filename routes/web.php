@@ -26,6 +26,7 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::resource('/albums', AlbumsController::class)->middleware('auth');
     Route::resource('photos', PhotosController::class);
     Route::get('/albums/{album}/images', [AlbumsController::class, 'getImages'])->name('albums.images');
+    Route::resource('categories', CategoryController::class);
 });
 
 Route::get('/dashboard', function () {
@@ -39,7 +40,5 @@ Route::group(['prefix' => 'gallery'], function(){
     Route::get('album/{album}/images', [GalleryController::class, 'showAlbumImages'])->name('gallery.album.images');
     Route::get('categories/{category}/albums', [GalleryController::class, 'showCategoryAlbums'])->name('gallery.categories.albums');
 });
-
-Route::resource('categories', CategoryController::class);
 
 require __DIR__.'/auth.php';
