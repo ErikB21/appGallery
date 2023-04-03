@@ -78,15 +78,13 @@
                 </tr>
             @endforeach
         </tbody>
-        {{-- <tr>
-            <td colspan="5">
-                <div class="row">
-                    <div class="mt-4 container">
-                        {{ $albums->links('pagination::bootstrap-5') }}
-                    </div>
-                </div>
-            </td>
-        </tr> --}}
+        <tfoot>
+            <tr>
+                <th colspan="6">
+                    {{ $albums->links('pagination::bootstrap-5') }}
+                </th>
+            </tr>
+        </tfoot>
     </table>
 
 @endsection
