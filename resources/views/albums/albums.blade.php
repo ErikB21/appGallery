@@ -93,8 +93,6 @@
                 ele.preventDefault();
                 console.log(ele.target)
                 const id = ele.target.id ? ele.target.id : ele.target.parentNode.id;
-                alert(id)
-                alert('#tr-' + id)
                 const tr = $('#tr-' + id);
                 console.log(tr)
                 const f = $('#form' + id);
