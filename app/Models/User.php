@@ -93,5 +93,10 @@ class User extends Authenticatable
 
     public function albums():HasMany{
         return $this->hasMany(Album::class);
-    } 
+    }
+
+    public function categories(): HasMany
+    {
+        return $this->hasMany(Category::class);
+    }
 }
