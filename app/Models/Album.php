@@ -61,7 +61,7 @@ class Album extends Model
     }
 
     public function categories():BelongsToMany{
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class)->withTimestamps();
     }
 
     //creo un metodo HELPER per la path delle immagini. Se la path inizia con HTTP

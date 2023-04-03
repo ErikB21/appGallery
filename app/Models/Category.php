@@ -32,6 +32,6 @@ class Category extends Model
     // protected $with = ['albums'];
 
     public function albums():BelongsToMany{
-        return $this->belongsToMany(Album::class);
+        return $this->belongsToMany(Album::class)->withTimestamps();
     }
 }
