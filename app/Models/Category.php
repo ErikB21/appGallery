@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\Category
@@ -37,5 +39,14 @@ class Category extends Model
 
     public function albums():BelongsToMany{
         return $this->belongsToMany(Album::class)->withTimestamps();
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function scopeGetCategoriesByUserId(Builder $builder, User $user){
+        $builder->whereUserId($user->id)->withCount('albums')->orderBy('category_name');
     }
 }
