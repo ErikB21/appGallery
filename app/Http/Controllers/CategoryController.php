@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -28,7 +28,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $category = new Category();
+        return view('categories.create', compact('category'));
     }
 
     /**
@@ -37,9 +38,23 @@ class CategoryController extends Controller
      * @param  \App\Http\Requests\StoreCategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(Request $request)
     {
-        //
+        $res = Category::create([
+            'category_name' => $request->category_name,
+            'user_id' => auth()->id()
+        ]);
+
+        $message = $res ? 'Category created' : 'Problem creating category';
+        session()->flash('message', $message);
+        if($request->ajax()){
+            return [
+                'message' => $message,
+                'success' => $res
+            ];
+        }else{
+            return redirect()->route('categories.index');
+        }
     }
 
     /**
