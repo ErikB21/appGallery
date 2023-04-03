@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\User;
 
 class CategoryController extends Controller
 {
@@ -15,7 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::whereUserId(auth()->id())->withCount('albums')->paginate(8);
+        // $categories = Category::whereUserId(auth()->id())->withCount('albums')->paginate(8);
+        $categories = Category::getCategoriesByUserId(auth()->user())->paginate(10);
         return view('categories.index', compact('categories'));
     }
 
