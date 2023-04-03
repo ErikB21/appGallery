@@ -23,9 +23,22 @@
                     <td>{{$category->albums_count}}</td>
                 </tr>
             @empty
-                
+                <tfoot>
+                    <tr>
+                        <th colspan="5">
+                            No Categories
+                        </th>
+                    </tr>
+                </tfoot>
             @endforelse
         </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="5">
+                    {{ $categories->links('pagination::bootstrap-5') }}
+                </th>
+            </tr>
+        </tfoot>
     </table>
 
 
