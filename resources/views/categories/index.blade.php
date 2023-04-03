@@ -35,7 +35,10 @@
         <tfoot>
             <tr>
                 <th colspan="5">
-                    {{ $categories->links('pagination::bootstrap-5') }}
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a class="btn btn-primary" href="{{ route('categories.create') }}">New Category</a>
+                        {{ $categories->links('pagination::bootstrap-5') }}
+                    </div>
                 </th>
             </tr>
         </tfoot>
