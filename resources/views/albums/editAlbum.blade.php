@@ -26,6 +26,9 @@
 
         @include('albums.partials.fileupload')
 
+        @include('albums.partials.categoryCombo')
+
+
         <div class="mb-3 form-group">
             <label for="description" class="form-label">
                 <h4>Description</h4>
