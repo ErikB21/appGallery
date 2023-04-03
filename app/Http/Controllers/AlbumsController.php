@@ -241,6 +241,7 @@ class AlbumsController extends Controller
         $res = $album->delete();
         
         if($res && $thumbnail && Storage::exists($thumbnail)){
+            // $album->categories()->detach($album->categories->pluck('id')); lo useremo solamente se nel seeder non ci fosse onDelete('cascade')
             Storage::delete($thumbnail);
         }
         if(request()->ajax()){
