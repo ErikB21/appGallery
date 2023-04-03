@@ -2,7 +2,9 @@
 
 @section('content')
 
-
+    @if(session()->has('message'))
+        <x-alert-info>{{ session()->get('message') }}</x-alert-info>
+    @endif
     <table class="table table-striped table-dark">
         <thead>
             <tr>
@@ -44,12 +46,15 @@
         </tfoot>
     </table>
 
+@endsection
 
-
-
-
-
-
-
-
+@section('footer')
+    @parent
+    <script>
+        $('document').ready(function () {
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+            $('.alert').fadeOut(5000);
+        });
+    </script>
 @endsection
