@@ -22,7 +22,7 @@
 
 <header>
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">GALLERY</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -43,6 +43,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('photos.create')}}">New Image</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('categories.index')}}">Categories</a>
                         </li>
                     </ul>
 
