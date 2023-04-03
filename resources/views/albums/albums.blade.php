@@ -29,18 +29,20 @@
                 </td>
                 <td>{{$album->user->name}}</td>
                 <td>{{$album->created_at->diffForHumans()}}</td>
-                @foreach ( $album->categories as $cat)
-                    <td><span class="badge text-bg-light">{{ Ucwords($cat->category_name) }}</span></td>
-                @endforeach
+                <td>
+                    @foreach ( $album->categories as $cat)
+                        <span class="badge text-bg-light">{{ Ucwords($cat->category_name) }}</span>
+                    @endforeach
+                </td>
                 <td>
                     <div class="row">
-                        <div class="col-md-2 mx-1 mx-lg-0 col-lg-3">
+                        <div class="col-md-2 mx-2 mx-lg-0 col-lg-3">
                             <a title="Add new image" data-bs-toggle="tooltip" data-bs-title="New Image" href="{{route('photos.create')}}?album_id={{$album->id}}"
                                class="btn btn-primary">
                                 <i class="bi bi-plus-circle"></i>
                             </a>
                         </div>
-                        <div class="col-md-2 mx-1 mx-lg-0 col-lg-3">
+                        <div class="col-md-2 mx-2 mx-lg-0 col-lg-3">
                             @if($album->photos_count)
                                 <a title="View images" data-bs-toggle="tooltip" data-bs-title="View Images" href="{{route('albums.images',$album)}}"
                                    class="btn btn-primary">
@@ -51,11 +53,11 @@
                                         class="bi bi-zoom-in"></i></a>
                             @endif
                         </div>
-                        <div class="col-md-2 mx-1 mx-lg-0 col-lg-3">
+                        <div class="col-md-2 mx-2 mx-lg-0 col-lg-3">
                             <a data-bs-toggle="tooltip" data-bs-title="Update Album" href="{{route('albums.edit',$album)}}" class="btn btn-primary"> <i
                                     class="bi bi-pen"></i></a>
                         </div>
-                        <div class="col-md-2 mx-1 mx-lg-0 col-lg-3">
+                        <div class="col-md-2 mx-2 mx-lg-0 col-lg-3">
                             <form id="form{{$album->id}}" method="POST" action="{{route('albums.destroy',$album)}}"
                                   class="form-inline">
                                 @method('DELETE')
