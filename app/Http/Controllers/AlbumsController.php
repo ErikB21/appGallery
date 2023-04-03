@@ -68,8 +68,10 @@ class AlbumsController extends Controller
     public function create()
     {
         $album = new Album();
+        $selectedCategories = [];
+
         $categories = Category::orderBy('category_name')->get();
-        return view('albums.createAlbum', ['album' => $album, 'categories' => $categories]);
+        return view('albums.createAlbum', ['album' => $album, 'categories' => $categories, 'selectedCategories' => []]);
     }
 
 
@@ -169,8 +171,10 @@ class AlbumsController extends Controller
         //     abort('401');
         // guardare AuthServiceProvider.php
         $this->authorize($album);
+        $categories = Category::orderBy('category_name')->get();
+        $selectedCategories = $album->categories->pluck('id')->toArray();
         
-        return view('albums.editalbum', compact('album'));
+        return view('albums.editalbum')->with(compact('album', 'categories', 'selectedCategories'));
         // $sql = 'SELECT * FROM albums WHERE id=:id';
         // $albumEdit = DB::select($sql, ['id' => $album->id]);
         // return view('albums.editalbum', ['album' => $albumEdit[0]]);
@@ -202,6 +206,9 @@ class AlbumsController extends Controller
         $this->processFile($id, $req, $album);
 
         $res = $album->save();
+        if ($req->has('categories')) {
+            $album->categories()->sync($req->input('categories'));
+        }
         $message = $res ? 'Album ' . $album->album_name . ' modificato' : 'Album' . $album->album_name . ' non modificato.';
         session()->flash('message', $message);
         return redirect()->route('albums.index');
