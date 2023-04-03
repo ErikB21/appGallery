@@ -97,6 +97,6 @@ class User extends Authenticatable
 
     public function categories(): HasMany
     {
-        return $this->hasMany(Category::class)->withCount('albums');
+        return $this->hasMany(Category::class);
     }
 }
