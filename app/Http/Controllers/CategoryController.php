@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Http\Requests\UpdateCategoryRequest;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
+    protected $rules = [
+        'category_name' => 'required'
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +21,7 @@ class CategoryController extends Controller
     public function index()
     {
         // $categories = Category::whereUserId(auth()->id())->withCount('albums')->paginate(8);
-        $categories = Category::getCategoriesByUserId(auth()->user())->paginate(10);
+        $categories = Category::getCategoriesByUserId(auth()->user())->paginate(4);
         return view('categories.index', compact('categories'));
     }
 
@@ -40,6 +44,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, $this->rules);
         $res = Category::create([
             'category_name' => $request->category_name,
             'user_id' => auth()->id()
