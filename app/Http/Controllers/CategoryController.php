@@ -51,7 +51,7 @@ class CategoryController extends Controller
             'user_id' => auth()->id()
         ]);
 
-        $message = $res ? 'Category created' : 'Problem creating category';
+        $message = $res ? 'Category created' : 'Problem creating category'.$request->category_name;
         session()->flash('message', $message);
         if($request->ajax()){
             return [
@@ -97,7 +97,7 @@ class CategoryController extends Controller
         $this->validate($request, $this->rules);
         $category->category_name = $request->category_name;
         $res = $category->save();
-        $message = $res ? 'Category updated' : 'Problem editing category';
+        $message = $res ? 'Category updated' : 'Problem updating category'.$request->category_name;
         session()->flash('message', $message);
         if ($request->ajax()) {
             return [
@@ -120,10 +120,11 @@ class CategoryController extends Controller
         $res = $category->delete();
         $message = $res ? 'Category deleted' : 'Problem deleting category';
         session()->flash('message', $message);
-        if ($request->ajax()) {
+        if ($request->expectsJson()) {//verifica se ajax è diverso da pjax o da qualsiasi contenuto, oppure che si aspetti come un tipo di risposta json
             return [
                 'message' => $message,
-                'success' => $res
+                'success' => $res,
+                'data' => $res
             ];
         } else {
             return redirect()->route('categories.index');
