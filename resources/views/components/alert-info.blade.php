@@ -1,4 +1,4 @@
-<span class="alert alert-info">{{$message}}</span>
+<div class="alert alert-info m-o">{{$message}}</div>
 {{-- qui invece mi faccio aiutare dal costruttore della view(app/view),e passerò solo il componente --}}
 
 {{-- <div class="alert alert-info">{{$slot}}</div>
