@@ -14,15 +14,15 @@
                     <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                         <p class="lead fw-normal mb-0 me-3">Sign in with</p>
                         <button type="button" class="btn btn-primary btn-floating mx-1">
-                            <i class="fa-brands fa-facebook"></i>
+                            <i class="bi bi-facebook"></i>
                         </button>
 
                         <button type="button" class="btn btn-primary btn-floating mx-1">
-                            <i class="fa-brands fa-twitter"></i>
+                            <i class="bi bi-twitter"></i>
                         </button>
 
                         <button type="button" class="btn btn-primary btn-floating mx-1">
-                            <i class="fa-brands fa-linkedin"></i>
+                            <i class="bi bi-linkedin"></i>
                         </button>
                     </div>
 
@@ -49,7 +49,7 @@
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center mt-5">
                         <!-- Checkbox -->
                         <div class="form-check mb-0">
                             <label for="remember_me" class="form-check-label">
@@ -57,7 +57,7 @@
                                 <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
                             </label>
                         </div>
-                        <div class="d-flex align-items-center justify-content-between mt-4">
+                        <div class="d-flex align-items-center justify-content-between">
                             @if (Route::has('password.request'))
                                 <a class="me-2 underline nav-link text-sm text-secondary hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
                                     {{ __('Forgot your password?') }}
