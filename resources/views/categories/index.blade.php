@@ -22,27 +22,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($categories as $category)
+                    @forelse ($categories as $cat)
                         <tr>
-                            <td>{{$category->id}}</td>
-                            <td>{{ucWords($category->category_name)}}</td>
-                            <td>{{$category->created_at->diffForHumans()}}</td>
-                            <td>{{$category->updated_at->diffForHumans()}}</td>
+                            <td>{{$cat->id}}</td>
+                            <td>{{ucWords($cat->category_name)}}</td>
+                            <td>{{$cat->created_at->diffForHumans()}}</td>
+                            <td>{{$cat->updated_at->diffForHumans()}}</td>
                             <td>
-                                @if ($category->albums_count > 0)
-                                    <a class="btn btn-success" data-bs-toggle="tooltip" data-bs-title="Views Albums" class="" href="{{ route('albums.index') }}?category_id={{$category->id}}">{{$category->albums_count}}</a>
+                                @if ($cat->albums_count > 0)
+                                    <a class="btn btn-success" data-bs-toggle="tooltip" data-bs-title="Views Albums" class="" href="{{ route('albums.index') }}?category_id={{$cat->id}}">{{$cat->albums_count}}</a>
                                 @else
-                                    <a class="btn btn-default text-light" data-bs-toggle="tooltip" data-bs-title="No Albums" href="#">{{$category->albums_count}}</a>
+                                    <a class="btn btn-default text-light" data-bs-toggle="tooltip" data-bs-title="No Albums" href="#">{{$cat->albums_count}}</a>
                                 @endif
                             </td>
-                            <td>
-                                <a data-bs-toggle="tooltip" data-bs-title="Update Category" href="{{route('categories.edit',$category)}}" class="btn btn-primary"> <i class="bi bi-pen"></i></a>
-                                <form id="form{{$category->id}}" method="POST" action="{{route('categories.destroy',$category)}}"
+                            <td class="d-flex">
+                                <a data-bs-toggle="tooltip" data-bs-title="Update Category" href="{{route('categories.edit',$cat->id)}}" class="btn btn-outline-info mx-1"> <i class="bi bi-pen"></i></a>
+                                <form id="form{{$cat->id}}" method="POST" action="{{route('categories.destroy',$cat->id)}}"
                                     class="form-inline">
-                                    @method('DELETE')
-
                                     @csrf
-                                    <button data-bs-toggle="tooltip" data-bs-title="Delete Category" class="btn btn-danger" id="{{$category->id}}"><i class="bi bi-trash"></i></button>
+                                    @method('DELETE')
+                                    <button data-bs-toggle="tooltip" data-bs-title="Delete Category" class="mx-1 btn btn-outline-danger" id="{{$cat->id}}"><i class="bi bi-trash"></i></button>
                                 </form>
                             </td>
                         </tr>
@@ -70,7 +69,6 @@
         </div>
         <div class="d-none d-lg-block col-lg-4">
             <div class="border rounded-5 d-flex flex-column align-items-center mt-5 py-5">
-                <h2 class="mb-5">New Category</h2>
                 @include('categories\categoryForm')
             </div>
         </div>
