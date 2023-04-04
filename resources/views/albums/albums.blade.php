@@ -1,12 +1,14 @@
 @extends('templates.default')
 @section('content')
-    <h1>ALBUMS</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>ALBUMS</h1>
+        @if(session()->has('message'))
+            <x-alert-info>{{ session()->get('message') }}</x-alert-info>
+        @endif
+    </div>
+    
 
-    @if(session()->has('message'))
-        <x-alert-info>{{ session()->get('message') }}</x-alert-info>
-    @endif
-
-    <table class="table table-striped table-dark albums">
+    <table class="table table-striped table-dark albums mt-5">
         <thead>
         <tr class="align-middle">
             <th>Album name</th>
