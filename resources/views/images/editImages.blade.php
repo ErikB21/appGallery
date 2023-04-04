@@ -8,7 +8,6 @@
      */
 @endphp
 <div class="d-flex justify-content-center align-items-center flex-column container border rounded-5 my-5">
-    @include('images.partials.inputErrors');
 
     @if($photo->id)
         <h3 class="h2 fw-bold mb-5">EDIT image {{$photo->name}}</h3>
@@ -16,7 +15,7 @@
 
             @method('PATCH')
             @else
-                <h3 class="h2 fw-bold mb-5 text-center">New Image for album {{$album->album_name}}</h3>
+                <h3 class="h2 fw-bold mb-5 mt-4 text-center">New Image for album {{$album->album_name}}</h3>
                 <form style="width: 60%;" method="post" action="{{route('photos.store')}}" enctype="multipart/form-data">
 
                     @endif
@@ -51,5 +50,8 @@
                         <button type="sumbit" class="btn btn-primary">INVIA</button>
                     </div>
                 </form>
+</div>
+<div class="container">
+    @include('images.partials.inputErrors')
 </div>
 @endsection

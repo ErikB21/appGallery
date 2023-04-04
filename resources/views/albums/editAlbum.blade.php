@@ -8,7 +8,6 @@
      */
 @endphp
 <div class="container d-flex justify-content-center flex-column align-items-center">
-    @include('albums.partials.inputErrors');
 
     <h1 class="mt-5">EDIT ALBUM <strong class="text-primary">{{$album->album_name}}</strong></h1>
 
@@ -43,5 +42,8 @@
 
 
     </form>
+</div>
+<div class="container">
+    @include('albums.partials.inputErrors')
 </div>
 @endsection

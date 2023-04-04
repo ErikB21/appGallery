@@ -3,12 +3,9 @@
 @section('content')
 <div class="container my-5">
     
-    <h1 class="my-4 fw-bold text-center">NEW ALBUM</h1>
-
-    @include('albums.partials.inputErrors')
-
-    <div class="d-flex justify-content-between align-items-center">
-        <form class="my-4 pt-5" style="width: 50%;" action="{{route('albums.store')}}" method="POST" enctype="multipart/form-data">
+    <div class="d-flex flex-column justify-content-center align-items-center border rounded-4">
+        <h1 class="my-4 fw-bold text-center">NEW ALBUM</h1>
+        <form class="my-4 pt-5" style="width: 80%;" action="{{route('albums.store')}}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="my-4 form-group">
                 <label for="album_name" class="form-label">
@@ -33,9 +30,9 @@
                 <button type="submit" class="btn btn-primary">Send</button>
             </div>
         </form>
-        <div>
-            <img width="300" src="{{ asset('img/albums.png') }}" alt="">
-        </div>
     </div>
+</div>
+<div class="container">
+    @include('albums.partials.inputErrors')
 </div>
 @endsection
