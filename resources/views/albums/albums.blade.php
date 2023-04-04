@@ -96,7 +96,7 @@
         $('document').ready(function () {
             const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
             const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-            $('.alert').fadeOut(5000);
+            $('div.alert').fadeOut(5000);
             $('table').on('click', 'button.btn-danger', function (ele) {
                 ele.preventDefault();
                 console.log(ele.target)
