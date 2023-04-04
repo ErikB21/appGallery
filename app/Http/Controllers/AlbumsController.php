@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AlbumRequest;
 use App\Models\Album;
-use App\Models\AlbumCategory;
 use App\Models\Category;
 use App\Models\Photo;
 use Illuminate\View\View;
@@ -33,6 +32,10 @@ class AlbumsController extends Controller
         }
         if ($request->has('album_name')) {
             $queryBuilder->where('album_name', 'LIKE', $request->input('album_name'). '%');
+        }
+        if ($request->has('category_id')) {
+            $queryBuilder->whereHas('categories', fn($q) => $q->where('category_id', $request->category_id));
+            //nome relazione +arrow function dove $q sta per category_id che deve essere uguale al category_id della request
         }
         $albums = $queryBuilder->paginate($albumsPerPage);
         return view('albums.albums', ['albums' => $albums]);
@@ -246,9 +249,9 @@ class AlbumsController extends Controller
         }
         if(request()->ajax()){
             return $res;
-        }else{
-            return redirect()->route('albums.index');
         }
+        session()->flash('message', 'Album' . $album->album_name . ' deleted!');
+        return redirect()->route('albums.index');
 
 
         //usare int al posto di Album
