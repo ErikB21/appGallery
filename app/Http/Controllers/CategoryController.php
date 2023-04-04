@@ -22,7 +22,8 @@ class CategoryController extends Controller
     {
         // $categories = Category::whereUserId(auth()->id())->withCount('albums')->paginate(8);
         $categories = Category::getCategoriesByUserId(auth()->user())->paginate(4);
-        return view('categories.index', compact('categories'));
+        $category = new Category();
+        return view('categories.index', compact('categories', 'category'));
     }
 
     /**
@@ -81,7 +82,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.create', compact('category'));
     }
 
     /**
@@ -91,9 +92,21 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(Request $request, Category $category)
     {
-        //
+        $this->validate($request, $this->rules);
+        $category->category_name = $request->category_name;
+        $res = $category->save();
+        $message = $res ? 'Category updated' : 'Problem editing category';
+        session()->flash('message', $message);
+        if ($request->ajax()) {
+            return [
+                'message' => $message,
+                'success' => $res
+            ];
+        } else {
+            return redirect()->route('categories.index');
+        }
     }
 
     /**
@@ -102,8 +115,18 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category, Request $request)
     {
-        //
+        $res = $category->delete();
+        $message = $res ? 'Category deleted' : 'Problem deleting category';
+        session()->flash('message', $message);
+        if ($request->ajax()) {
+            return [
+                'message' => $message,
+                'success' => $res
+            ];
+        } else {
+            return redirect()->route('categories.index');
+        }
     }
 }
