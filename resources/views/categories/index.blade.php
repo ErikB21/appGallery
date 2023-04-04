@@ -1,11 +1,8 @@
 @extends('templates\default')
 
 @section('content')
-    <div class="d-flex align-items-center justify-content-between">
-        <h1 class="mb-4 text-center">Categories</h1>
-        @if(session()->has('message'))
-            <x-alert-info>{{ session()->get('message') }}</x-alert-info>
-        @endif
+    <div>
+        <h1 class="mb-4  me-5 text-center">Categories</h1>
     </div>
     <table class="table table-stripe table-hover table-dark">
         <thead>
@@ -63,6 +60,9 @@
             </tr>
         </tfoot>
     </table>
+    @if(session()->has('message'))
+        <x-alert-info>{{ session()->get('message') }}</x-alert-info>
+    @endif
     
 @endsection
 
