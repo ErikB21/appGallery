@@ -4,7 +4,7 @@
         @method('PATCH')
 @else
     <h1 class="text-center mb-5">New Category</h1>
-    <form action="{{ route('categories.store') }}" method="POST" class="row">
+    <form action="{{ route('categories.store') }}" method="POST" class="row" id="manageCategoryForm">
 @endif
 
     @csrf
