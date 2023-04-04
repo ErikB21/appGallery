@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\UpdateCategoryRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -46,17 +47,18 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, $this->rules);
-        $res = Category::create([
-            'category_name' => $request->category_name,
-            'user_id' => auth()->id()
-        ]);
+        $res = new Category();
+        $res->category_name = $request->category_name;
+        $res->user_id = Auth::id();
+        $res->save();
 
         $message = $res ? 'Category created' : 'Problem creating category'.$request->category_name;
         session()->flash('message', $message);
-        if($request->ajax()){
+        if($request->expectsJson()){
             return [
                 'message' => $message,
-                'success' => $res
+                'success' => $res,
+                'data' => $res
             ];
         }else{
             return redirect()->route('categories.index');
@@ -99,10 +101,11 @@ class CategoryController extends Controller
         $res = $category->save();
         $message = $res ? 'Category updated' : 'Problem updating category'.$request->category_name;
         session()->flash('message', $message);
-        if ($request->ajax()) {
+        if ($request->expectsJson()) {
             return [
                 'message' => $message,
-                'success' => $res
+                'success' => $res,
+                'data' => $category
             ];
         } else {
             return redirect()->route('categories.index');
