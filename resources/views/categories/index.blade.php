@@ -17,7 +17,7 @@
         </thead>
         <tbody>
             @forelse ($categories as $cat)
-                <tr>
+                <tr id="tr-{{ $cat->id }}">
                     <td>{{$cat->id}}</td>
                     <td>{{ucWords($cat->category_name)}}</td>
                     <td>{{$cat->created_at->diffForHumans()}}</td>
@@ -35,7 +35,7 @@
                             class="form-inline">
                             @csrf
                             @method('DELETE')
-                            <button data-bs-toggle="tooltip" data-bs-title="Delete Category" class="mx-1 btn btn-outline-danger" id="{{$cat->id}}"><i class="bi bi-trash"></i></button>
+                            <button data-bs-toggle="tooltip" data-bs-title="Delete Category" class="mx-1 btn btn-outline-danger" id="btnDelete-{{ $cat->id }}"><i class="bi bi-trash"></i></button>
                         </form>
                     </td>
                 </tr>
@@ -69,10 +69,47 @@
 @section('footer')
     @parent
     <script>
-        $('document').ready(function () {
+        $('document').ready(function () {//eliminazione categorie via AJAX
             const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
             const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
             $('.alert').fadeOut(5000);
+            $('form .btn-danger').on('click', function (evt){
+                evt.preventDefault();
+                let f = this.parentNode;
+                let cat = this.id.replace('btnDelete-','') * 1;
+                let Trid = 'tr-' + cat;
+                let urlCategory = f.action;
+                $.ajax(
+                    urlCategory,
+                    {
+                        method: 'DELETE',
+                        data: {
+                            _token: Laravel.csrfToken
+                        },
+                        complete: function (resp) {
+                            // console.log(resp);
+                            let resp = JSON.parse(resp.responseText);//trasformo la risposta in un JSON
+                            $('#' + Trid).remove().fadeOut(1000);//rimuovo l'intera riga con jQuery
+                        }
+                    }
+                );
+            });
         });
+    </script>
+@endsection
+
+@section('footer')
+    @parent
+    <script>
+        $('document').ready(function () {
+            
+                console.log(ele.target)
+                const id = ele.target.id ? ele.target.id : ele.target.parentNode.id;
+                const tr = $('#tr-' + id);
+                console.log(tr)
+                const f = $('#form' + id);
+                const urlAlbum = f.attr('action');
+                
+            });
     </script>
 @endsection
