@@ -1,12 +1,13 @@
 <?php
 
 // use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\Admin\AdminUsersController;
 use Illuminate\Support\Facades\Route;
 
-    Route::get('/', function(){
-        // dd(Auth::user()->isAdmin());
-        return 'Hello Admin';
-    });
+    Route::resource('users', AdminUsersController::class);
+    Route::view('/', 'templates/admin')->name('admin');
+    
 
     Route::get('/dashboard', function(){
         return 'Admin DashBoard';
