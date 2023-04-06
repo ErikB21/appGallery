@@ -78,78 +78,90 @@
 @section('footer')
     @parent
     <script>
-        $('document').ready(function () {//eliminazione categorie via AJAX
+        $('document').ready(function () {
             const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
             const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
             $('div.alert').fadeOut(4000);
-            $('form .btn-outline-danger').on('click', function (evt){
-                evt.preventDefault();
-                let f = this.parentNode;
-                let cat = this.id.replace('btnDelete-','') * 1;
-                let Trid = 'tr-' + cat;
-                let urlCategory = f.action;
-                $.ajax(
-                    urlCategory,
-                    {
-                        method: 'DELETE',
-                        data: {
-                            _token: Laravel.csrfToken
-                        },
-                        complete: function (resp) {
-                            // console.log(resp);
-                            let respons = JSON.parse(resp.responseText);//trasformo la risposta in un JSON
-                            $('#' + Trid).remove().fadeOut(1000);//rimuovo l'intera riga con jQuery
-                        }
-                    }
-                );
-            });
+
+            //eliminazione categorie via AJAX
+            // $('form .btn-outline-danger').on('click', function (evt){
+            //     evt.preventDefault();
+            //     let f = this.parentNode;
+            //     let cat = this.id.replace('btnDelete-','') * 1;
+            //     let Trid = 'tr-' + cat;
+            //     let urlCategory = f.action;
+            //     $.ajax(
+            //         urlCategory,
+            //         {
+            //             method: 'DELETE',
+            //             data: {
+            //                 _token: Laravel.csrfToken
+            //             },
+            //             complete: function (resp) {
+            //                 // console.log(resp);
+            //                 let respons = JSON.parse(resp.responseText);//trasformo la risposta in un JSON
+            //                 $('#' + Trid).remove().fadeOut(1000);//rimuovo l'intera riga con jQuery
+            //             }
+            //         }
+            //     );
+            // });
 
             //Aggiungi categoria
-            $('#manageCategoryForm .btn-primary').on('click', function (evt){
-                evt.preventDefault();
-                let f = $('#manageCategoryForm');
-                let data = f.serialize();
-                let urlCategory = f.attr('action');
-                $.ajax(
-                    urlCategory,
-                    {
-                        method: 'POST',
-                        data: data,
-                        complete: function (resp) {
-                            let response = JSON.parse(resp.responseText);//trasformo la risposta in un JSON
-                            if(response.success){
-                                f[0].category_name.value = '';
-                                f[0].reset();
-                            }else{
-                                alert('Problem contacting server');
-                            }
+            // $('#manageCategoryForm .btn-primary').on('click', function (evt){
+            //     evt.preventDefault();
+            //     let f = $('#manageCategoryForm');
+            //     let data = f.serialize();
+            //     let urlCategory = f.attr('action');
+            //     $.ajax(
+            //         urlCategory,
+            //         {
+            //             method: 'POST',
+            //             data: data,
+            //             done: function (resp) {
+            //                 let response = JSON.parse(resp.responseText);//trasformo la risposta in un JSON
+            //                 if(response.success){//se response è success
+            //                     f[0].category_name.value = ''; //allora f viene svuotato
+            //                     f[0].reset();//e resettato per poter aggiungere una nuova categoria
+            //                 }else{
+            //                     alert('Problem contacting server');
+            //                 }
                             
-                        }
-                    }
-                );
-            });
+            //             }
+            //         }
+            //     );
+            // });
 
-            //Modifica categoria
-            $('#categoryList a.btn-outline-info').on('click', function (evt){
-                evt.preventDefault();
-                let categoryId = this.id.replace('upd-', '');
-                let catRow = $('#tr-' + categoryId);
+        //     //Modifica categoria
+        //     const f = $('#manageCategoryForm');
+        //     let selectedCategory = null;
+        //     f[0].category_name.addEventListener('keyup', function(){
+        //         if(selectedCategory){
+        //             selectedCategory.html(f[0].category_name.value);
+        //         }   
+        //     })
 
-                let urlUpdate = this.href.replace('/edit', '');
-                let tdCat = $('#catId-' + categoryId);
-                let categoryName = tdCat.text();
-                let f = $('#manageCategoryForm');
-                f.attr('action', urlUpdate);
-                f[0].category_name.value = categoryName;
-                f[0].category_name.addEventListener('keyup', function(){
-                    tdCat.html(f[0].category_name.value);
-                })
-                let input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = '_method';
-                input.value = 'PATCH';
-                f[0].appendChild(input);
-            });
+        //     $('#categoryList a.btn-outline-info').on('click', function (evt){
+        //         evt.preventDefault();
+        //         let categoryId = this.id.replace('upd-', '');
+        //         let catRow = $('#tr-' + categoryId);
+
+        //         let urlUpdate = this.href.replace('/edit', '');
+        //         let tdCat = $('#catId-' + categoryId);
+        //         selectedCategory = tdCat;
+        //         let categoryName = tdCat.text();
+                
+        //         f.attr('action', urlUpdate);
+        //         f[0].category_name.value = categoryName;
+        //         const inputT = document.querySelector('#methodType');
+        //         if(!inputT){
+        //             let input = document.createElement('input');
+        //             input.type = 'hidden';
+        //             input.id = 'methodType';
+        //             input.name = '_method';
+        //             input.value = 'PATCH';
+        //             f[0].appendChild(input);
+        //         }
+        //     });
         });
     </script>
 @endsection
