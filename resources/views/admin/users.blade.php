@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Users List</h1>
-    <table class="table table-striped table-dark data-table">
+    <table class="table table-striped table-light data-table">
         <thead>
             <tr>
                 <th>NAME</th>
