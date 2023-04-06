@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminUsersController;
 use Illuminate\Support\Facades\Route;
 
     Route::resource('users', AdminUsersController::class);
+    Route::get('getUsers', [AdminUsersController::class, 'getUsers']);
     Route::view('/', 'templates/admin')->name('admin');
     
 
