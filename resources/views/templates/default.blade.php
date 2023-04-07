@@ -10,7 +10,7 @@
         window.Laravel = @json(['csrf_token' => csrf_token()]);
     </script>
     <title>@yield('title', 'Home')</title>
-
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link href="/css/lightbox.css" rel="stylesheet" />
