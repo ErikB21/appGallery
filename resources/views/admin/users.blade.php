@@ -38,16 +38,18 @@
                 });
                 $('#users-table').on('click', '.ajax', function (ele) {
                     ele.preventDefault();
-                    if(!confirm('Do you really want to delete this record')){
+                    const isDelete = this.id.indexOf('delete') >= 0;
+                    const msg = isDelete ? 'Do you really want to delete this record?' : 'Do you really want to restore this record?'
+                    if(!confirm(msg)){
                         return false;
                     }
-                    var urlUsers =   $(this).attr('href');
-                    var tr =this.parentNode.parentNode;
+                    let urlUsers =   $(this).attr('href');
+                    let tr =this.parentNode.parentNode;
                     console.log(tr)
                     $.ajax(
                         urlUsers,
                         {
-                            method: 'DELETE',
+                            method: isDelete ? 'DELETE' : 'PATCH',
                             data : {
                                 '_token' :  Laravel.csrfToken
                             },
