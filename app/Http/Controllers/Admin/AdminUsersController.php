@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use DataTables;
+use Yajra\DataTables\Services\DataTable;
 
 class AdminUsersController extends Controller
 {
@@ -18,10 +19,15 @@ class AdminUsersController extends Controller
     {
         return view('admin/users');
     }
+    
     public function getUsers()
     {
         $users =  User::select(['name', 'email', 'user_role', 'created_at', 'deleted_at'])->orderBy('name')->get();
-        $result = DataTables::of($users)->make(true);
+        $result = DataTables::of($users)->addColumn('action', function ($user) {
+            return '<a title="Update" href="#edit-' . $user->id . '" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>&nbsp;' .
+            '<a title="Soft delete" href="#edit-' . $user->id . '" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> </a>&nbsp;' .
+            '<a title="Hard delete" href="#edit-' . $user->id . '" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> </a>';
+        })->make(true);
         return $result;
     }
 
