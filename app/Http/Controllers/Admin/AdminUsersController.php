@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\Request;
 use DataTables;
-use Yajra\DataTables\Services\DataTable;
+use Illuminate\Http\Request;
 
 class AdminUsersController extends Controller
 {
@@ -17,20 +16,30 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
+
         return view('admin/users');
     }
-    
+    private function getUserButtons(User $user)
+    {
+        $id = $user->id;
+
+
+        $buttonEdit = '<a href="' . route('users.edit', ['user' => $id]) . '" id="edit-' . $id . '" class="btn btn-sm btn-primary"><i  class="bi bi-pen"></i></a>&nbsp;';
+
+
+        $buttonDelete = '<a  href="' . route('users.destroy', ['user' => $id]) . '" title="soft delete" id="delete-' . $id . '" class="ajax btn-warning btn btn-sm "><i class="bi bi-trash"></i></a>&nbsp;';
+
+        $buttonForceDelete = '<a href="' . route('users.destroy', ['user' => $id]) . '?hard=1" title="hard delete" id="forcedelete-' . $id . '" class="ajax btn btn-sm btn-danger"><i class="bi bi-trash"></i> </a>';
+        return $buttonEdit . $buttonDelete . $buttonForceDelete;
+    }
     public function getUsers()
     {
-        $users =  User::select(['name', 'email', 'user_role', 'created_at', 'deleted_at'])->orderBy('name')->get();
+        $users =  User::select(['id', 'name', 'email', 'user_role', 'created_at', 'deleted_at'])->orderBy('name')->withTrashed()->get();
         $result = DataTables::of($users)->addColumn('action', function ($user) {
-            return '<a title="Update" href="#edit-' . $user->id . '" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></a>&nbsp;' .
-            '<a title="Soft delete" href="#edit-' . $user->id . '" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> </a>&nbsp;' .
-            '<a title="Hard delete" href="#edit-' . $user->id . '" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> </a>';
+            return  $this->getUserButtons($user);
         })->make(true);
         return $result;
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -94,6 +103,9 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::withTrashed()->findOrFail($id);
+        $hard = \request('hard', '');
+        $res = $hard ? $user->forceDelete() : $user->delete();
+        return '' . $res;
     }
 }
