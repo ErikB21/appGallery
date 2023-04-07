@@ -7,7 +7,8 @@
                 <th>ID</th>
                 <th>NAME</th>
                 <th>EMAIL</th>
-                <th>CREATED AT</th>
+                <th>ROLE</th>
+                <th>CREATED</th>
                 <th>DELETED</th>
                 <th>&nbsp;</th>
             </tr>
@@ -32,6 +33,7 @@
                         {data: 'id', name: 'id'},
                         {data: 'name', name: 'name'},
                         {data: 'email', name: 'email'},
+                        {data: 'user_role', name: 'role'},
                         {data: 'created_at', name: 'created'},
                         {data: 'deleted_at', name: 'del'},
                         {data: 'action', name: 'action', orderable: false, searchable: false}
