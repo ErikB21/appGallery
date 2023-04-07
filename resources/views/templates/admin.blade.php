@@ -7,7 +7,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
     <title>Dashboard - SB Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
+    <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet"/>
     <link href="{{url('/')}}/css/styles.css" rel="stylesheet"/>
 
 
@@ -17,7 +17,7 @@
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="#">LARAGALLERY ADMIN</a>
+    <a class="navbar-brand ps-3" href="index.html">LARAGALLERY ADMIN</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
             class="bi bi-list"></i></button>
@@ -51,7 +51,7 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">Core</div>
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="index.html">
                         <div class="sb-nav-link-icon"><i class="bi bi-speedometer2"></i></div>
                         Dashboard
                     </a>
@@ -96,7 +96,6 @@
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                                data-bs-target="#pagesCollapseError" aria-expanded="false"
                                aria-controls="pagesCollapseError">
-                               <i class="bi bi-bug-fill pe-2"></i>
                                 Error
                                 <div class="sb-sidenav-collapse-arrow"><i class="bi bi-caret-down"></i></div>
                             </a>
@@ -139,13 +138,13 @@
         </footer>
     </div>
 </div>
+@section('footer')
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
 <script src="{{url('/')}}/js/scripts.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="assets/demo/chart-area-demo.js"></script>
-<script src="assets/demo/chart-bar-demo.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-<script src="{{url('/')}}/js/datatables-simple-demo.js"></script>
+
+<script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+@show
 </body>
 </html>
