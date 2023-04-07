@@ -19,57 +19,7 @@ class AdminUsersController extends Controller
 
         return view('admin/users');
     }
-    private function getUserButtons(User $user)
-    {
-        //id sarà uguale all'id dell'user 
-        $id = $user->id;
 
-        //button per rotta update, dove si può modificare un0 user
-        $buttonEdit = '<a href="' . route('users.edit', ['user' => $id]) . '" id="edit-' . $id . '" class="btn btn-sm btn-primary"><i  class="bi bi-pen"></i></a>&nbsp;';
-
-        //se lo user è stato cancellato 
-        if($user->deleted_at){
-
-            //allora il buttonDelete
-
-            //avrà una rotta verso il metodo restore
-            $deleteRoute = route('admin.userRestore', ['user' => $id]);
-
-            //cambierà colore, icona, ID e il title
-            $btnClass = 'btn-success';
-            $iconDelete = '<i class="bi bi-arrow-clockwise"></i>';
-            $btnId = 'restore-' . $id;
-            $btnTitle = 'Restore';
-        }else{
-
-            //se invece non è stato ancora cancellato
-            $deleteRoute = route('users.destroy', ['user' => $id]);
-            $btnClass = 'btn-warning';
-            $iconDelete = '<i class="bi bi-trash"></i>';
-            $btnId = 'delete-' . $id;
-            $btnTitle = 'Soft Delete';
-        }
-
-        //il nostro bottone dinamico che cambia : se è stato cancellato diventa bottone da restore, altrimenti resta da softDelete
-        $buttonDelete = "<a href='$deleteRoute' title='$btnTitle' id='$btnId' class='ajax $btnClass btn btn-sm'>$iconDelete</a>&nbsp;";
-
-        //il nostro button per cancellare fisicamente il record dal DB
-        $buttonForceDelete = '<a href="' . route('users.destroy', ['user' => $id]) . '?hard=1" title="hard delete" id="forcedelete-' . $id . '" class="ajax btn btn-sm btn-danger"><i class="bi bi-trash"></i> </a>';
-        return $buttonEdit . $buttonDelete . $buttonForceDelete;
-    }
-    public function getUsers()
-    {
-        //seleziona gli User per ..., ordinali per nome, carica anche quelli cancellati in modo soft
-        $users =  User::select(['id', 'name', 'email', 'user_role', 'created_at', 'deleted_at'])->orderBy('name')->withTrashed()->get();
-
-        //crea una DataTables con gli utenti(array $users)
-        $result = DataTables::of($users)->addColumn('action', function ($user) {
-
-            //aggiungi le condizioni della funzione getUserButtons
-            return  $this->getUserButtons($user);
-        })->make(true);
-        return $result;
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -108,9 +58,10 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        //ritorna la vista creata appositamente per il form
+        return view('admin.editUser', compact('user'));
     }
 
     /**
@@ -120,9 +71,14 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,User $user)
     {
-        //
+        //prendo la richiesta del form e salvo i dati di modifica
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->user_role = $request->user_role;
+        $user->save();
+        return redirect()->route('users.index');
     }
 
     /**
@@ -146,6 +102,20 @@ class AdminUsersController extends Controller
         return '' . $res;
     }
 
+
+
+
+
+
+
+
+    /**
+     * FUNZIONI PER CAMBIARE DINAMICAMENTE I BOTTONI DI EDIT, RESTORE E DESTROY
+     * 
+     * FUNZIONE PER CREARE ATTRAVERSO DATATABLES UNA TABELLA DINAMICA CON TUTTI GLI UTENTI
+     * 
+     */
+
     public function restore($id)
     {
         //stessa cosa della destroy
@@ -156,5 +126,71 @@ class AdminUsersController extends Controller
 
         //ritorno il risultato
         return '' . $res;
+    }
+
+
+
+    private function getUserButtons(User $user)
+    {
+        //id sarà uguale all'id dell'user 
+        $id = $user->id;
+
+        //button per rotta update di default
+        $buttonEdit = "<a id='edit-$id' style='cursor:default;' class='btn btn-sm btn-default mb-1'><i class='bi bi-pen'></i></a>&nbsp;";
+
+
+        //se lo user è stato cancellato 
+        if ($user->deleted_at) { //allora il buttonDelete
+
+            //avrà una rotta verso il metodo restore
+            $deleteRoute = route('admin.userRestore', ['user' => $id]);
+
+            //cambierà colore, icona, ID e il title
+            $btnClass = 'btn-success';
+            $iconDelete = '<i class="bi bi-arrow-clockwise"></i>';
+            $btnId = 'restore-' . $id;
+            $btnTitle = 'Restore';
+        } else { //se invece non è stato ancora cancellato
+
+            //rotta verso destroy, con cambio di colore, icona, ID e title
+            $deleteRoute = route('users.destroy', ['user' => $id]);
+            $btnClass = 'btn-warning';
+            $iconDelete = '<i class="bi bi-trash"></i>';
+            $btnId = 'delete-' . $id;
+            $btnTitle = 'Soft Delete';
+
+            //button per rotta update, dove si può modificare uno user, sovrascritta
+            $buttonEdit = '<a href="' . route('users.edit', ['user' => $id]) . '" id="edit-' . $id . '" class="btn btn-sm btn-primary mb-1"><i  class="bi bi-pen"></i></a>&nbsp;';
+        }
+
+        //il nostro bottone dinamico che cambia : se è stato cancellato diventa bottone da restore, altrimenti resta da softDelete
+        $buttonDelete = "<a href='$deleteRoute' title='$btnTitle' id='$btnId' class='ajax $btnClass btn btn-sm my-1'>$iconDelete</a>&nbsp;";
+
+        //il nostro button per cancellare fisicamente il record dal DB
+        $buttonForceDelete = '<a href="' . route('users.destroy', ['user' => $id]) . '?hard=1" title="hard delete" id="forcedelete-' . $id . '" class="ajax btn btn-sm btn-danger mt-1"><i class="bi bi-trash"></i> </a>';
+
+        return $buttonEdit . $buttonDelete . $buttonForceDelete;
+    }
+
+
+    public function getUsers()
+    {
+        //seleziona gli User per ..., ordinali per nome, carica anche quelli cancellati in modo soft
+        $users =  User::select(['id', 'name', 'email', 'user_role', 'created_at', 'deleted_at'])->orderBy('name')->withTrashed()->get();
+
+        //crea una DataTables con gli utenti(array $users)
+        $result = DataTables::of($users)->addColumn('action', function ($user) {
+
+            //aggiungi le condizioni della funzione getUserButtons
+            return  $this->getUserButtons($user);
+            //edito il formato date delle colonne created, updated e deleted _AT con ternario
+        })->editColumn('created_at', function ($user) {
+            return $user->created_at ? $user->created_at->format('d/m/y') : '';
+        })->editColumn('updated_at', function ($user) {
+            return $user->updated_at ? $user->updated_at->format('d/m/y') : '';
+        })->editColumn('deleted_at', function ($user) {
+            return $user->deleted_at ? $user->deleted_at->format('d/m/y') : '';
+        })->make(true);
+        return $result;
     }
 }
