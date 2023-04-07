@@ -90,17 +90,25 @@ class User extends Authenticatable
     ];
 
     
-
+    //funzione che lega in relazione albums e users
     public function albums():HasMany{
         return $this->hasMany(Album::class);
     }
 
+    //funzione che lega in relazione categories e users
     public function categories(): HasMany
     {
         return $this->hasMany(Category::class);
     }
 
+    //funzione che definisce se un utente è admin, tramite la chiamata al suo ruolo
     public function isAdmin(){
         return 'admin' === $this->user_role;
     }
 }
+
+// SOFT DELETES
+// 1-aggiungere alla nostra migrazione la colonna con softDeletes() se vogliamo avere la colonna deleted_at per tenere traccia dell'eliminazione(soft) di un record(il record rimarrà nel DB ma non usufruibile da nessuno)
+// 2-aggiungere al nostro Model User il trait {use SoftDeletes;}
+// 3-con withTrashed() nel controller, possiamo richiedere oltre ai record presenti, anche quelli cancellati con la softdelete()
+// 4-

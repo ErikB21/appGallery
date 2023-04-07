@@ -21,18 +21,28 @@ class AdminUsersController extends Controller
     }
     private function getUserButtons(User $user)
     {
+        //id sarà uguale all'id dell'user 
         $id = $user->id;
 
-
+        //button per rotta update, dove si può modificare un0 user
         $buttonEdit = '<a href="' . route('users.edit', ['user' => $id]) . '" id="edit-' . $id . '" class="btn btn-sm btn-primary"><i  class="bi bi-pen"></i></a>&nbsp;';
 
+        //se lo user è stato cancellato 
         if($user->deleted_at){
+
+            //allora il buttonDelete
+
+            //avrà una rotta verso il metodo restore
             $deleteRoute = route('admin.userRestore', ['user' => $id]);
+
+            //cambierà colore, icona, ID e il title
             $btnClass = 'btn-success';
             $iconDelete = '<i class="bi bi-arrow-clockwise"></i>';
             $btnId = 'restore-' . $id;
             $btnTitle = 'Restore';
         }else{
+
+            //se invece non è stato ancora cancellato
             $deleteRoute = route('users.destroy', ['user' => $id]);
             $btnClass = 'btn-warning';
             $iconDelete = '<i class="bi bi-trash"></i>';
@@ -40,15 +50,22 @@ class AdminUsersController extends Controller
             $btnTitle = 'Soft Delete';
         }
 
+        //il nostro bottone dinamico che cambia : se è stato cancellato diventa bottone da restore, altrimenti resta da softDelete
         $buttonDelete = "<a href='$deleteRoute' title='$btnTitle' id='$btnId' class='ajax $btnClass btn btn-sm'>$iconDelete</a>&nbsp;";
 
+        //il nostro button per cancellare fisicamente il record dal DB
         $buttonForceDelete = '<a href="' . route('users.destroy', ['user' => $id]) . '?hard=1" title="hard delete" id="forcedelete-' . $id . '" class="ajax btn btn-sm btn-danger"><i class="bi bi-trash"></i> </a>';
         return $buttonEdit . $buttonDelete . $buttonForceDelete;
     }
     public function getUsers()
     {
+        //seleziona gli User per ..., ordinali per nome, carica anche quelli cancellati in modo soft
         $users =  User::select(['id', 'name', 'email', 'user_role', 'created_at', 'deleted_at'])->orderBy('name')->withTrashed()->get();
+
+        //crea una DataTables con gli utenti(array $users)
         $result = DataTables::of($users)->addColumn('action', function ($user) {
+
+            //aggiungi le condizioni della funzione getUserButtons
             return  $this->getUserButtons($user);
         })->make(true);
         return $result;
@@ -114,18 +131,30 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $req)
+    public function destroy($id)
     {
+        //prendi tutti gli users, anche quelli cancellati,cercali per id o dai un eccezione
         $user = User::withTrashed()->findOrFail($id);
+
+        //dopo controlla se ce il parametro hard
         $hard = \request('hard', '');
+
+        // se c'e cancelliamo fisicamente il record dal Db, altrimenti lo cancelliamo in modo soft e nella tabella deleted_at ci apparirà quando è stato cancellato
         $res = $hard ? $user->forceDelete() : $user->delete();
+
+        // ritorno il risultato
         return '' . $res;
     }
 
     public function restore($id)
     {
+        //stessa cosa della destroy
         $user = User::withTrashed()->findOrFail($id);
+
+        //ma qui invece di cancellare, possiamo immettere nuovamente un record in precedenza cancellato come record attivo e funzionante
         $res = $user->restore();
+
+        //ritorno il risultato
         return '' . $res;
     }
 }
