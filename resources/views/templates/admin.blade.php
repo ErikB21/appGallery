@@ -9,10 +9,11 @@
     <title>Dashboard - SB Admin</title>
     <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet"/>
     <link href="{{url('/')}}/css/styles.css" rel="stylesheet"/>
-
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
             crossorigin="anonymous"></script>
+    <script>
+        window.Laravel = @json(['csrf_token' => csrf_token(), 'csrfToken' => csrf_token()]);
+    </script>
 </head>
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -120,7 +121,7 @@
     </div>
     <div id="layoutSidenav_content">
         <main>
-            <div class="container-fluid px-4">
+            <div class="container-fluid px-4 my-5">
                 @yield('content')
             </div>
         </main>
@@ -140,11 +141,11 @@
 </div>
 @section('footer')
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-<script src="{{url('/')}}/js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous"></script>
+    <script src="{{url('/')}}/js/scripts.js"></script>
 
-<script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-@show
+    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    @show
 </body>
 </html>
