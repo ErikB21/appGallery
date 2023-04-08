@@ -79,8 +79,8 @@ class AdminUsersController extends Controller
         $user->email = $request->email;
         $user->user_role = $request->user_role;
         $users = $user->save();
-        $messaggio = $users ? 'User   ' . $user->name . ' updated' : 'User ' . $user->name . ' was not updated';
-        session()->flash('message', $messaggio);
+        $message = $users ? 'User   ' . $user->name . ' modificato con successo!' : 'User ' . $user->name . ' non modificato!';
+        session()->flash('message', $message);
         return redirect()->route('users.index');
     }
 
