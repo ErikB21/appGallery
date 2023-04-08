@@ -1,6 +1,15 @@
 @extends('templates.admin')
 @section('content')
-    <h1 class="mb-5 text-center">Users</h1>
+    <div class="row justify-content-between">
+        <div class="col-3">
+            <h1 class="mb-5">Users</h1>
+        </div>
+        <div class="col-3">
+            @if(session()->has('message'))
+                <x-alert-info>{{ session()->get('message') }}</x-alert-info>
+            @endif
+        </div>
+    </div>
     <table class="uk-table uk-table-hover uk-table-striped cell-border" style="width:100%" id="users-table">
         <thead>
             <tr>
@@ -24,6 +33,8 @@
     <script>
         $(
             function () {
+                $('div.alert').fadeOut(5000);
+
                 //creazione tabella tramite Yajira DataTables
                 let dataTable = $('#users-table').DataTable({
                     processing: true,
