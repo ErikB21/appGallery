@@ -17,10 +17,24 @@
                 <div class="form-group mb-4">
                     <label for="name">Name</label>
                     <input type="text" name="name" value="{{ old('name', $user->name) }}" id="name" placeholder="User's name" class="form-control">
+                    @error('name')
+                            <div class="alert alert-danger">
+                            @foreach ($errors->get('name') as $error)
+                                {{ $error }}<br>
+                            @endforeach
+                        </div>
+                    @enderror
                 </div>
                 <div class="form-group mb-4">
                     <label for="email">Email</label>
                     <input type="email" name="email" value="{{ old('email', $user->email) }}" id="email" placeholder="User's email" class="form-control">
+                    @error('email')
+                        <div class="alert alert-danger">
+                            @foreach ($errors->get('email') as $error)
+                                {{ $error }}<br>
+                            @endforeach
+                        </div>
+                    @enderror
                 </div>
                 <div class="form-group mb-4">
                     <label for="user_role">Role</label>
@@ -28,6 +42,13 @@
                         <option value="">SELECT</option>
                         <option {{ $user->user_role === 'user' ? 'selected' : '' }} value="user">USER</option>
                         <option {{ $user->user_role === 'admin' ? 'selected' : '' }} value="admin">ADMIN</option>
+                        @error('user_role')
+                            <div class="alert alert-danger">
+                                @foreach ($errors->get('user_role') as $error)
+                                    {{ $error }}<br>
+                                @endforeach
+                            </div>
+                        @enderror
                     </select>
                 </div>
                 <div class="form-group d-flex mt-4 justify-content-between">
