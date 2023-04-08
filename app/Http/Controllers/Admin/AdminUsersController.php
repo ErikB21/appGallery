@@ -139,7 +139,7 @@ class AdminUsersController extends Controller
         $id = $user->id;
 
         //button per rotta update di default
-        $buttonEdit = "<a id='edit-$id' style='cursor:default;' class='btn btn-sm btn-default'><i class='bi bi-pen'></i></a>&nbsp;";
+        $buttonEdit = "<a id='edit-$id' title='Update' style='cursor:default;' class='btn btn-sm btn-default'><i class='bi bi-pen'></i></a>&nbsp;";
 
 
         //se lo user è stato cancellato 
@@ -163,14 +163,14 @@ class AdminUsersController extends Controller
             $btnTitle = 'Soft Delete';
 
             //button per rotta update, dove si può modificare uno user, sovrascritta
-            $buttonEdit = '<a href="' . route('users.edit', ['user' => $id]) . '" id="edit-' . $id . '" class="btn btn-sm btn-primary"><i  class="bi bi-pen"></i></a>&nbsp;';
+            $buttonEdit = '<a href="' . route('users.edit', ['user' => $id]) . '" id="edit-' . $id . '" title="Update" class="btn btn-sm btn-primary"><i  class="bi bi-pen"></i></a>&nbsp;';
         }
 
         //il nostro bottone dinamico che cambia : se è stato cancellato diventa bottone da restore, altrimenti resta da softDelete
         $buttonDelete = "<a href='$deleteRoute' title='$btnTitle' id='$btnId' class='ajax $btnClass btn btn-sm my-1'>$iconDelete</a>&nbsp;";
 
         //il nostro button per cancellare fisicamente il record dal DB
-        $buttonForceDelete = '<a href="' . route('users.destroy', ['user' => $id]) . '?hard=1" title="hard delete" id="forcedelete-' . $id . '" class="ajax btn btn-sm btn-danger"><i class="bi bi-trash"></i> </a>';
+        $buttonForceDelete = '<a href="' . route('users.destroy', ['user' => $id]) . '?hard=1" title="Hard Delete" id="forcedelete-' . $id . '" class="ajax btn btn-sm btn-danger"><i class="bi bi-trash"></i> </a>';
 
         return $buttonEdit . $buttonDelete . $buttonForceDelete;
     }
