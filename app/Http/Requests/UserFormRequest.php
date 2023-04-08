@@ -27,13 +27,26 @@ class UserFormRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route()->user->id;
         return [
             'name' => 'required|string|max:255',
             'email' => [
                 'required','string','email','max:255',
-                Rule::unique('users')->ignore($this->user->id),
+                Rule::unique('users')->ignore($id),
             ],
             'user_role' => Rule::in(['user', 'admin']),
         ];
+    }
+
+    public function messages(){
+        $messages = [
+            'name.required' => 'Il nome è obbligatorio!',
+            'name.unique' => 'Il nome è gia esistente!',
+            'email.required' => 'L\'email è obbligatoria!',
+            'email.unique' => 'L\'email è gia esistente!',
+            'user_role.required' => 'Il ruolo è obbligatorio!',
+        ];
+
+        return $messages;
     }
 }
