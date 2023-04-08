@@ -6,7 +6,7 @@
 
     <div class="row justify-content-center">
         <div class="col-auto col-md-6 col-lg-8">
-            <h1 class="mb-5">Manage User</h1>
+            <h1 class="mb-5">Modifica Utente</h1>
         @if($user->id)
             <form action="{{ route('users.update', $user->id) }}" method="POST">
                 @method('PATCH')
@@ -15,7 +15,7 @@
         @endif
                 @csrf
                 <div class="form-group mb-4">
-                    <label for="name">Name</label>
+                    <label for="name">Nome</label>
                     <input type="text" name="name" value="{{ old('name', $user->name) }}" id="name" placeholder="User's name" class="form-control">
                     @error('name')
                             <div class="alert alert-danger">
@@ -37,31 +37,40 @@
                     @enderror
                 </div>
                 <div class="form-group mb-4">
-                    <label for="user_role">Role</label>
+                    <label for="user_role">Ruolo</label>
                     <select class="form-select" name="user_role" id="user_role">
                         <option value="">SELECT</option>
                         <option {{ $user->user_role === 'user' ? 'selected' : '' }} value="user">USER</option>
                         <option {{ $user->user_role === 'admin' ? 'selected' : '' }} value="admin">ADMIN</option>
-                        @error('user_role')
-                            <div class="alert alert-danger">
-                                @foreach ($errors->get('user_role') as $error)
-                                    {{ $error }}<br>
-                                @endforeach
-                            </div>
-                        @enderror
                     </select>
+                    @error('user_role')
+                        <div class="alert alert-danger">
+                            @foreach ($errors->get('user_role') as $error)
+                                {{ $error }}<br>
+                            @endforeach
+                        </div>
+                    @enderror
                 </div>
                 <div class="form-group d-flex mt-4 justify-content-between">
                     <div>
-                        <button class="btn btn-outline-info me-2" type="reset">RESET</button>
-                        <button class="btn btn-outline-primary">SAVE</button>
+                        <button class="btn btn-outline-info me-2" type="reset">Reset</button>
+                        <button class="btn btn-outline-primary">Salva</button>
                     </div>
                     <div>
-                        <a href="{{ route('users.index') }}" class="btn btn-outline-dark">BACK</a>
+                        <a href="{{ route('users.index') }}" class="btn btn-outline-dark">Back</a>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
+@endsection
+
+@section('footer')
+    @parent
+    <script>
+        $('document').ready(function () {
+            $('div.alert').fadeOut(5000);
+        });
+    </script>
 @endsection
