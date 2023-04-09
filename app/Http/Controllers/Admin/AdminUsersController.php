@@ -8,6 +8,7 @@ use App\Models\User;
 use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminUsersController extends Controller
 {
@@ -18,10 +19,12 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
+        //se l'utente loggato ha il ruolo da admin
         if(Auth::user()->user_role === 'admin'){
+
+            //ritorno la sua hoepage di admin
             return view('admin\index');
         };
-        return view('admin\users');
     }
     /**
      * Show the form for creating a new resource.
@@ -30,7 +33,8 @@ class AdminUsersController extends Controller
      */
     public function create()
     {
-        //
+        $user = new User();//creo un nuovo utente usando lo stesso form dell'edit
+        return view('admin.editUser', compact('user'));
     }
 
     /**
@@ -41,7 +45,22 @@ class AdminUsersController extends Controller
      */
     public function store(UserFormRequest $request)
     {
-        //
+        //creo nuovo utente
+        $user = new User();
+
+        //riempo l'utente con solo nome, email e ruolo
+        $user->fill($request->only(['name', 'email', 'user_role']));
+
+        //la sua password deve essere creata tramite hash della sua email
+        $user->password = Hash::make($request->email);
+
+        //lo salvo
+        $users = $user->save();
+
+        //messaggio conferma avvenuta creazione oppure errore
+        $message = $users ? 'Utente   ' . $user->name . ' creato con successo!' : 'Utente ' . $user->name . ' non creato!';
+        session()->flash('message', $message);
+        return redirect()->route('users.show', compact('user'));
     }
 
     /**
@@ -81,7 +100,7 @@ class AdminUsersController extends Controller
         $user->email = $request->email;
         $user->user_role = $request->user_role;
         $users = $user->save();
-        $message = $users ? 'User   ' . $user->name . ' modificato con successo!' : 'User ' . $user->name . ' nonmodificato!';
+        $message = $users ? 'utente   ' . $user->name . ' modificato con successo!' : 'Utente ' . $user->name . ' non modificato!';
         session()->flash('message', $message);
         return redirect()->route('users.index');
     }
