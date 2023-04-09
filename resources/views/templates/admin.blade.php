@@ -41,7 +41,12 @@
                 <li>
                     <hr class="dropdown-divider"/>
                 </li>
-                <li><a class="dropdown-item" href="#!">Logout</a></li>
+                <li>
+                    <form id="logout-form" action="{{ route('logout')}}" method="POST">
+                        {{ csrf_field() }}
+                        <button class="dropdown-item">Logout</button>
+                    </form>    
+                </li>
             </ul>
         </li>
     </ul>
@@ -52,9 +57,13 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">Core</div>
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="{{ route('users.index') }}">
                         <div class="sb-nav-link-icon"><i class="bi bi-speedometer2"></i></div>
                         Dashboard
+                    </a>
+                    <a class="nav-link" href="{{ route('gallery.index') }}">
+                        <div class="sb-nav-link-icon"><i class="bi bi-image"></i></div>
+                        Gallery
                     </a>
                     <div class="sb-sidenav-menu-heading">Interface</div>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
@@ -66,7 +75,7 @@
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                          data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="{{route('users.index')}}"><i class="bi bi-people-fill pe-2"></i> Users list</a>
+                            <a class="nav-link" href="{{route('users.show', Auth::user())}}"><i class="bi bi-people-fill pe-2"></i> Users list</a>
                             <a class="nav-link" href="{{route('users.create')}}"><i class="bi bi-person-plus-fill pe-2"></i> New user</a>
                         </nav>
                     </div>
@@ -82,7 +91,7 @@
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                                data-bs-target="#pagesCollapseAuth" aria-expanded="false"
                                aria-controls="pagesCollapseAuth">
-                               <i class="bi bi-shield-fill-exclamation pe-2"></i>
+                               <i class="bi bi-shield-exclamation pe-2"></i>
                                 Authentication
                                 <div class="sb-sidenav-collapse-arrow"><i class="bi bi-caret-down"></i></div>
                             </a>
@@ -97,6 +106,7 @@
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                                data-bs-target="#pagesCollapseError" aria-expanded="false"
                                aria-controls="pagesCollapseError">
+                               <i class="bi bi-bug pe-2"></i>
                                 Error
                                 <div class="sb-sidenav-collapse-arrow"><i class="bi bi-caret-down"></i></div>
                             </a>
