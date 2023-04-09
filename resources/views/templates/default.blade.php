@@ -9,7 +9,7 @@
     <script>
         window.Laravel = @json(['csrf_token' => csrf_token()]);
     </script>
-    <title>@yield('title', 'Home')</title>
+    <title>@yield('title', 'AppGallery')</title>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -56,11 +56,6 @@
                             </li>
                         @endif
                     </ul>
-
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
                 @endauth
                 <ul class="nav navbar-nav navbar-right">
                     @guest
@@ -73,16 +68,16 @@
                     @endguest
                     @auth
                         <li class="dropdown-center">
-                            <a href="#" class="dropdown-toggle  nav-link" data-bs-toggle="dropdown" role="button"
+                            <a href="#" class="dropdown-toggle me-5 nav-link" data-bs-toggle="dropdown" role="button"
                                aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
-                            <ul class="dropdown-menu" role="menu">
+                            <ul class="dropdown-menu dropdown-menu-dark" role="menu">
                                 <li>
                                     <form id="logout-form" action="{{ route('logout')}}" method="POST">
                                         {{ csrf_field() }}
-                                        <button class="btn btn-default">Logout</button>
+                                        <button class="btn btn-default text-light">Logout</button>
                                     </form>
                                 </li>
                             </ul>
