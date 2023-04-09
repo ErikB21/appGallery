@@ -1,10 +1,11 @@
 @extends('templates\default')
 
 @section('content')
-    <div>
-        <h1 class="mb-4  me-5 text-center">Categories</h1>
-    </div>
+    
     <div class="row">
+        <div>
+            <h1 class="mb-4 text-center text-lg-start">Categories</h1>
+        </div>
         <div class="col-12 col-lg-8">
             <table class="table table-stripe table-hover table-dark" id="categoryList">
                 <thead>
@@ -55,7 +56,7 @@
                 <tfoot>
                     <tr>
                         <th colspan="6">
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex pt-3 justify-content-end align-items-center">
                                 {{ $categories->links('pagination::bootstrap-5') }}
                             </div>
                         </th>
