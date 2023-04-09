@@ -102,7 +102,7 @@ class AdminUsersController extends Controller
         $users = $user->save();
         $message = $users ? 'utente   ' . $user->name . ' modificato con successo!' : 'Utente ' . $user->name . ' non modificato!';
         session()->flash('message', $message);
-        return redirect()->route('users.index');
+        return redirect()->route('users.show', compact('user'));
     }
 
     /**
