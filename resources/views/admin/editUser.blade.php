@@ -6,11 +6,12 @@
 
     <div class="row justify-content-center">
         <div class="col-auto col-md-6 col-lg-8">
-            <h1 class="mb-5">Modifica Utente</h1>
         @if($user->id)
+            <h1 class="mb-5">Modifica Utente</h1>
             <form action="{{ route('users.update', $user->id) }}" method="POST">
                 @method('PATCH')
         @else
+            <h1 class="mb-5">Nuovo Utente</h1>
             <form action="{{ route('users.store') }}" method="POST">
         @endif
                 @csrf
@@ -57,7 +58,7 @@
                         <button class="btn btn-outline-primary">Salva</button>
                     </div>
                     <div>
-                        <a href="{{ route('users.index') }}" class="btn btn-outline-dark">Back</a>
+                        <a href="{{ route('users.show', Auth::user()) }}" class="btn btn-outline-dark">Back</a>
                     </div>
                 </div>
             </form>
