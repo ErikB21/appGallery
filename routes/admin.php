@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
     //rotta che definisce tutti i metodi del controller
     Route::resource('users', AdminUsersController::class);
 
+    Route::get('index', [AdminUsersController::class, 'index']);
+
     //rotta usata per il metodo restore del controller
     Route::patch('restore/{user}', [AdminUsersController::class, 'restore'])->name('admin.userRestore');
 
