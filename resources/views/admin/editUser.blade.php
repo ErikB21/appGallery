@@ -53,13 +53,8 @@
                     @enderror
                 </div>
                 <div class="form-group d-flex mt-4 justify-content-between">
-                    <div>
-                        <button class="btn btn-outline-info me-2" type="reset">Reset</button>
-                        <button class="btn btn-outline-primary">Salva</button>
-                    </div>
-                    <div>
-                        <a href="{{ route('users.show', Auth::user()) }}" class="btn btn-outline-dark">Back</a>
-                    </div>
+                    <button class="btn btn-outline-primary">Salva</button>
+                    <a href="{{ route('users.show', Auth::user()) }}" class="btn btn-outline-dark">Back</a>
                 </div>
             </form>
         </div>
