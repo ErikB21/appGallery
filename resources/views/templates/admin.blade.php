@@ -36,15 +36,10 @@
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                aria-expanded="false"><i class="bi bi-person-fill"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#!">Settings</a></li>
-                <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                <li>
-                    <hr class="dropdown-divider"/>
-                </li>
                 <li>
                     <form id="logout-form" action="{{ route('logout')}}" method="POST">
                         {{ csrf_field() }}
-                        <button class="dropdown-item">Logout</button>
+                        <button class="btn btn-default">Logout</button>
                     </form>    
                 </li>
             </ul>
@@ -61,9 +56,9 @@
                         <div class="sb-nav-link-icon"><i class="bi bi-speedometer2"></i></div>
                         Dashboard
                     </a>
-                    <a class="nav-link" href="{{ route('dashboard') }}">
-                        <div class="sb-nav-link-icon"><i class="bi bi-image"></i></div>
-                        Gallery
+                    <a class="nav-link" href="">
+                        <div class="sb-nav-link-icon"><i class="bi bi-envelope"></i></div>
+                        Email
                     </a>
                     <div class="sb-sidenav-menu-heading">Interface</div>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
@@ -81,8 +76,8 @@
                     </div>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                        aria-expanded="false" aria-controls="collapsePages">
-                        <div class="sb-nav-link-icon"><i class="bi bi-book"></i></div>
-                        Pages
+                        <div class="sb-nav-link-icon"><i class="bi bi-images"></i></div>
+                        Gallery
                         <div class="sb-sidenav-collapse-arrow"><i class="bi bi-caret-down"></i></div>
                     </a>
                     <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
@@ -91,33 +86,26 @@
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                                data-bs-target="#pagesCollapseAuth" aria-expanded="false"
                                aria-controls="pagesCollapseAuth">
-                               <i class="bi bi-shield-exclamation pe-2"></i>
-                                Authentication
-                                <div class="sb-sidenav-collapse-arrow"><i class="bi bi-caret-down"></i></div>
+                               <i class="bi bi-book pe-2"></i>
+                                Album
                             </a>
-                            <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                                 data-bs-parent="#sidenavAccordionPages">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="login.html"><i class="bi bi-person-fill-lock pe-2"></i> Login</a>
-                                    <a class="nav-link" href="register.html"><i class="bi bi-person-fill-add pe-2"></i> Register</a>
-                                    <a class="nav-link" href="password.html"><i class="bi bi-person-fill-slash pe-2"></i>Forgot Password</a>
-                                </nav>
-                            </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                                data-bs-target="#pagesCollapseError" aria-expanded="false"
                                aria-controls="pagesCollapseError">
-                               <i class="bi bi-bug pe-2"></i>
-                                Error
-                                <div class="sb-sidenav-collapse-arrow"><i class="bi bi-caret-down"></i></div>
+                               <i class="bi bi-plus-circle pe-2"></i>
+                                Nuovo Album
+                            </a><a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                               data-bs-target="#pagesCollapseError" aria-expanded="false"
+                               aria-controls="pagesCollapseError">
+                               <i class="bi bi-image pe-2"></i>
+                                Nuova Immagine
                             </a>
-                            <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
-                                 data-bs-parent="#sidenavAccordionPages">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="401.html">401 Page</a>
-                                    <a class="nav-link" href="404.html">404 Page</a>
-                                    <a class="nav-link" href="500.html">500 Page</a>
-                                </nav>
-                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                               data-bs-target="#pagesCollapseError" aria-expanded="false"
+                               aria-controls="pagesCollapseError">
+                               <i class="bi bi-tag pe-2"></i>
+                                Categorie
+                            </a>
                         </nav>
                     </div>
 
