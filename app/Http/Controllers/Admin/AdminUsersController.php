@@ -7,6 +7,7 @@ use App\Http\Requests\UserFormRequest;
 use App\Models\User;
 use DataTables;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminUsersController extends Controller
 {
@@ -17,10 +18,11 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
-
-        return view('admin/users');
+        if(Auth::user()->user_role === 'admin'){
+            return view('admin\index');
+        };
+        return view('admin\users');
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -48,9 +50,9 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('admin\users', compact('user'));
     }
 
     /**
@@ -79,7 +81,7 @@ class AdminUsersController extends Controller
         $user->email = $request->email;
         $user->user_role = $request->user_role;
         $users = $user->save();
-        $message = $users ? 'User   ' . $user->name . ' modificato con successo!' : 'User ' . $user->name . ' non modificato!';
+        $message = $users ? 'User   ' . $user->name . ' modificato con successo!' : 'User ' . $user->name . ' nonmodificato!';
         session()->flash('message', $message);
         return redirect()->route('users.index');
     }
