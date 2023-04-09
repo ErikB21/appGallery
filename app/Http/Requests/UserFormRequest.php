@@ -27,12 +27,14 @@ class UserFormRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->route()->user->id;
+        
+        $id = $this->user ? $this->user->id : null;
+        $emailRule = $id ? Rule::unique('users')->ignore($id) : Rule::unique('users');
         return [
             'name' => 'required|string|max:255',
             'email' => [
                 'required','string','email','max:255',
-                Rule::unique('users')->ignore($id),
+                $emailRule,
             ],
             'user_role' => Rule::in(['user', 'admin']),
         ];
