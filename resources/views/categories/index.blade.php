@@ -46,6 +46,7 @@
                             <tr>
                                 <th colspan="6">
                                     No Categories
+                                    <a class="ms-4 d-inline-block btn btn-primary" href="{{ route('categories.create') }}">New Category</a>
                                 </th>
                             </tr>
                         </tfoot>
@@ -55,7 +56,6 @@
                     <tr>
                         <th colspan="6">
                             <div class="d-flex justify-content-between align-items-center">
-                                <a class="btn btn-primary" href="{{ route('categories.create') }}">New Category</a>
                                 {{ $categories->links('pagination::bootstrap-5') }}
                             </div>
                         </th>
