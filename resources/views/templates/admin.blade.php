@@ -61,7 +61,7 @@
                         <div class="sb-nav-link-icon"><i class="bi bi-speedometer2"></i></div>
                         Dashboard
                     </a>
-                    <a class="nav-link" href="{{ route('gallery.index') }}">
+                    <a class="nav-link" href="{{ route('dashboard') }}">
                         <div class="sb-nav-link-icon"><i class="bi bi-image"></i></div>
                         Gallery
                     </a>
