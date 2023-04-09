@@ -50,6 +50,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('categories.index')}}">Categories</a>
                         </li>
+                        @if(Auth::user()->user_role === 'admin')
+                            <li>
+                                <a class="nav-link" href="{{ route('users.index') }}">Admin</a>
+                            </li>
+                        @endif
                     </ul>
 
                     <form class="d-flex" role="search">
@@ -67,7 +72,7 @@
                         </li>
                     @endguest
                     @auth
-                        <li class="dropdown">
+                        <li class="dropdown-center">
                             <a href="#" class="dropdown-toggle  nav-link" data-bs-toggle="dropdown" role="button"
                                aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -75,13 +80,11 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-
                                     <form id="logout-form" action="{{ route('logout')}}" method="POST">
                                         {{ csrf_field() }}
                                         <button class="btn btn-default">Logout</button>
                                     </form>
                                 </li>
-
                             </ul>
                         </li>
                     @endauth
