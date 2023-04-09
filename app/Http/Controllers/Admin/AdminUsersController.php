@@ -200,7 +200,7 @@ class AdminUsersController extends Controller
     public function getUsers()
     {
         //seleziona gli User per ..., ordinali per nome, carica anche quelli cancellati in modo soft
-        $users =  User::select(['id', 'name', 'email', 'user_role', 'created_at', 'deleted_at'])->orderBy('name')->withTrashed()->get();
+        $users =  User::select(['id', 'name', 'email', 'user_role', 'created_at', 'deleted_at'])->orderBy('id', 'desc')->withTrashed()->get();
 
         //crea una DataTables con gli utenti(array $users)
         $result = DataTables::of($users)->addColumn('action', function ($user) {
