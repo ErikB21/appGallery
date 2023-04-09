@@ -42,4 +42,11 @@ Route::group(['prefix' => 'gallery'], function(){
     Route::get('categories/{category}/albums', [GalleryController::class, 'showCategoryAlbums'])->name('gallery.categories.albums');
 });
 
+
+
 require __DIR__.'/auth.php';
+
+Route::view('testMail', 'mails.testEmail');
+// Route::get('testMail', function () {
+//     Mail::to('erik.borgogno.dev@gmail.com')->send(new TestEmail());
+// });
