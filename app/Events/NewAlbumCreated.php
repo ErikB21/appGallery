@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Album;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -19,7 +20,7 @@ class NewAlbumCreated
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(public Album $album)//istanzio il model Album
     {
         //
     }
