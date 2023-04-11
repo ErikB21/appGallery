@@ -1,8 +1,10 @@
 <?php
 
+use App\Events\NewAlbumCreated;
 use App\Http\Controllers\{AlbumsController, CategoryController, GalleryController, PhotosController, ProfileController };
 use App\Mail\TestEmail;
 use App\Mail\TestMd;
+use App\Models\Album;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -50,7 +52,16 @@ Route::group(['prefix' => 'gallery'], function(){
 
 require __DIR__.'/auth.php';
 
+//Mail
+
 // Route::view('testMail', 'mails.testEmail', ['name' => 'Erik']);
 Route::get('testMd', function () {
     Mail::to('erik.borgogno.dev@gmail.com')->send(new TestMd(Auth::user()));
+});
+
+//Event
+
+Route::get('testEvent', function(){//creo una rotta che punti all'evento
+    $album = Album::first();//creo un'istanza di Album
+    event(new NewAlbumCreated($album));//event crea un'istanza di events creando un metodo dispatch(argomenti)
 });
