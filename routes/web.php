@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\{AlbumsController, CategoryController, GalleryController, PhotosController, ProfileController };
 use App\Mail\TestEmail;
+use App\Mail\TestMd;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +51,6 @@ Route::group(['prefix' => 'gallery'], function(){
 require __DIR__.'/auth.php';
 
 // Route::view('testMail', 'mails.testEmail', ['name' => 'Erik']);
-Route::get('testMail', function () {
-    Mail::to('erik.borgogno.dev@gmail.com')->send(new TestEmail());
+Route::get('testMd', function () {
+    Mail::to('erik.borgogno.dev@gmail.com')->send(new TestMd(Auth::user()));
 });
