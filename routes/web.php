@@ -2,10 +2,8 @@
 
 use App\Events\NewAlbumCreated;
 use App\Http\Controllers\{AlbumsController, CategoryController, GalleryController, PhotosController, ProfileController };
-use App\Mail\TestEmail;
 use App\Mail\TestMd;
 use App\Models\Album;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
