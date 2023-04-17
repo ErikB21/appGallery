@@ -53,7 +53,8 @@ class PhotosController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, $this->rules);
+        // $this->validate($request, $this->rules);
+        $request->validate($this->rules);
         $photo = new Photo();
         $photo->name = $request->input('name');
         $photo->description = $request->input('description');
@@ -99,7 +100,8 @@ class PhotosController extends Controller
     {
         unset($this->rules['img_path']);
         //$res = Album::where('id', $id)->update($data);
-        $this->validate($request, $this->rules);
+        // $this->validate($request, $this->rules);
+        $request->validate($this->rules);
         $this->processFile($request, $photo);
         $photo->name = $request->input('name');
         $photo->description = $request->input('description');
