@@ -72,7 +72,7 @@
                         <div class="card-footer d-flex flex-column align-items-center justify-content-between">
                             <h3>Email</h3>
                             <p>Ciao {{ Auth::user()->name }}, visiona le tue Email. Visualizza, rispondi o cancella i tuoi messaggi!</p>
-                            <a class="btn btn-outline-dark" href="{{ route('users.index') }}"><i class="bi bi-envelope pe-2"></i>Email</a>
+                            <a class="btn btn-outline-dark" href="https://mailtrap.io/inboxes"><i class="bi bi-envelope pe-2"></i>Email</a>
                         </div>
                     </div>
                 </div>
