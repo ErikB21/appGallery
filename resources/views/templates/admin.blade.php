@@ -57,7 +57,7 @@
                             Dashboard
                         </a>
                         <a class="nav-link" href="{{ route('dashboard') }}">
-                            <div class="sb-nav-link-icon"><i class="bi bi-bar-chart"></i></div>
+                            <div class="sb-nav-link-icon"><i class="bi bi-bar-chart pe-2"></i></div>
                             AppGallery
                         </a>
                         <div class="sb-sidenav-menu-heading">Interface</div>
@@ -77,7 +77,7 @@
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                         aria-expanded="false" aria-controls="collapsePages">
-                        <div class="sb-nav-link-icon"><i class="bi bi-images"></i></div>
+                        <div class="sb-nav-link-icon"><i class="bi bi-images pe-2"></i></div>
                         Gallery
                         <div class="sb-sidenav-collapse-arrow"><i class="bi bi-caret-down"></i></div>
                     </a>
