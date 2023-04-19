@@ -43,4 +43,9 @@
         background-color: #0A4067;
         color: whitesmoke;
     }
+    .eb_btn:hover{
+        background-color: white;
+        border-color: #0A4067;
+        color: #0A4067;
+    }
 </style>
