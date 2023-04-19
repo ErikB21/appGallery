@@ -1,4 +1,11 @@
 <div class="container">
+    @include('partials.profile')
+    @if(session()->has('message'))
+        <x-alert-info>{{ session()->get('message') }}</x-alert-info>
+    @endif
+</div>
+
+<div class="container mt-5">
         <div class="row">
             <div class="col-xl-4 col-md-6">
                 <div class="card bg-primary text-white mb-4">
@@ -26,7 +33,7 @@
                     </div>
                     <div class="card-footer d-flex flex-column align-items-center justify-content-between">
                         <h3>Nuovi Album</h3>
-                        <p>Crea un nuovo Album, aggiungi una foto, una descrizione. Decidi tu il genere!</p>
+                        <p>Crea un nuovo Album, aggiungi una foto e una descrizione.</p>
                         <a class="btn btn-outline-dark" href="{{ route('albums.create') }}"><i class="bi bi-plus-circle pe-2"></i>Crea Album</a>
                     </div>
                 </div>
@@ -40,7 +47,7 @@
                     </div>
                     <div class="card-footer d-flex flex-column align-items-center justify-content-between">
                         <h3>Nuove Immagini</h3>
-                        <p>Aggiungi una nuova Immagine, scegli genere e tipo di Album che più si addice!</p>
+                        <p>Aggiungi una nuova Immagine, scegli genere e tipo di Album.</p>
                         <a class="btn btn-outline-dark" href="{{ route('photos.create') }}"><i class="bi bi-image pe-2"></i>Nuova Immagine</a>
                     </div>
                 </div>
@@ -71,7 +78,7 @@
                         </div>
                         <div class="card-footer d-flex flex-column align-items-center justify-content-between">
                             <h3>Email</h3>
-                            <p>Ciao {{ Auth::user()->name }}, visiona le tue Email. Visualizza, rispondi o cancella i tuoi messaggi!</p>
+                            <p>Ciao {{ Auth::user()->name }}, visiona le tue Email. Visualizza e cancella i tuoi messaggi!</p>
                             <a class="btn btn-outline-dark" href="https://mailtrap.io/inboxes"><i class="bi bi-envelope pe-2"></i>Email</a>
                         </div>
                     </div>
@@ -93,3 +100,11 @@
             @endif
         </div>
     </div>
+@section('footer')
+    @parent
+    <script>
+        $('document').ready(function () {
+            $('div.alert-info').fadeOut(4000)//uso per eliminare dopo 4 secondi l'alert dell'aggiornamento
+        });
+    </script>
+@endsection
