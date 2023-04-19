@@ -1,7 +1,7 @@
 <?php
 
 use App\Events\NewAlbumCreated;
-use App\Http\Controllers\{AlbumsController, CategoryController, GalleryController, PhotosController, ProfileController };
+use App\Http\Controllers\{AlbumsController, CategoryController, GalleryController, GuestAdminController, PhotosController, ProfileController };
 use App\Mail\TestMd;
 use App\Models\Album;
 use Illuminate\Support\Facades\Auth;
@@ -45,6 +45,8 @@ Route::group(['prefix' => 'gallery'], function(){
     Route::get('album/{album}/images', [GalleryController::class, 'showAlbumImages'])->name('gallery.album.images');
     Route::get('categories/{category}/albums', [GalleryController::class, 'showCategoryAlbums'])->name('gallery.categories.albums');
 });
+
+Route::resource('guestAdmin', GuestAdminController::class);
 
 
 
