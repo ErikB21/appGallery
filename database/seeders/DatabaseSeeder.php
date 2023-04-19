@@ -27,11 +27,9 @@ class DatabaseSeeder extends Seeder
         Category::truncate();
         Album::truncate();
         Photo::truncate();
-        User::factory(20)->has(
-            Album::factory(10)->has(
-                Photo::factory(20)
-            )
-        )->create();
+        $this->call(UserSeeder::class);
+        $this->call(AlbumSeeder::class);
+        $this->call(PhotoSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(AlbumCategorySeeder::class);
 
