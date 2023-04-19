@@ -7,7 +7,9 @@
             <div class="card-body p-md-5">
               <div class="row justify-content-center">
                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-
+                  @if(session()->has('message'))
+                      <x-alert-info>{{ session()->get('message') }}</x-alert-info>
+                  @endif
                   <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
                   <form class="mx-1 mx-md-4" method="POST" action="{{ route('register') }}">
@@ -101,3 +103,11 @@
     </div>
   </section>
 </x-guest-layout>
+@section('footer')
+    @parent
+    <script>
+        $('document').ready(function () {
+            $('div.alert-info').fadeOut(4000)
+        });
+    </script>
+@endsection
