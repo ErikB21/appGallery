@@ -30,10 +30,3 @@
         </div>
     </div>
 @endsection
-
-<script>
-    lightbox.option({
-      'maxWidth': 200,
-      'maxHeight': 200
-    })
-</script>
