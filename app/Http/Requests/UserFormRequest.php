@@ -32,6 +32,7 @@ class UserFormRequest extends FormRequest
         $emailRule = $id ? Rule::unique('users')->ignore($id) : Rule::unique('users');
         return [
             'name' => 'required|string|max:255',
+            'surname' => 'required|string|max:255',
             'email' => [
                 'required','string','email','max:255',
                 $emailRule,
@@ -44,6 +45,8 @@ class UserFormRequest extends FormRequest
         $messages = [
             'name.required' => 'Il nome è obbligatorio!',
             'name.unique' => 'Il nome è gia esistente!',
+            'surname.required' => 'Il cognome è obbligatorio!',
+            'surname.unique' => 'Il cognome è gia esistente!',
             'email.required' => 'L\'email è obbligatoria!',
             'email.unique' => 'L\'email è gia esistente!',
             'user_role.required' => 'Il ruolo è obbligatorio!',
