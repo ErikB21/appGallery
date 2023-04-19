@@ -23,6 +23,15 @@
                     </div>
 
                     <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fa-solid fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                          <x-input-label for="surname" class="form-label" :value="__('Surname')" />
+                          <x-text-input id="surname" class="form-control" type="text" name="surname" :value="old('surname')" required autofocus />
+                          <x-input-error :messages="$errors->get('surname')" class="mt-2" />
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
                           <x-input-label class="form-label" for="email" :value="__('Email')" />

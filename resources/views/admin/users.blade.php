@@ -15,6 +15,7 @@
             <tr>
                 <th>ID</th>
                 <th>NAME</th>
+                <th>SURNAME</th>
                 <th>EMAIL</th>
                 <th>ROLE</th>
                 <th>CREATED</th>
@@ -43,6 +44,7 @@
                     columns: [
                         {data: 'id', name: 'id'},
                         {data: 'name', name: 'name'},
+                        {data: 'surname', name: 'surname'},
                         {data: 'email', name: 'email'},
                         {data: 'user_role', name: 'role'},
                         {data: 'created_at', name: 'created'},
