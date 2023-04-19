@@ -13,7 +13,14 @@
             <img class="rounded-circle" src="{{asset('images/avatar.png')}}">   
         @endif
     </div>
-    <h1 class="text-center mt-2">Benvenuto {{Auth::user()->name}} {{Auth::user()->surname}}</h1>
+    <div>
+        <h1 class="text-center mt-2">Benvenuto {{Auth::user()->name}} {{Auth::user()->surname}}</h1>
+        <span>
+            @if(session()->has('message'))
+                <x-alert-info>{{ session()->get('message') }}</x-alert-info>
+            @endif
+        </span>
+    </div>
     <span class="d-block text-center"><span class="font-weight-bold">Mail:</span> {{Auth::user()->email}}</span>
     <div class="mt-3 text-center">
         <a href="{{route('guestAdmin.edit', Auth::user())}}" class="btn eb_btn mx-3">Modifica Profilo</a>

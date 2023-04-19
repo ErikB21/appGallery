@@ -1,8 +1,5 @@
 <div class="container">
     @include('partials.profile')
-    @if(session()->has('message'))
-        <x-alert-info>{{ session()->get('message') }}</x-alert-info>
-    @endif
 </div>
 
 <div class="container mt-5">
