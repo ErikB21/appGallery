@@ -49,7 +49,7 @@ class AdminUsersController extends Controller
         $user = new User();
 
         //riempo l'utente con solo nome, email e ruolo
-        $user->fill($request->only(['name', 'email', 'user_role']));
+        $user->fill($request->only(['name','surname', 'email', 'user_role']));
 
         //la sua password deve essere creata tramite hash della sua email
         $user->password = Hash::make($request->email);
@@ -58,7 +58,7 @@ class AdminUsersController extends Controller
         $users = $user->save();
 
         //messaggio conferma avvenuta creazione oppure errore
-        $message = $users ? 'Utente   ' . $user->name . ' creato con successo!' : 'Utente ' . $user->name . ' non creato!';
+        $message = $users ? 'Utente   ' . $user->name . $user->surname . ' creato con successo!' : 'Utente ' . $user->name . $user->surname . ' non creato!';
         session()->flash('message', $message);
         return redirect()->route('users.show', compact('user'));
     }
@@ -71,7 +71,7 @@ class AdminUsersController extends Controller
      */
     public function show(User $user)
     {
-        return view('admin\users', compact('user'));
+        return view('admin.users', compact('user'));
     }
 
     /**
@@ -97,8 +97,8 @@ class AdminUsersController extends Controller
     {
         //prendo la richiesta del form e salvo i dati di modifica
         $user->name = $request->name;
+        $user->surname = $request->surname;
         $user->email = $request->email;
-        $user->user_role = $request->user_role;
         $users = $user->save();
         $message = $users ? 'utente   ' . $user->name . ' modificato con successo!' : 'Utente ' . $user->name . ' non modificato!';
         session()->flash('message', $message);
@@ -200,7 +200,7 @@ class AdminUsersController extends Controller
     public function getUsers()
     {
         //seleziona gli User per ..., ordinali per nome, carica anche quelli cancellati in modo soft
-        $users =  User::select(['id', 'name', 'email', 'user_role', 'created_at', 'deleted_at'])->orderBy('id', 'desc')->withTrashed()->get();
+        $users =  User::select(['id', 'name', 'surname', 'email', 'user_role', 'created_at', 'deleted_at'])->orderBy('id', 'desc')->withTrashed()->get();
 
         //crea una DataTables con gli utenti(array $users)
         $result = DataTables::of($users)->addColumn('action', function ($user) {
