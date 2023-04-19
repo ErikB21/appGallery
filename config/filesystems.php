@@ -76,6 +76,7 @@ return [
 
     'album_thumbnail_dir' => env('ALBUM_THUMB_DIR', '/images/album_thumb'), //variabile d'ambiente
     'img_dir' => env('IMG_DIR', 'images/'),//variabile d'ambiente
+    'img_profile' => env('IMG_PROFILE', 'images/users'),
     'img_per_page' => env('IMG_PER_PAGE', 10),
     'albums_per_page' => env('ALBUMS_PER_PAGE', 10)
 
