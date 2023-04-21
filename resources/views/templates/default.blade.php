@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link href="/css/lightbox.css" rel="stylesheet" />
+    <link href="{{ url('/') }}/css/lightbox.css" rel="stylesheet" />
     <style>
         body {
             padding: 70px 15px 0;
@@ -94,17 +94,13 @@
     {{$slot ?? ''}}
 </main><!-- /.container -->
 @section('footer')
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <script src="/js/lightbox.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
             crossorigin="anonymous"></script>
-    <script>
-        lightbox.option({
-            'resizeDuration' : 200,
-            'wrapAround' : true,
-        })
-    </script>
+    <script src="{{ url('/') }}/js/lightbox.js"></script>
 @show
 </body>
 </html>
