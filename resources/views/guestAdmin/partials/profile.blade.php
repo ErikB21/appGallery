@@ -24,7 +24,7 @@
     <span class="d-block text-center"><span class="font-weight-bold">Mail:</span> {{Auth::user()->email}}</span>
     <div class="mt-3 text-center">
         <a href="{{route('guestAdmin.edit', Auth::user())}}" class="btn eb_btn mx-3">Modifica Profilo</a>
-        <form class="d-inline-block mx-3" action="{{route('guestAdmin.destroy', Auth::user())}}" method="POST">
+        <form class="d-inline-block mx-3" action="{{route('guestAdmin.destroy', Auth::user()->id)}}" method="POST">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger">Elimina Profilo</button>

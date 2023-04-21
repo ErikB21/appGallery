@@ -1,5 +1,5 @@
 <div class="container">
-    @include('partials.profile')
+    @include('guestAdmin\partials\profile')
 </div>
 
 <div class="container mt-5">
