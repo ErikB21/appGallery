@@ -1,77 +1,79 @@
 @extends('templates\default')
 
 @section('content')
-    
-    <div class="row">
-        <div>
-            <h1 class="mb-4 text-center text-lg-start">Categories</h1>
-        </div>
-        <div class="col-12 col-lg-8">
-            <table class="table table-stripe table-hover table-dark" id="categoryList">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Created</th>
-                        <th>Update</th>
-                        <th>Albums</th>
-                        <th>&nbsp;</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($categories as $cat)
-                        <tr id="tr-{{ $cat->id }}">
-                            <td>{{$cat->id}}</td>
-                            <td id="catId-{{ $cat->id }}">{{ucWords($cat->category_name)}}</td>
-                            <td>{{$cat->created_at->diffForHumans()}}</td>
-                            <td>{{$cat->updated_at->diffForHumans()}}</td>
-                            <td>
-                                @if ($cat->albums_count > 0)
-                                    <a class="btn btn-success" title="Views Albums" class="" href="{{ route('albums.index') }}?category_id={{$cat->id}}">{{$cat->albums_count}}</a>
-                                @else
-                                    <a class="btn btn-default text-light" title="No Albums" href="#">{{$cat->albums_count}}</a>
-                                @endif
-                            </td>
-                            <td class="d-flex justify-content-between">
-                                <a id="upd-{{$cat->id}}" title="Update Category" href="{{route('categories.edit',$cat->id)}}" class="btn btn-outline-info mx-1"> <i class="bi bi-pen"></i></a>
-                                <form id="form{{$cat->id}}" method="POST" action="{{route('categories.destroy',$cat->id)}}"
-                                    class="form-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button title="Delete Category" class="mx-1 btn btn-outline-danger" id="btnDelete-{{ $cat->id }}"><i class="bi bi-trash"></i></button>
-                                </form>
-                            </td>
+    <div class="container mt-5">
+        <div class="row flex-column justify-content-center align-items-center">
+            <div class="d-none d-lg-block col-lg-4 mb-5">
+                @include('categories\categoryForm')
+            </div>
+            <div class="col-12 col-lg-8 d-flex mt-5 flex-column justify-content-center align-items-center">
+                <div>
+                    <h1 class="mb-4 text-center text-lg-start">Categories</h1>
+                </div>
+                <table class="table table-stripe table-hover table-dark" id="categoryList">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Created</th>
+                            <th>Update</th>
+                            <th>Albums</th>
+                            <th>&nbsp;</th>
                         </tr>
-                    @empty
-                        <tfoot>
-                            <tr>
-                                <th colspan="6">
-                                    No Categories
-                                    <a class="ms-4 d-inline-block btn btn-primary" href="{{ route('categories.create') }}">New Category</a>
-                                </th>
+                    </thead>
+                    <tbody>
+                        @forelse ($categories as $cat)
+                            <tr id="tr-{{ $cat->id }}">
+                                <td>{{$cat->id}}</td>
+                                <td id="catId-{{ $cat->id }}">{{ucWords($cat->category_name)}}</td>
+                                <td>{{$cat->created_at->diffForHumans()}}</td>
+                                <td>{{$cat->updated_at->diffForHumans()}}</td>
+                                <td>
+                                    @if ($cat->albums_count > 0)
+                                        <a class="btn btn-success" title="Views Albums" class="" href="{{ route('albums.index') }}?category_id={{$cat->id}}">{{$cat->albums_count}}</a>
+                                    @else
+                                        <a class="btn btn-default text-light" title="No Albums" href="#">{{$cat->albums_count}}</a>
+                                    @endif
+                                </td>
+                                <td class="d-flex justify-content-between">
+                                    <a id="upd-{{$cat->id}}" title="Update Category" href="{{route('categories.edit',$cat->id)}}" class="btn btn-outline-info mx-1"> <i class="bi bi-pen"></i></a>
+                                    <form id="form{{$cat->id}}" method="POST" action="{{route('categories.destroy',$cat->id)}}"
+                                        class="form-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button title="Delete Category" class="mx-1 btn btn-outline-danger" id="btnDelete-{{ $cat->id }}"><i class="bi bi-trash"></i></button>
+                                    </form>
+                                </td>
                             </tr>
-                        </tfoot>
-                    @endforelse
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="6">
-                            <div class="d-flex pt-3 justify-content-end align-items-center">
-                                {{ $categories->links('pagination::bootstrap-5') }}
-                            </div>
-                        </th>
-                    </tr>
-                </tfoot>
-            </table>
+                        @empty
+                            <tfoot>
+                                <tr>
+                                    <th colspan="6">
+                                        No Categories
+                                        <a class="ms-4 d-inline-block btn btn-primary" href="{{ route('categories.create') }}">New Category</a>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        @endforelse
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="6">
+                                <a class="btn btn-primary d-lg-none" href="{{ route('categories.create') }}">Nuova Categoria</a>
+                                <div class="d-flex pt-3 justify-content-end align-items-center">
+                                    {{ $categories->links('pagination::bootstrap-5') }}
+                                </div>
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
-        <div class="d-none d-lg-block col-lg-4">
-            @include('categories\categoryForm')
+        <div class="container">
+            @if(session()->has('message'))
+                <x-alert-info>{{ session()->get('message') }}</x-alert-info>
+            @endif
         </div>
-    </div>
-    <div class="container">
-        @if(session()->has('message'))
-            <x-alert-info>{{ session()->get('message') }}</x-alert-info>
-        @endif
     </div>
     
 @endsection
