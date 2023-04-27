@@ -1,84 +1,12 @@
 @extends('templates\default')
 
-<style>
-    .box {
-        position: relative;
-        width: 300px;
-        height: 300px;
-        margin: 20px;
-        transform-style: preserve-3d;
-        perspective: 1000px;
-        cursor: pointer;
-    }
-
-    .box .body {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        transform-style: preserve-3d;
-        transition: 0.9s ease;
-    }
-
-.box .body .imgContainer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-}
-
-.box .body .imgContainer img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.box .body .content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 300px;
-    height: 300px;
-    background: #333;
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
-    transform: rotateY(180deg);
-}
-
-.box:hover .body {
-    transform: rotateY(180deg);
-}
-
-.box .body .content div {
-    transform-style: preserve-3d;
-    display: flex;
-    width: 300px;
-    height: 300px;
-    margin: 20px;
-    padding: 10px;
-    flex-direction: column;
-    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #4D759D 100%);
-    transform: translateZ(100px);
-}
-
-
-
-</style>
-
-
 
 @section('content')
     <div class="container">
         <h1 class="text-center mt-3 mb-5">WorldGallery</h1>
         <div class="row">
             @foreach ($albums as $album)
-                <div class="col-xs-12 col-sm-6 col-lg-4 px-1 pb-4 m-auto d-flex justify-content-between">
+                <div class="col-12 col-md-6 col-lg-4 px-1 pb-4 m-auto d-flex justify-content-center justify-content-md-evenly">
                     <div class="box">
                         <div class="body">
                             <div class="imgContainer">
@@ -122,3 +50,75 @@
         {{ $albums->links('pagination::bootstrap-5') }}
     </div>
 @endsection
+
+<style>
+    .box {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        margin: 20px;
+        transform-style: preserve-3d;
+        perspective: 1000px;
+        cursor: pointer;
+    }
+
+    .box .body {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: 0.9s ease;
+    }
+
+    .box .body .imgContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        border-radius: 25px;
+    }
+
+    .box .body .imgContainer img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 25px;
+    }
+
+    .box .body .content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 300px;
+        background: #333;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+        transform: rotateY(180deg);
+        border-radius: 25px;
+    }
+
+    .box:hover .body {
+        transform: rotateY(180deg);
+    }
+
+    .box .body .content div {
+        transform-style: preserve-3d;
+        display: flex;
+        width: 300px;
+        height: 300px;
+        margin: 20px;
+        padding: 10px;
+        border-radius: 25px;
+        flex-direction: column;
+        background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #4D759D 100%);
+        transform: translateZ(100px);
+    }
+</style>
