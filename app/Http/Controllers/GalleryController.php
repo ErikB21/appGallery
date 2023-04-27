@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 class GalleryController extends Controller
 {
     public function index(){
-        $albums = Album::with('categories')->latest()->paginate(8);
+        $albums = Album::with('categories')->latest()->paginate(9);
         return view('gallery.albums')->with(['albums' => $albums, 'category_id' => null]);
     }
 
     public function showAlbumImages(Album $album){
-        $photos = Photo::whereAlbumId($album->id)->paginate(8);
+        $photos = Photo::whereAlbumId($album->id)->paginate(9);
         return view('gallery.images',['images' => $photos, 'album' => $album ]);
     }
 
