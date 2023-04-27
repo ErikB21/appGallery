@@ -23,9 +23,9 @@
             @foreach($albums as $album)
                 <tr class="align-middle" id="tr-{{$album->id}}">
                     <td title="Id: {{$album->id}}">{{$album->album_name}}</td>
-                    <td>
+                    <td style="width:150px; height: 150px;">
                         @if($album->album_thumb)
-                            <img width="100" title="Creato da {{ $album->user->name }}" src="{{asset($album->path)}}" title="{{$album->album_name}}"
+                            <img style="object-fit: cover; width:100%;" class="rounded-circle" title="Creato da {{ $album->user->name }}" src="{{asset($album->path)}}" title="{{$album->album_name}}"
                                 alt="{{$album->album_name}}">
 
                         @endif
