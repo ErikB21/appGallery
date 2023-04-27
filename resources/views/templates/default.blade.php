@@ -16,7 +16,9 @@
     <link href="{{ url('/') }}/css/lightbox.css" rel="stylesheet" />
     <style>
         body {
-            padding: 70px 15px 0;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
         .nav-link:hover{
             color: #ff0057;
@@ -28,7 +30,7 @@
 
 <header>
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+    <nav class="navbar border-bottom border-secondary border-bottom-1 navbar-expand-lg navbar-dark fixed-top bg-dark px-2">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('gallery.index') }}">GALLERY</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -86,9 +88,16 @@
 
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
                             <li>
-                                <form id="logout-form" action="{{ route('logout')}}" method="POST" class="d-flex mb-0 justify-content-center align-items-center">
+                                <form id="logout-form" action="{{ route('logout')}}" method="POST" class="d-flex mb-0 justify-content-start align-items-center">
                                     {{ csrf_field() }}
                                     <button class="btn btn-default text-light">Logout</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form class="d-flex mb-0 justify-content-start align-items-center" action="{{route('guestAdmin.destroy', Auth::user()->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-default text-light">Elimina Profilo</button>
                                 </form>
                             </li>
                         </ul>
@@ -99,7 +108,7 @@
     </nav>
 </header>
 
-<main role="main" class="container-fluid mt-5">
+<main role="main" class="container-fluid mt-5 px-0">
     @yield('content')
     {{$slot ?? ''}}
 </main><!-- /.container -->
