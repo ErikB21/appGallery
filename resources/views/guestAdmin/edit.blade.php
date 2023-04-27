@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <section class="container">
+    <section class="container mt-5">
         <header class="mb-3">
             <h1 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                 {{ __('Informazioni Profilo') }}
@@ -104,8 +104,8 @@
 <style>
 
     .img_container{
-        height: 400px;
-        width: 400px;
+        height: 300px;
+        width: 300px;
     }
     .img_profile_pic{
         height: 100%;
