@@ -33,13 +33,20 @@
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false"><i class="bi bi-person-fill"></i></a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div style="width:45px; height:45px;" class="d-inline-block">
+                        @if (Auth::user()->profile_pic) 
+                            <img style="width:45px; height:45px; object-fit:cover;" class="rounded-circle" src="{{ asset('storage/' .  Auth::user()->profile_pic) }}"/>
+                        @else
+                            <img style="width:45px; height:45px; object-fit:cover;" class="rounded-circle" src="{{asset('images/avatar.png')}}">   
+                        @endif
+                    </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-start dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                    <li class="d-flex justify-content-center">
                         <form id="logout-form" action="{{ route('logout')}}" method="POST">
                             {{ csrf_field() }}
-                            <button class="btn btn-default">Logout</button>
+                            <button class="btn btn-default text-light">Logout</button>
                         </form>    
                     </li>
                 </ul>
@@ -105,8 +112,15 @@
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
-                    {{ Auth::user()->name }}
+                    <div class="small pb-1">Logged in as:</div>
+                    <div style="width:45px; height:45px;" class="d-inline-block">
+                        @if (Auth::user()->profile_pic) 
+                            <img style="width:45px; height:45px; object-fit:cover;" class="rounded-circle" src="{{ asset('storage/' .  Auth::user()->profile_pic) }}"/>
+                        @else
+                            <img style="width:45px; height:45px; object-fit:cover;" class="rounded-circle" src="{{asset('images/avatar.png')}}">   
+                        @endif
+                    </div>
+                    {{ Auth::user()->name }} {{ Auth::user()->surname }}
                 </div>
             </nav>
         </div>
