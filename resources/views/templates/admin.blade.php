@@ -31,7 +31,7 @@
             </div>
         </form>
         <!-- Navbar-->
-        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 px-3">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <div style="width:45px; height:45px;" class="d-inline-block">
