@@ -1,43 +1,59 @@
-<div class="container">
-    @if(session('success'))
+<div class="container-fluid d-flex justify-content-end flex-column px-4 m-0 eb_cont">
+    {{-- @if(session('success'))
         <div class="container">
             <div class="alert alert-success">
                 <i class="fa-solid  fa-circle-check"></i> {{ session('success') }} 
             </div>
         </div>
     @endif
-    <div class="d-flex align-items-center justify-content-center eb_square m-auto rounded-circle">
-        @if (Auth::user()->profile_pic) 
-            <img class="rounded-circle" src="{{ asset('storage/' .  Auth::user()->profile_pic) }}"/>
-        @else
-            <img class="rounded-circle" src="{{asset('images/avatar.png')}}">   
+    <span>
+        @if(session()->has('message'))
+            <x-alert-info>{{ session()->get('message') }}</x-alert-info>
         @endif
+    </span> --}}
+    <div class="row">
+        <div class="col-12 d-flex">
+            <div class="eb_square">
+                @if (Auth::user()->profile_pic) 
+                    <img src="{{ asset('storage/' .  Auth::user()->profile_pic) }}"/>
+                @else
+                    <img src="{{asset('images/avatar.png')}}">   
+                @endif
+            </div>
+
+            <div class="ps-3 ms-3 eb_txt">
+                <h1 class="text-light">{{Auth::user()->name}} {{Auth::user()->surname}}</h1>
+                <span class="text-light"><span class="font-weight-bold">Mail:</span> {{Auth::user()->email}}</span>
+            </div>
+        </div>
     </div>
-    <div>
-        <h1 class="text-center mt-2">Benvenuto {{Auth::user()->name}} {{Auth::user()->surname}}</h1>
-        <span>
-            @if(session()->has('message'))
-                <x-alert-info>{{ session()->get('message') }}</x-alert-info>
-            @endif
-        </span>
+    <div class="col-12 d-flex justify-content-between align-items-center px-5">
+        <a href="{{route('guestAdmin.edit', Auth::user())}}" class="btn eb_btn">Modifica Profilo</a>
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center flex-column px-3">
+                <span class="fw-bold fs_eb">{{ count(Auth::user()->albums) }}</span>
+                <p><i class="bi bi-journal-album pe-1 fs-5"></i>{{ count(Auth::user()->albums) === 1 ? 'Album' : 'Albums'}}</p>
+            </div>
+            <div class="d-flex justify-content-between align-items-center flex-column px-3">
+                <span class="fs_eb fw-bold">{{ count(Auth::user()->categories) }}</span>
+                <p><i class="bi bi-tag pe-1 fs-5"></i>{{ count(Auth::user()->categories) === 1 ? 'Categoria' : 'Categorie'}}</p>
+            </div>
+        </div>
     </div>
-    <span class="d-block text-center"><span class="font-weight-bold">Mail:</span> {{Auth::user()->email}}</span>
-    <div class="mt-3 text-center">
-        <a href="{{route('guestAdmin.edit', Auth::user())}}" class="btn eb_btn mx-3">Modifica Profilo</a>
-        <form class="d-inline-block mx-3" action="{{route('guestAdmin.destroy', Auth::user()->id)}}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Elimina Profilo</button>
-        </form>
-    </div> 
 </div>
 
 <style>
+
+    .eb_cont{
+        padding: 120px 0 0 0;
+        background: rgb(32,37,41);
+        background: linear-gradient(175deg, rgba(32,37,41,1) 50%, rgba(246,247,248,1) 50%);
+
+    }
     .eb_square{
         width: 250px;
         height: 250px;
-        border-radius: 13px;
-        border: 1px solid #0A4067;
+        outline: 5px solid white;
     }
 
     .eb_square img{
@@ -54,5 +70,9 @@
         background-color: white;
         border-color: #0A4067;
         color: #0A4067;
+    }
+
+    .fs_eb{
+        font-size: 1.8rem;
     }
 </style>
