@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserFormRequest;
+use App\Models\Album;
+use App\Models\Photo;
 use App\Models\User;
 use DataTables;
 use Illuminate\Http\Request;
@@ -19,11 +21,13 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
+        $albums = Album::all();
+        $photos = Photo::all();
         //se l'utente loggato ha il ruolo da admin
         if(Auth::user()->user_role === 'admin'){
 
-            //ritorno la sua hoepage di admin
-            return view('admin\index');
+            //ritorno la sua homepage di admin
+            return view('admin\index', compact('albums', 'photos'));
         };
     }
     /**
