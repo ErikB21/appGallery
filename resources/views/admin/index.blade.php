@@ -1,5 +1,13 @@
 @extends('templates\admin')
 
+@php
+    /**
+     * * @var $album App\Models\Album;
+     * * @var $album App\Models\User;
+     * * @var $album App\Models\Photo;
+     * * @var $album App\Models\Category;
+     */
+@endphp
 @section('content')
     <div class="row">
         <div class="col-xl-6">
