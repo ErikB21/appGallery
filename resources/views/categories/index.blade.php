@@ -59,7 +59,6 @@
                     <tfoot>
                         <tr>
                             <th colspan="6">
-                                <a class="btn btn-primary d-lg-none" href="{{ route('categories.create') }}">Nuova Categoria</a>
                                 <div class="d-flex pt-3 justify-content-end align-items-center">
                                     {{ $categories->links('pagination::bootstrap-5') }}
                                 </div>

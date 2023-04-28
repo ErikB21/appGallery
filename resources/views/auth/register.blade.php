@@ -107,7 +107,7 @@
     @parent
     <script>
         $('document').ready(function () {
-            $('div.alert-info').fadeOut(4000)
+            $('div.alert').fadeOut(4000)
         });
     </script>
 @endsection
