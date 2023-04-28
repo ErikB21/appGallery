@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="container">
+    <div class="container mt-5">
         <h1 class="text-center mt-3 mb-5">WorldGallery</h1>
         <div class="row">
             @foreach ($albums as $album)

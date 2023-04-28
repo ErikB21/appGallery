@@ -17,89 +17,88 @@ class AlbumSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
         $albums = [
             [
-                'album_name' => 'Abstract',
-                'album_thumb' => $faker->imageUrl(),
-                'description' => 'Il nulla concreto, il tutto astratto! ',
+                'album_name' => 'Astratto',
+                'album_thumb' => 'https://images.pexels.com/photos/12939554/pexels-photo-12939554.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&dpr=2',
+                'description' => '“La verità è un quadro astratto. Prendi una bugia invece, ha dettagli talmente nitidi che la scambi per una fotografia”',
                 'created_at' => date('Y-m-d H:i:s'),
                 'user_id' => 2
             ],
             [
-                'album_name' => 'Animals',
-                'album_thumb' => $faker->imageUrl(),
-                'description' => 'Animali fantastici e dove trovarli...e non si tratta di un film!',
+                'album_name' => 'Animali',
+                'album_thumb' => 'https://images.pexels.com/photos/133459/pexels-photo-133459.jpeg?auto=compress&cs=tinysrgb&w=400',
+                'description' => '“Se si guarda negli occhi un animale, tutti i sistemi filosofici del mondo crollano”',
                 'created_at' => date('Y-m-d H:i:s'),
                 'user_id' => 1
             ],
             [
                 'album_name' => 'Business',
-                'album_thumb' => $faker->imageUrl(),
-                'description' => 'Soldi soldi, sempre e solo soldi! Investi anche tu!',
+                'album_thumb' => 'https://images.pexels.com/photos/3184451/pexels-photo-3184451.jpeg?auto=compress&cs=tinysrgb&w=400',
+                'description' => '“Non c’è alcun segreto per avere successo. E’ il risultato di preparazione, duro lavoro e di imparare dai propri errori”',
                 'created_at' => date('Y-m-d H:i:s'),
                 'user_id' => 2
             ],
             [
-                'album_name' => 'Cities',
-                'album_thumb' => $faker->imageUrl(),
-                'description' => 'Le città più belle, più romantiche o semplicemente le più amate!',
+                'album_name' => 'Città',
+                'album_thumb' => 'https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg?auto=compress&cs=tinysrgb&w=400',
+                'description' => '“La città consente di vedere senza essere visti e di essere visti senza vedere”',
                 'created_at' => date('Y-m-d H:i:s'),
                 'user_id' => 1
             ],
             [
-                'album_name' => 'Food',
-                'album_thumb' => $faker->imageUrl(),
-                'description' => 'Cibo, la fonte di vita del genere umano! Quanto cibooooo!',
+                'album_name' => 'Cibo',
+                'album_thumb' => 'https://images.pexels.com/photos/3186654/pexels-photo-3186654.jpeg?auto=compress&cs=tinysrgb&w=400',
+                'description' => '“Mangiare è uno dei quattro scopi della vita… quali siano gli altri tre, nessuno lo ha mai saputo”',
                 'created_at' => date('Y-m-d H:i:s'),
                 'user_id' => 3
             ],
             [
                 'album_name' => 'Fashion',
-                'album_thumb' => $faker->imageUrl(),
-                'description' => 'Il panorama mondiale della moda, in semplici foto!',
+                'album_thumb' => 'https://images.pexels.com/photos/1478477/pexels-photo-1478477.jpeg?auto=compress&cs=tinysrgb&w=400',
+                'description' => '“La moda è quella che viene suggerita e che spesso conviene evitare, lo stile è ciò che ciascuno ha e che deve conservare per tutta la vita”',
                 'created_at' => date('Y-m-d H:i:s'),
                 'user_id' => 4
             ],
             [
-                'album_name' => 'People',
-                'album_thumb' => $faker->imageUrl(),
-                'description' => 'Il problema? La gente se ne frega del problema!',
+                'album_name' => 'Persone',
+                'album_thumb' => 'https://images.pexels.com/photos/889545/pexels-photo-889545.jpeg?auto=compress&cs=tinysrgb&w=400',
+                'description' => '“Le persone raramente fanno quello in cui credono. Fanno ciò che conviene, e poi se ne pentono”',
                 'created_at' => date('Y-m-d H:i:s'),
                 'user_id' => 5
             ],
             [
-                'album_name' => 'Nature',
-                'album_thumb' => $faker->imageUrl(),
-                'description' => 'Naturalize, immergiti nella natura più estrema!',
+                'album_name' => 'Natura',
+                'album_thumb' => 'https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=400',
+                'description' => '“E poi, ho la natura e l’arte e la poesia, e se questo non è sufficiente, che cosa posso volere di più?”',
                 'created_at' => date('Y-m-d H:i:s'),
                 'user_id' => 7
             ],
             [
-                'album_name' => 'Sports',
-                'album_thumb' => $faker->imageUrl(),
-                'description' => 'Sport, dal grande calcio alla pallavolo, basket, e molto altro!',
+                'album_name' => 'Sport',
+                'album_thumb' => 'https://images.pexels.com/photos/163444/sport-treadmill-tor-route-163444.jpeg?auto=compress&cs=tinysrgb&w=400',
+                'description' => '“Nello sport si vince senza uccidere, in guerra si uccide senza vincere”',
                 'created_at' => date('Y-m-d H:i:s'),
                 'user_id' => 6
             ],
             [
-                'album_name' => 'Music',
-                'album_thumb' => $faker->imageUrl(),
-                'description' => 'Musica Maestro! I cantanti più amati, le grandi star della Musica!',
+                'album_name' => 'Musica',
+                'album_thumb' => 'https://images.pexels.com/photos/154147/pexels-photo-154147.jpeg?auto=compress&cs=tinysrgb&w=400',
+                'description' => '“E coloro che furono visti danzare vennero giudicati pazzi da quelli che non potevano sentire la musica”',
                 'created_at' => date('Y-m-d H:i:s'),
                 'user_id' => 8
             ],
             [
-                'album_name' => 'Travels',
-                'album_thumb' => $faker->imageUrl(),
-                'description' => 'Vuoi viaggiare? Immagina, sogna, e viaggia!',
+                'album_name' => 'Viaggi',
+                'album_thumb' => 'https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg?auto=compress&cs=tinysrgb&w=400',
+                'description' => '“Di una città non apprezzi le sette o settantasette meraviglie, ma la risposta che dà ad una tua domanda”',
                 'created_at' => date('Y-m-d H:i:s'),
                 'user_id' => 9
             ], 
             [
                 'album_name' => 'Web Development',
-                'album_thumb' => $faker->imageUrl(),
-                'description' => 'Sviluppo web, app mobile e IA!',
+                'album_thumb' => 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=400',
+                'description' => '“Internet. Oceano dove molti navigano su una zattera”',
                 'created_at' => date('Y-m-d H:i:s'),
                 'user_id' => 11
             ],
