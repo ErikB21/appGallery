@@ -15,17 +15,10 @@
                     <span class="text-light"><span class="font-weight-bold">Mail:</span> {{Auth::user()->email}}</span>
                 </div>
             </div>
-            <div class="ms-4">
-                {{-- @if (Auth::check())
-                    <div class="notification d-lg-block d-none">
-                        <p class="fw-bold">Welcome back, {{ Auth::user()->name }} 👋</p>
-                        <span class="notification__progress"></span>
-                    </div>
-                @endif --}}
-                    
+            <div class="ms-4">          
                 @if(session('success'))
                     <div class="container">
-                        <div class="alert alert-success">
+                        <div class="alert notification">
                             <i class="fa-solid  fa-circle-check"></i> {{ session('success') }} 
                         </div>
                     </div>
@@ -53,6 +46,15 @@
     </div>
 </div>
 
+@section('footer')
+    @parent
+    <script>
+        $('document').ready(function () {
+            $('div.alert').fadeOut(5000);
+        });
+    </script>
+@endsection
+
 <style>
 
     .eb_cont{
@@ -74,13 +76,13 @@
     }
 
     .eb_btn{
-        background-color: #0A4067;
+        background-color: #ff0057;
         color: whitesmoke;
     }
     .eb_btn:hover{
         background-color: white;
-        border-color: #0A4067;
-        color: #0A4067;
+        border-color: #ff0057;
+        color: #ff0057;
     }
 
     .fs_eb{
@@ -88,49 +90,10 @@
     }
 
 
-    /* POPUP
+    /* POPUP */
 
     .notification{
-        width: max-content;
-        padding: 20px 15px;
-        border-radius: 4px;
         background-color: #ff0057;
         color: #f6f5f9;
-        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
-        transform: translateY(30px);
-        visibility: hidden;
-        animation: fade-in 4s linear forwards;
-        position: relative;
     }
-
-    .notification__progress{
-        position: absolute;
-        left: 5px;
-        bottom: 5px;
-        width: calc(100% - 10px);
-        height: 3px;
-        transform: scaleX(0);
-        transform-origin: left;
-        background-image: linear-gradient(to right, #333, #fff);
-        border-radius: inherit;
-        animation: load 3s 0.25s linear forwards;
-    }
-
-    @keyframes fade-in{
-        5%{
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        90% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes load {
-        to {
-            transform: scaleX(1);
-        }
-    } */
 </style>
