@@ -21,13 +21,11 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
-        $albums = Album::all();
-        $photos = Photo::all();
         //se l'utente loggato ha il ruolo da admin
         if(Auth::user()->user_role === 'admin'){
 
             //ritorno la sua homepage di admin
-            return view('admin\index', compact('albums', 'photos'));
+            return view('admin\index');
         };
     }
     /**
