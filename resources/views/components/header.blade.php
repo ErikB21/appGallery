@@ -60,14 +60,14 @@
                             <li>
                                 <form id="logout-form" action="{{ route('logout')}}" method="POST" class="d-flex mb-0 justify-content-start align-items-center">
                                     {{ csrf_field() }}
-                                    <button class="btn btn-default text-light">Logout</button>
+                                    <button class="btn btn_hover text-secondary">Logout</button>
                                 </form>
                             </li>
                             <li>
                                 <form class="d-flex mb-0 justify-content-start align-items-center" action="{{route('guestAdmin.destroy', Auth::user()->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-default text-light">Elimina Profilo</button>
+                                    <button type="submit" class="btn btn_hover text-secondary">Elimina Profilo</button>
                                 </form>
                             </li>
                         </ul>
@@ -77,3 +77,9 @@
         </div>
     </nav>
 </header>
+
+<style>
+    .nav-link:hover, .btn_hover:hover{
+        color: #ff0057!important;
+    }
+</style>
