@@ -37,14 +37,14 @@ class AlbumSeeder extends Seeder
                 'album_thumb' => 'https://images.pexels.com/photos/3184451/pexels-photo-3184451.jpeg?auto=compress&cs=tinysrgb&w=400',
                 'description' => '“Non c’è alcun segreto per avere successo. E’ il risultato di preparazione, duro lavoro e di imparare dai propri errori”',
                 'created_at' => date('Y-m-d H:i:s'),
-                'user_id' => 2
+                'user_id' => 13
             ],
             [
                 'album_name' => 'Città',
                 'album_thumb' => 'https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg?auto=compress&cs=tinysrgb&w=400',
                 'description' => '“La città consente di vedere senza essere visti e di essere visti senza vedere”',
                 'created_at' => date('Y-m-d H:i:s'),
-                'user_id' => 1
+                'user_id' => 10
             ],
             [
                 'album_name' => 'Cibo',
@@ -100,7 +100,7 @@ class AlbumSeeder extends Seeder
                 'album_thumb' => 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=400',
                 'description' => '“Internet. Oceano dove molti navigano su una zattera”',
                 'created_at' => date('Y-m-d H:i:s'),
-                'user_id' => 11
+                'user_id' => 14
             ],
         ];
         foreach ($albums as $album) {
