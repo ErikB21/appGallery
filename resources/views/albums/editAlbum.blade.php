@@ -9,7 +9,7 @@
 @endphp
 <div class="container d-flex justify-content-center flex-column align-items-center">
 
-    <h1 class="mt-5">EDIT ALBUM <strong class="text-primary">{{$album->album_name}}</strong></h1>
+    <h1 class="mt-5">Modifica Album <strong class="text-primary">{{$album->album_name}}</strong></h1>
 
     <form class="mt-5 pt-5" style="width: 60%" action="{{route('albums.update', ['album' =>$album->id])}}" method="POST" enctype="multipart/form-data">
         {{-- {{method_field('PATCH')}} --}}
@@ -18,7 +18,7 @@
         {{-- <input type="hidden" value="PATCH" name="_method" id=""> --}}
         <div class="mb-3 form-group">
             <label for="album_name" class="form-label">
-                <h4>Name</h4>
+                <h4>Nome</h4>
             </label>
             <input type="text" class="form-control" id="album_name" name="album_name" placeholder="Album name" value="{{$album->album_name}}">
         </div>
@@ -30,7 +30,7 @@
 
         <div class="mb-3 form-group">
             <label for="description" class="form-label">
-                <h4>Description</h4>
+                <h4>Descrizione</h4>
             </label>
             <textarea placeholder="Album description" class="form-control" id="description" name="description">
                 {{$album->description}}

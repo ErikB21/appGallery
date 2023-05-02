@@ -1,6 +1,6 @@
 @extends('templates.default')
 @section('content')
-    <div class="container mt-5">
+    <div class="container-fluid mt-5">
         <div class="d-flex justify-content-between align-items-center">
             <h1>ALBUMS</h1>
             @if(session()->has('message'))
@@ -12,10 +12,10 @@
         <table class="table table-striped table-dark albums mt-5">
             <thead>
             <tr class="align-middle">
-                <th>Album name</th>
-                <th>Thumb</th>
-                <th>Date</th>
-                <th>Categories</th>
+                <th>Album</th>
+                <th>Immagine</th>
+                <th>Data</th>
+                <th>Categorie</th>
                 <th>&nbsp;</th><!-- rappresenta uno spazio bianco-->
                 <th>&nbsp;</th><!-- rappresenta uno spazio bianco-->
             </tr>
@@ -39,13 +39,13 @@
                         </td>
                         <td>
                             <div class="row">
-                                <div class="col-md-3 mx-2 mx-lg-0 col-lg-4">
+                                <div class="col-md-3 mx-2 mx-lg-0 col-lg-6">
                                     <a title="Add new image" title="New Image" href="{{route('photos.create')}}?album_id={{$album->id}}"
                                     class="btn btn-primary">
                                         <i class="bi bi-plus-circle"></i>
                                     </a>
                                 </div>
-                                <div class="col-md-3 mx-2 mx-lg-0 col-lg-4">
+                                <div class="col-md-3 mx-2 mx-lg-0 col-lg-6">
                                     @if($album->photos_count)
                                         <a title="View images" title="View Images ({{ $album->photos_count }})" href="{{route('albums.images',$album)}}" class="btn btn-primary">
                                             <span class="d-flex">

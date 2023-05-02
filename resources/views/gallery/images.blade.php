@@ -1,19 +1,19 @@
 @extends('templates\default')
 
 @section('content')
-    <div class="container">
+    <div class="container pt-5">
         <div class="row">
             @forelse ($images as $image)
                 <div class="col-6 col-lg-4 col-xl-3">
                     <div class="card m-2">
-                        <a href="{{asset($image->img_path)}}" data-lightbox="{{ $album->album_name }}" data-title="{{ $image->name }}" >
-                            @if($image->img_path)
-                                <img class="card-img-top img-fluid rounded" src="{{asset($image->img_path)}}" alt="{{$image->name}}" title="{{$image->name}}">
+                        <a class="eb_img" href="{{asset($image->path)}}" data-lightbox="{{ $album->album_name }}" data-title="{{ $image->name }}" >
+                            @if($image->path)
+                                <img class="card-img-top img-fluid rounded" src="{{asset($image->path)}}" alt="{{$image->name}}" title="{{$image->name}}">
                             @endif
                         </a>
                         <div class="card-body">
-                            <h4 style="height: 100px" class="card-title">{{ $image->name }}</h4>
-                            <p style="height: 100px" class="card-text">{{ $image->description }}</p>
+                            <h4 style="height: 5rem;" class="card-title">{{ $image->name }}</h4>
+                            <p style="height: 5rem;" class="card-text">{{ $image->description }}</p>
                         </div>
                     </div>
                 </div>
@@ -35,8 +35,24 @@
     @parent
     <script>
         lightbox.option({
-        'maxWidth': 200,
-        'maxHeight': 200
+        'maxWidth': 600,
+        'maxHeight': 600
         })
     </script>
 @endsection
+
+<style>
+    .card{
+        width: 18rem;
+        height: 32rem;
+    }
+    .eb_img{
+        width: 100%;
+        height: 18rem;
+    }
+    .eb_img img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>

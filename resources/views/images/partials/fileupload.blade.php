@@ -1,5 +1,5 @@
 <div class="my-4">
-    <label for="img_path" class="form-label fw-bold">Thumbnail</label>
+    <label for="img_path" class="form-label fw-bold">Immagine</label>
     <input type="file" class="form-control" name="img_path" id="img_path" value="{{$photo->name}}">
 </div>
 

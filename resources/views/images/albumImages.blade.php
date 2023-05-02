@@ -1,7 +1,7 @@
 @extends('templates.default')
 @section('content')
 
-    <h1 class="text-center my-5">Images</h1>
+    <h1 class="text-center my-5">Immagini</h1>
 
     @if (session()->has('message'))
         <x-alert-info>{{ session()->get('message') }}</x-alert-info>
@@ -11,15 +11,15 @@
             <div class="card my-2" style="width: 18rem;">
                 <img width="120" src="{{asset($image->path)}}" class="card-img-top">
                 <div class="card-body">
-                    <p class="card-title">Image: <strong>{{ $image->name }}</strong></p>
+                    <p class="card-title">Foto: <strong>{{ $image->name }}</strong></p>
                     <p class="card-text">Album: <strong>{{ $album->album_name }}</strong></p>
                     <p class="card-text">Id: <strong>{{ $image->id }}</strong></p>
-                    <a class="btn btn-danger" href="{{ route('photos.destroy', $image) }}">Delete</a>
-                    <a href="{{ route('photos.edit', $image) }}" class="btn btn-primary">Update</a>
+                    <a class="btn btn-danger" href="{{ route('photos.destroy', $image) }}">Cancella</a>
+                    <a href="{{ route('photos.edit', $image) }}" class="btn btn-primary">Modifica</a>
                 </div>
             </div>
         @empty
-            <h2 class="h1 fw-bold">No images found</h2>
+            <h2 class="h1 fw-bold">Nessuna Foto presente</h2>
         @endforelse
     </div>
     <div class="mt-4 container">

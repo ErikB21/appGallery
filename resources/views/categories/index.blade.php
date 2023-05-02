@@ -1,22 +1,22 @@
 @extends('templates\default')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container-fluid mt-5">
         <div class="row flex-column justify-content-center align-items-center">
             <div class="d-none d-lg-block col-lg-4 mb-5">
                 @include('categories\categoryForm')
             </div>
             <div class="col-12 col-lg-8 d-flex mt-5 flex-column justify-content-center align-items-center">
                 <div>
-                    <h1 class="mb-4 text-center text-lg-start">Categories</h1>
+                    <h1 class="mb-4 text-center text-lg-start">Categorie</h1>
                 </div>
                 <table class="table table-stripe table-hover table-dark" id="categoryList">
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Name</th>
-                            <th>Created</th>
-                            <th>Update</th>
+                            <th>Nome</th>
+                            <th>Creazione</th>
+                            <th>Modifica</th>
                             <th>Albums</th>
                             <th>&nbsp;</th>
                         </tr>
@@ -30,18 +30,18 @@
                                 <td>{{$cat->updated_at->diffForHumans()}}</td>
                                 <td>
                                     @if ($cat->albums_count > 0)
-                                        <a class="btn btn-success" title="Views Albums" class="" href="{{ route('albums.index') }}?category_id={{$cat->id}}">{{$cat->albums_count}}</a>
+                                        <a class="btn btn-success" title="Vedi Albums" class="" href="{{ route('albums.index') }}?category_id={{$cat->id}}">{{$cat->albums_count}}</a>
                                     @else
-                                        <a class="btn btn-default text-light" title="No Albums" href="#">{{$cat->albums_count}}</a>
+                                        <a class="btn btn-default text-light" title="Nessun Albums" href="#">{{$cat->albums_count}}</a>
                                     @endif
                                 </td>
                                 <td class="d-flex justify-content-between">
-                                    <a id="upd-{{$cat->id}}" title="Update Category" href="{{route('categories.edit',$cat->id)}}" class="btn btn-outline-info mx-1"> <i class="bi bi-pen"></i></a>
+                                    <a id="upd-{{$cat->id}}" title="Modifica Categoria" href="{{route('categories.edit',$cat->id)}}" class="btn btn-outline-info mx-1"> <i class="bi bi-pen"></i></a>
                                     <form id="form{{$cat->id}}" method="POST" action="{{route('categories.destroy',$cat->id)}}"
                                         class="form-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button title="Delete Category" class="mx-1 btn btn-outline-danger" id="btnDelete-{{ $cat->id }}"><i class="bi bi-trash"></i></button>
+                                        <button title="Elimina Categoria" class="mx-1 btn btn-outline-danger" id="btnDelete-{{ $cat->id }}"><i class="bi bi-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
@@ -49,8 +49,8 @@
                             <tfoot>
                                 <tr>
                                     <th colspan="6">
-                                        No Categories
-                                        <a class="ms-4 d-inline-block btn btn-primary" href="{{ route('categories.create') }}">New Category</a>
+                                        Nessuna Categoria
+                                        <a class="ms-4 d-inline-block btn btn-primary" href="{{ route('categories.create') }}">Nuova Categoria</a>
                                     </th>
                                 </tr>
                             </tfoot>
@@ -66,6 +66,9 @@
                         </tr>
                     </tfoot>
                 </table>
+            </div>
+            <div class="d-block d-lg-none col-lg-4 mb-5">
+                <a href="{{ route('categories.create') }}" class="btn btn-primary">Nuova Categoria</a>
             </div>
         </div>
         <div class="container">

@@ -70,22 +70,22 @@
                         <div class="sb-sidenav-menu-heading">Interface</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="bi bi-columns pe-2"></i></div>
-                            Users
+                            Utenti
                             <div class="sb-sidenav-collapse-arrow"><i class="bi bi-caret-down"></i></div>
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="{{route('users.show', Auth::user())}}"><i
-                                        class="bi bi-people-fill pe-2"></i> Users list</a>
+                                        class="bi bi-people-fill pe-2"></i> Lista Utenti</a>
                                 <a class="nav-link" href="{{route('users.create')}}"><i
-                                        class="bi bi-person-plus-fill pe-2"></i> New user</a>
+                                        class="bi bi-person-plus-fill pe-2"></i> Nuovo Utente</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                         aria-expanded="false" aria-controls="collapsePages">
                         <div class="sb-nav-link-icon"><i class="bi bi-images pe-2"></i></div>
-                        Gallery
+                        Galleria
                         <div class="sb-sidenav-collapse-arrow"><i class="bi bi-caret-down"></i></div>
                     </a>
                     <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"

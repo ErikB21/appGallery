@@ -17,13 +17,13 @@
                             <a class="nav-link" href="{{route('albums.index')}}">Albums</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('albums.create')}}">New Album</a>
+                            <a class="nav-link" href="{{route('albums.create')}}">Nuovo Album</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('photos.create')}}">New Image</a>
+                            <a class="nav-link" href="{{route('photos.create')}}">Nuova Immagine</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('categories.index')}}">Categories</a>
+                            <a class="nav-link" href="{{route('categories.index')}}">Categorie</a>
                         </li>
                         @if(Auth::user()->user_role === 'admin')
                             <li>
