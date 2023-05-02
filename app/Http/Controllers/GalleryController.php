@@ -9,7 +9,8 @@ class GalleryController extends Controller
 {
     public function index(){
         $albums = Album::with('categories')->latest()->paginate(9);
-        return view('gallery.albums')->with(['albums' => $albums, 'category_id' => null]);
+        $cat = Category::all();
+        return view('gallery.albums')->with(['albums' => $albums, 'cat' => $cat,  'category_id' => null]);
     }
 
     public function showAlbumImages(Album $album){

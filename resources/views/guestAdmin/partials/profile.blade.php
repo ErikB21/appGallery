@@ -41,14 +41,19 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center flex-column px-3">
                     <span class="fs_eb fw-bold">{{ count(Auth::user()->categories) }}</span>
-                    <p><i
-                            class="bi bi-tag pe-1 fs-5"></i>{{ count(Auth::user()->categories) === 1 ? 'Categoria' : 'Categorie' }}
+                    <p>
+                        <i class="bi bi-tag pe-1 fs-5"></i>{{ count(Auth::user()->categories) === 1 ? 'Categoria' : 'Categorie' }}
                     </p>
                 </div>
                 <div class="d-flex justify-content-between align-items-center flex-column px-3">
                     @foreach (Auth::user()->albums as $album)
-                       <span class="fs_eb fw-bold">{{ count($album->photos) }}</span>
-                       <p><i class="pe-1 bi {{ count($album->photos) <= 1 ? 'bi-image' : 'bi-images' }}"></i>Foto</p>
+                        @if(count(Auth::user()->albums) > 1)
+                            <span class="fs_eb fw-bold"><?php echo count($album->photos, COUNT_NORMAL) ?></span>
+                            <p><i class="pe-1 bi bi-images"></i>Foto</p>
+                        @else
+                            <span class="fs_eb fw-bold">{{ count($album->photos) }}</span>
+                            <p><i class="pe-1 bi bi-image"></i>Foto</p>
+                       @endif
                     @endforeach
                 </div>
             </div>

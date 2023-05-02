@@ -2,11 +2,12 @@
 
 
 @section('content')
-    <div class="container mt-5">
-        <h1 class="text-center mt-3 mb-5">WorldGallery</h1>
-        <div class="row">
+    <div class="container-fluid px-0 pt-5 bg-dark">
+        @include('components\homeJumbotron')
+        <div class="row mx-1">
+            <h2 class="eb_color text-center py-4">Album In Evidenza</h2>
             @foreach ($albums as $album)
-                <div class="col-12 col-md-6 col-lg-4 px-1 pb-4 m-auto d-flex justify-content-center justify-content-md-evenly">
+                <div class="col-12 col-md-6 col-lg-4 pb-4 m-auto d-flex justify-content-center justify-content-md-evenly">
                     <div class="box">
                         <div class="body">
                             <div class="imgContainer">
@@ -22,8 +23,8 @@
                                         <h2 class="card-title text-light">{{$album->album_name}}</h2>
                                     </a>
                                     <p style="height: 20px;" class="card-text">{{ $album->created_at->diffForHumans() }}</p>
-                                    <p style="height: 180px;" class="card-text">{{ $album->description }}</p>
-                                    <p style="height: 60px;" class="my-2 d-flex justify-content-evenly flex-wrap">
+                                    <p style="height: 150px;" class="card-text">{{ $album->description }}</p>
+                                    <p class="my-2 d-flex justify-content-evenly aling-items-center flex-wrap">
                                         @foreach ($album->categories as $cat )
                                             @if ($cat->id !== $category_id)
                                                 <a class="text-decoration-none mx-1" href="{{ route('gallery.categories.albums', $cat->id) }}">
@@ -46,12 +47,16 @@
             @endforeach
         </div>
     </div>
-    <div class="container mt-3">
-        {{ $albums->links('pagination::bootstrap-5') }}
+    <div class="container-fluid bg-dark py-1">
+        <p>{{ $albums->links('pagination::bootstrap-5') }}</p>
     </div>
 @endsection
 
 <style>
+    .eb_color{
+        color: #ff0057;
+        font-size: 3rem;
+    }
     .box {
         position: relative;
         width: 300px;
