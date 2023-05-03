@@ -195,9 +195,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Yajra\Datatables\DataTablesServiceProvider::class,
-        Kouz\Providers\AirbrakeServiceProvider::class
-
-
     ],
 
     /*

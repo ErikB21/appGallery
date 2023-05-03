@@ -41,17 +41,6 @@ class Handler extends ExceptionHandler
 
     //app/Exceptions/Handler.php
 
-    public function report(Exception $e)
-    {
-        if ($this->shouldReport($e)) {
-            $airbrakeNotifier = App::make('Airbrake\Notifier');
-            $airbrakeNotifier->notify($e);
-        }
-
-        parent::report($e);
-    }
-
-
     /**
      * Register the exception handling callbacks for the application.
      *
