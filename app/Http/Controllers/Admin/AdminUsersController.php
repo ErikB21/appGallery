@@ -101,6 +101,7 @@ class AdminUsersController extends Controller
         $user->name = $request->name;
         $user->surname = $request->surname;
         $user->email = $request->email;
+        $user->user_role = $request->user_role;
         $users = $user->save();
         $message = $users ? 'utente   ' . $user->name . ' modificato con successo!' : 'Utente ' . $user->name . ' non modificato!';
         session()->flash('message', $message);
