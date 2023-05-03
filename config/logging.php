@@ -56,6 +56,12 @@ return [
             'channels' => ['single'],
             'ignore_exceptions' => false,
         ],
+        
+        'airbrake' => [
+            'driver' => 'custom',
+            'via' => Kouz\LaravelAirbrake\AirbrakeLogger::class,
+            'level' => 'error',
+        ],
 
         'single' => [
             'driver' => 'single',
