@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class GalleryController extends Controller
 {
-    public function index()
+    public function index(Album $album)
     {
         //  \DB::enableQueryLog();
-        $albums =  Album::with('categories')->latest()->paginate(50);
+        $albums =  Album::whereId($album->id)->with(['categories'])->latest()->paginate(50);
 
         return view('gallery.albums')->with(['albums' => $albums,   'category_id' => null]);
     }
