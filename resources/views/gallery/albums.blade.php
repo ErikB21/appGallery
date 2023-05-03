@@ -2,8 +2,8 @@
 
 
 @section('content')
-    <div class="container-fluid px-0 pt-5 bg-dark">
-        @include('gallery/partials/homeJumbotron')
+    @include('gallery.partials.homeJumbotron')
+    <div class="container-fluid px-3 pt-5 bg-dark">
         <div class="row mx-1">
             <h2 class="eb_color text-center py-4">Album In Evidenza</h2>
             @foreach ($albums as $album)
@@ -47,9 +47,9 @@
             @endforeach
         </div>
     </div>
-    {{-- <div class="container-fluid bg-dark py-1">
+    <div class="container-fluid bg-dark py-1">
         <p>{{ $albums->links('pagination::bootstrap-5') }}</p>
-    </div> --}}
+    </div>
 @endsection
 
 <style>
@@ -59,8 +59,10 @@
     }
     .box {
         position: relative;
-        width: 300px;
-        height: 300px;
+        max-width: 300px;
+        max-height: 300px;
+        min-width: 300px;
+        min-height: 300px;
         margin: 20px;
         transform-style: preserve-3d;
         perspective: 1000px;
@@ -101,8 +103,10 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 300px;
-        height: 300px;
+        max-width: 300px;
+        max-height: 300px;
+        min-width: 300px;
+        min-height: 300px;
         background: #333;
         backface-visibility: hidden;
         transform-style: preserve-3d;
@@ -117,8 +121,10 @@
     .box .body .content div {
         transform-style: preserve-3d;
         display: flex;
-        width: 300px;
-        height: 300px;
+        max-width: 300px;
+        max-height: 300px;
+        min-width: 300px;
+        min-height: 300px;
         margin: 20px;
         padding: 10px;
         border-radius: 25px;
