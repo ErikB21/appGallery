@@ -1,4 +1,4 @@
-@include('guestAdmin\partials\profile')
+@include('guestAdmin.partials.profile')
 
 <div class="container-fluid mt-3">
         <div class="row">

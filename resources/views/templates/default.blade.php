@@ -25,7 +25,7 @@
 </head>
 <body class="d-flex flex-column h-100">
     
-    @include('components\header')
+    @include('components.header')
 
     <main role="main" class="container-fluid mt-5 px-0">
         @yield('content')

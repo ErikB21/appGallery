@@ -1,5 +1,5 @@
 <x-app-layout>
-    @include('guestAdmin\partials\cardRoute')
+    @include('guestAdmin.partials.cardRoute')
 </x-app-layout>
 @section('footer')
     @parent
