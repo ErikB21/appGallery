@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container-fluid px-0 pt-5 bg-dark">
-        @include('components\homeJumbotron')
+        {{-- @include('components\homeJumbotron') --}}
         <div class="row mx-1">
             <h2 class="eb_color text-center py-4">Album In Evidenza</h2>
             @foreach ($albums as $album)
