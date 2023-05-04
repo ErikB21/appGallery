@@ -64,7 +64,7 @@
                                 </form>
                             </li>
                             <li>
-                                <form class="d-flex mb-0 justify-content-start align-items-center" action="{{route('guestAdmin.destroy', Auth::user()->id)}}" method="POST">
+                                <form class="d-flex mb-0 justify-content-start align-items-center" action="{{route('profile.destroy', Auth::user()->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn_hover text-secondary">Elimina Profilo</button>
