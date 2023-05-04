@@ -57,7 +57,7 @@ class GuestAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user, $id)
     {
         $profileEdit = User::find($id);
         return view('guestAdmin.edit', compact('user', 'profileEdit'));
