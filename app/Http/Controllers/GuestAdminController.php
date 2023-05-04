@@ -73,6 +73,7 @@ class GuestAdminController extends Controller
     public function update(Request $req)
     {
         $user = User::whereId(Auth::user()->id);
+        $data = $req->all();
         $user->name = $req->input('name');
         $user->surname = $req->input('surname');
         $user->email = $req->input('email');
@@ -80,7 +81,7 @@ class GuestAdminController extends Controller
 
         $this->processFile($req, $user);
 
-        $res = $user->update();
+        $res = $user->update($data);
         $message = $res ? $user->name . ', hai modificato le tue credenziali con successo!' : $user->name . ', si è creato un errore imprevisto!';
         session()->flash('message', $message);
         return redirect()->route('dashboard');
