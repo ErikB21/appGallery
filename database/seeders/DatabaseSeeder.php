@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         Photo::truncate();
         $this->call(UserSeeder::class);
         $this->call(AlbumSeeder::class);
-        $this->call(PhotoFactory::class);
+        Photo::factory(20);
         $this->call(CategorySeeder::class);
         $this->call(AlbumCategorySeeder::class);
 
