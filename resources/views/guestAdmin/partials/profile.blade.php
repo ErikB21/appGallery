@@ -15,7 +15,7 @@
                     <span class="text-dark text-lg-light"><span class="font-weight-bold">Mail:</span> {{ Auth::user()->email }}</span>
                 </div>
             </div>
-            <div class="ms-4">
+            <span class="ms-4">
                 @if (session('success'))
                     <div>
                         <div class="alert notification">
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                 @endif
-            </div>
+            </span>
         </div>
         <div class="col-12 d-flex justify-content-between align-items-center px-5">
             <a href="{{ route('profile.edit', Auth::user()) }}" class="btn eb_btn">Modifica Profilo</a>
