@@ -80,7 +80,7 @@ class GuestAdminController extends Controller
 
         $this->processFile($req, $user);
 
-        $res = $user->update();
+        $res = $user->save();
         $message = $res ? $user->name . ', hai modificato le tue credenziali con successo!' : $user->name . ', si è creato un errore imprevisto!';
         session()->flash('message', $message);
         return redirect()->route('dashboard');
