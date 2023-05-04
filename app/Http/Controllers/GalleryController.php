@@ -10,11 +10,8 @@ class GalleryController extends Controller
 {
     public function index()
     {
-        //  \DB::enableQueryLog();
-        $albums =  Album::with('categories')->latest();
-        $albums->perPage(9);
-
-        return view('gallery.albums')->with(['albums' => $albums,   'category_id' => null]);
+        //  \DB::enableQueryLog()
+        return view('gallery.albums')->with(['albums' => Album::with('categories')->latest()->paginate(),   'category_id' => null]);
     }
 
     public function showAlbumImages(Album $album)
