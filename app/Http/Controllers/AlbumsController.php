@@ -110,7 +110,7 @@ class AlbumsController extends Controller
         }
         //$res =  Album::create($data);
         request()->input('name');
-        return redirect()->route('albums.index')->with('success', "Hai creato l/'album correttamente");
+        return redirect()->route('albums.index')->with('success', "Hai creato l'album correttamente");
         
         //query grezza
         // $data = $request->only(['album_name', 'description']);
@@ -213,7 +213,7 @@ class AlbumsController extends Controller
             $album->categories()->sync($req->input('categories'));
         }
         
-        return redirect()->route('albums.index')->with('success', "Hai modificato l/'album correttamente");
+        return redirect()->route('albums.index')->with('success', "Hai modificato l'album correttamente");
 
         // query grezza
         // $data = $request->only(['album_name', 'description']);
@@ -249,7 +249,7 @@ class AlbumsController extends Controller
         if(request()->ajax()){
             return $res;
         }
-        return redirect()->route('albums.index')->with('success', "Hai cancellato l/'album in modo corretto");
+        return redirect()->route('albums.index')->with('success', "Hai cancellato l'album in modo corretto");
 
 
         //usare int al posto di Album
