@@ -37,7 +37,7 @@
                                 </td>
                                 <td class="d-flex justify-content-between">
                                     <a id="upd-{{$cat->id}}" title="Modifica Categoria" href="{{route('categories.edit',$cat->id)}}" class="btn btn-outline-info mx-1"> <i class="bi bi-pen"></i></a>
-                                    <form id="form{{$cat->id}}" method="POST" action="{{route('categories.destroy')}}" class="form-inline">
+                                    <form id="form{{$cat->id}}" method="POST" action="{{route('categories.destroy', $cat->id)}}" class="form-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button title="Elimina Categoria" class="mx-1 btn btn-outline-danger" id="btnDelete-{{ $cat->id }}"><i class="bi bi-trash"></i></button>
