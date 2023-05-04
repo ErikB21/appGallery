@@ -21,7 +21,7 @@
             </tr>
             </thead>
             <tbody>
-                @foreach($albums as $album)
+                @forelse($albums as $album)
                     <tr class="align-middle" id="tr-{{$album->id}}">
                         <td title="Id: {{$album->id}}">{{$album->album_name}}</td>
                         <td style="width:150px; height: 150px;">
@@ -79,7 +79,15 @@
                             </div>
                         </td>
                     </tr>
-                @endforeach
+                    @empty
+                        <tfoot>
+                            <tr>
+                                <th colspan="6">
+                                    Nessuna Categoria
+                                </th>
+                            </tr>
+                        </tfoot>
+                    @endforelse
             </tbody>
             <tfoot>
                 <tr>

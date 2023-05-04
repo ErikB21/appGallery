@@ -5,13 +5,13 @@
         <div class="row flex-column justify-content-center align-items-center">
             <div class="col-12 col-lg-8 d-flex mt-5 flex-column justify-content-center align-items-center">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h1 class="mb-4 text-lg-start">Categorie</h1>
+                    <h1 class="mb-4">Categorie</h1>
                     @if(session('success'))
-                        <div>
+                        <span class="ms-2">
                             <div class="alert alert-success">
                                 <i class="fa-solid  fa-circle-check"></i> {{ session('success') }} 
                             </div>
-                        </div>
+                        </span>
                     @endif
                 </div>
                 <table class="table table-stripe table-hover table-dark" id="categoryList">
