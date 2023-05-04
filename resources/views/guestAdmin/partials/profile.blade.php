@@ -1,4 +1,4 @@
-<div class="container-fluid d-flex justify-content-end flex-column px-0 px-lg-4 m-0 eb_cont">
+<div class="container-fluid d-flex justify-content-end flex-column px-0 px-lg-4 mx-0 eb_cont">
     <div class="row">
         <div class="col-12 col-lg-10 d-flex justify-content-lg-between justify-content-center">
             <div class="eb_display">
@@ -25,10 +25,10 @@
                 @endif
             </span>
         </div>
-        <div class="col-12 col-lg-10 d-flex justify-content-lg-between justify-content-center align-items-center flex-column flex-lg-row px-5">
+        <div class="col-12 col-lg-10 d-flex justify-content-lg-between justify-content-center align-items-center flex-column flex-lg-row px-3 pt-3 pt-lg-0">
             <a href="{{ route('profile.edit', Auth::user()) }}" class="btn eb_btn">Modifica Profilo</a>
             <div class="d-flex justify-content-between align-items-center ">
-                <div class="d-flex justify-content-between align-items-center flex-column px-3">
+                <div class="d-flex justify-content-lg-between justify-content-center align-items-center flex-lg-column flex-row px-3 pt-3 pt-lg-0 ">
                     <span class="fw-bold fs_eb">{{ count(Auth::user()->albums) }}</span>
                     <p>
                         <i class="bi bi-journal-album pe-1 fs-5"></i>{{ count(Auth::user()->albums) === 1 ? 'Album' : 'Albums' }}
