@@ -179,7 +179,7 @@ class AlbumsController extends Controller
         $categories = Category::orderBy('category_name')->get();
         $selectedCategories = $album->categories->pluck('id')->toArray();
         
-        return view('albums.editalbum')->with(compact('album', 'categories', 'selectedCategories'));
+        return view('albums.editAlbum')->with(compact('album', 'categories', 'selectedCategories'));
         // $sql = 'SELECT * FROM albums WHERE id=:id';
         // $albumEdit = DB::select($sql, ['id' => $album->id]);
         // return view('albums.editalbum', ['album' => $albumEdit[0]]);
