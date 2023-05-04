@@ -79,15 +79,15 @@
                             </div>
                         </td>
                     </tr>
-                    @empty
-                        <tfoot>
-                            <tr>
-                                <th colspan="6">
-                                    Nessuna Categoria
-                                </th>
-                            </tr>
-                        </tfoot>
-                    @endforelse
+                @empty
+                    <tfoot>
+                        <tr>
+                            <th colspan="6">
+                                Nessuna Categoria
+                            </th>
+                        </tr>
+                    </tfoot>
+                @endforelse
             </tbody>
             <tfoot>
                 <tr>
@@ -97,6 +97,11 @@
                 </tr>
             </tfoot>
         </table>
+        <div class="container d-flex justify-content-center align-items-center">
+            <div class="mb-5">
+                <a href="{{ route('albums.create') }}" class="btn btn-primary">Nuova Categoria</a>
+            </div>
+        </div>
     </div>
 
 @endsection
