@@ -70,15 +70,15 @@ class GuestAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, $id)
+    public function update(Request $req)
     {
-        $user = User::find($id);
+        $user = Auth::user()->id;
         $user->name = $req->input('name');
         $user->surname = $req->input('surname');
         $user->email = $req->input('email');
         $user->profile_pic = $req->input('profile_pic');
 
-        $this->processFile($id, $req, $user);
+        $this->processFile($req, $user);
 
         $res = $user->save();
         $message = $res ? $user->name . ', hai modificato le tue credenziali con successo!' : $user->name . ', si è creato un errore imprevisto!';
@@ -112,7 +112,7 @@ class GuestAdminController extends Controller
 
 
 
-    public function processFile($id, Request $req, $user): bool
+    public function processFile(Request $req, $user): bool
     {
         if (!$req->hasFile('profile_pic')) {
             return false;
@@ -124,7 +124,7 @@ class GuestAdminController extends Controller
         }
 
 
-        $filename = $id . '.' . $file->extension();
+        $filename = $user->id . '.' . $file->extension();
         $filename = $file->storeAs(env('IMG_PROFILE'), $filename);
         $user->profile_pic = $filename;
         return true;
