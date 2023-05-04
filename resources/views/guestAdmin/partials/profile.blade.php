@@ -1,4 +1,11 @@
 <div class="container-fluid d-flex justify-content-end flex-column px-0 px-lg-4 mx-0 eb_cont">
+    <span class="d-block d-lg-inline">
+        @if (session('success'))
+            <span class="alert notification">
+                <i class="fa-solid  fa-circle-check"></i> {{ session('success') }}
+            </span>
+        @endif
+    </span>
     <div class="row">
         <div class="col-12 col-lg-10 d-flex justify-content-lg-between justify-content-center">
             <div class="eb_display">
@@ -15,15 +22,6 @@
                     <span class=""><span class="m-0 font-weight-bold">Mail:</span> {{ Auth::user()->email }}</span>
                 </div>
             </div>
-            <span class="ms-4 d-block d-lg-inline">
-                @if (session('success'))
-                    <div>
-                        <div class="alert notification">
-                            <i class="fa-solid  fa-circle-check"></i> {{ session('success') }}
-                        </div>
-                    </div>
-                @endif
-            </span>
         </div>
         <div class="col-12 col-lg-10 d-flex justify-content-lg-between justify-content-center align-items-center flex-column flex-lg-row px-3 pt-3 pt-lg-0 pb-3 pb-lg-0">
             <a href="{{ route('profile.edit', Auth::user()) }}" class="btn eb_btn">Modifica Profilo</a>
@@ -49,7 +47,7 @@
     @parent
     <script>
         $('document').ready(function() {
-            $('div.alert').fadeOut(5000);
+            $('span.alert').fadeOut(5000);
         });
     </script>
 @endsection
