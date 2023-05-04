@@ -3,9 +3,6 @@
 @section('content')
     <div class="container-fluid mt-5">
         <div class="row flex-column justify-content-center align-items-center">
-            <div class="d-none d-lg-block col-lg-4 mb-5">
-                @include('categories.categoryForm')
-            </div>
             <div class="col-12 col-lg-8 d-flex mt-5 flex-column justify-content-center align-items-center">
                 <div>
                     <h1 class="mb-4 text-center text-lg-start">Categorie</h1>
@@ -49,7 +46,6 @@
                                 <tr>
                                     <th colspan="6">
                                         Nessuna Categoria
-                                        <a class="ms-4 d-inline-block btn btn-primary" href="{{ route('categories.create') }}">Nuova Categoria</a>
                                     </th>
                                 </tr>
                             </tfoot>
@@ -66,7 +62,7 @@
                     </tfoot>
                 </table>
             </div>
-            <div class="d-block d-lg-none col-lg-4 mb-5">
+            <div class="mb-5">
                 <a href="{{ route('categories.create') }}" class="btn btn-primary">Nuova Categoria</a>
             </div>
         </div>
