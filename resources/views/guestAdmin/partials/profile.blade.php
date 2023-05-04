@@ -1,4 +1,4 @@
-<div class="container-fluid d-flex flex-column eb_cont">
+<div class="container-fluid d-flex flex-column eb_cont position-relative">
     <span class="d-block d-lg-inline eb_pos">
         @if (session('success'))
             <span class="alert notification">
@@ -61,6 +61,7 @@
         position: absolute;
         bottom: 0;
         right: 0;
+        z-index: 4;
     }
 
     .eb_display{
