@@ -6,6 +6,13 @@
             <div class="col-12 col-lg-8 d-flex mt-5 flex-column justify-content-center align-items-center">
                 <div>
                     <h1 class="mb-4 text-center text-lg-start">Categorie</h1>
+                    @if(session('success'))
+                        <div>
+                            <div class="alert alert-success">
+                                <i class="fa-solid  fa-circle-check"></i> {{ session('success') }} 
+                            </div>
+                        </div>
+                    @endif
                 </div>
                 <table class="table table-stripe table-hover table-dark" id="categoryList">
                     <thead>
@@ -62,20 +69,11 @@
                     </tfoot>
                 </table>
             </div>
-            <div class="col">
+            <div class="col-12 col-lg-8">
                 <div class="mb-5">
                     <a href="{{ route('categories.create') }}" class="btn btn-primary">Nuova Categoria</a>
                 </div>
             </div>
-        </div>
-        <div class="container">
-            @if(session('success'))
-                <div class="container">
-                    <div class="alert alert-success">
-                        <i class="fa-solid  fa-circle-check"></i> {{ session('success') }} 
-                    </div>
-                </div>
-            @endif
         </div>
     </div>
     

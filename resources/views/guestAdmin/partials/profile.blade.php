@@ -17,7 +17,7 @@
             </div>
             <div class="ms-4">
                 @if (session('success'))
-                    <div class="container">
+                    <div>
                         <div class="alert notification">
                             <i class="fa-solid  fa-circle-check"></i> {{ session('success') }}
                         </div>
@@ -30,8 +30,8 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex justify-content-between align-items-center flex-column px-3">
                     <span class="fw-bold fs_eb">{{ count(Auth::user()->albums) }}</span>
-                    <p><i
-                            class="bi bi-journal-album pe-1 fs-5"></i>{{ count(Auth::user()->albums) === 1 ? 'Album' : 'Albums' }}
+                    <p>
+                        <i class="bi bi-journal-album pe-1 fs-5"></i>{{ count(Auth::user()->albums) === 1 ? 'Album' : 'Albums' }}
                     </p>
                 </div>
                 <div class="d-flex justify-content-between align-items-center flex-column px-3">
