@@ -99,7 +99,7 @@
         </table>
         <div class="container d-flex justify-content-center align-items-center">
             <div class="mb-5">
-                <a href="{{ route('albums.create') }}" class="btn btn-primary">Nuova Categoria</a>
+                <a href="{{ route('albums.create') }}" class="btn btn-primary">Nuovo Album</a>
             </div>
         </div>
     </div>
