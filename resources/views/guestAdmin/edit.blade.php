@@ -67,7 +67,7 @@
                 <div class="col-6 d-flex justify-content-center">
                     <div class="mb-3 d-flex justify-content-center">
                         {{-- PROFILE_PIC --}}
-                        @if($users['profile_pic'])
+                        @if($profileEdit['profile_pic'])
                             <div class="my-5 img_container">
                                 <img class="img_profile_pic" src="{{asset('storage/' . $profileEdit['profile_pic'])}}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}">
                             </div>
