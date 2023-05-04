@@ -25,7 +25,7 @@ class AdminUsersController extends Controller
         if(Auth::user()->user_role === 'admin'){
 
             //ritorno la sua homepage di admin
-            return view('admin\index');
+            return view('admin.index');
         };
     }
     /**

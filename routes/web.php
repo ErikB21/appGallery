@@ -1,7 +1,7 @@
 <?php
 
 use App\Events\NewAlbumCreated;
-use App\Http\Controllers\{AlbumsController, CategoryController, GalleryController, GuestAdminController, PhotosController, ProfileController };
+use App\Http\Controllers\{AlbumsController, CategoryController, GalleryController, GuestAdminController, PhotosController };
 use App\Mail\TestMd;
 use App\Models\Album;
 use Illuminate\Support\Facades\Auth;
@@ -26,8 +26,8 @@ Route::get('/', function () {
 Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('/', [GuestAdminController::class, 'index'])->name('profile.index');
     Route::get('/guestAdmin', [GuestAdminController::class, 'edit'])->name('profile.edit');
-    Route::patch('/guestAdmin', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/guestAdmin', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::patch('/guestAdmin', [GuestAdminController::class, 'update'])->name('profile.update');
+    Route::delete('/guestAdmin', [GuestAdminController::class, 'destroy'])->name('profile.destroy');
     Route::resource('/albums', AlbumsController::class)->middleware('auth');
     Route::resource('photos', PhotosController::class);
     Route::get('/albums/{album}/images', [AlbumsController::class, 'getImages'])->name('albums.images');

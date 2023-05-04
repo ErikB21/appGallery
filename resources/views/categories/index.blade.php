@@ -4,7 +4,7 @@
     <div class="container-fluid mt-5">
         <div class="row flex-column justify-content-center align-items-center">
             <div class="d-none d-lg-block col-lg-4 mb-5">
-                @include('categories\categoryForm')
+                @include('categories.categoryForm')
             </div>
             <div class="col-12 col-lg-8 d-flex mt-5 flex-column justify-content-center align-items-center">
                 <div>
