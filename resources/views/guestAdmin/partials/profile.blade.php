@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="col-12 d-flex justify-content-between align-items-center px-5">
-            <a href="{{ route('guestAdmin.edit', Auth::user()) }}" class="btn eb_btn">Modifica Profilo</a>
+            <a href="{{ route('profile.edit', Auth::user()) }}" class="btn eb_btn">Modifica Profilo</a>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex justify-content-between align-items-center flex-column px-3">
                     <span class="fw-bold fs_eb">{{ count(Auth::user()->albums) }}</span>

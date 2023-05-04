@@ -24,9 +24,9 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->prefix('dashboard')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/guestAdmin', [GuestAdminController::class, 'edit'])->name('profile.edit');
+    Route::patch('/guestAdmin', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/guestAdmin', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('/albums', AlbumsController::class)->middleware('auth');
     Route::resource('photos', PhotosController::class);
     Route::get('/albums/{album}/images', [AlbumsController::class, 'getImages'])->name('albums.images');
@@ -46,7 +46,7 @@ Route::group(['prefix' => 'gallery'], function(){
     Route::get('categories/{category}/albums', [GalleryController::class, 'showCategoryAlbums'])->name('gallery.categories.albums');
 });
 
-Route::resource('guestAdmin/user', GuestAdminController::class);
+// Route::resource('guestAdmin/user', GuestAdminController::class);
 
 
 
