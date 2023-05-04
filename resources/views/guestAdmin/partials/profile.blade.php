@@ -1,7 +1,7 @@
-<div class="container-fluid d-flex justify-content-end flex-column px-4 m-0 eb_cont">
+<div class="container-fluid d-flex justify-content-end flex-column px-2 m-0 eb_cont">
     <div class="row">
         <div class="col-12 d-flex justify-content-between flex-column flex-lg-row">
-            <div class="d-flex">
+            <div class="d-flex flex-column flex-lg-row">
                 <div class="eb_square">
                     @if (Auth::user()->profile_pic)
                         <img src="{{ asset('storage/' . Auth::user()->profile_pic) }}" />
@@ -39,17 +39,6 @@
                     <p>
                         <i class="bi bi-tag pe-1 fs-5"></i>{{ count(Auth::user()->categories) === 1 ? 'Categoria' : 'Categorie' }}
                     </p>
-                </div>
-                <div class="d-flex justify-content-between align-items-center flex-column px-3">
-                    @foreach (Auth::user()->albums as $album)
-                        @if(count(Auth::user()->albums) > 1)
-                            <span class="fs_eb fw-bold"><?php echo count($album->photos, COUNT_NORMAL) ?></span>
-                            <p><i class="pe-1 bi bi-images"></i>Foto</p>
-                        @else
-                            <span class="fs_eb fw-bold">{{ count($album->photos) }}</span>
-                            <p><i class="pe-1 bi bi-image"></i>Foto</p>
-                       @endif
-                    @endforeach
                 </div>
             </div>
         </div>
