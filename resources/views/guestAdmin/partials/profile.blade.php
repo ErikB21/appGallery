@@ -1,6 +1,6 @@
 <div class="container-fluid d-flex justify-content-end flex-column px-0 px-lg-4 m-0 eb_cont">
     <div class="row">
-        <div class="col-12 col-lg-10 d-flex justify-content-evenly">
+        <div class="col-12 col-lg-10 d-flex justify-content-lg-between justify-content-center">
             <div class="eb_display">
                 <div class="eb_square">
                     @if (Auth::user()->profile_pic)
@@ -12,10 +12,10 @@
 
                 <div class="eb_txt">
                     <h1 class="">{{ Auth::user()->name }} {{ Auth::user()->surname }}</h1>
-                    <span class=""><span class="font-weight-bold">Mail:</span> {{ Auth::user()->email }}</span>
+                    <span class=""><span class="m-0 font-weight-bold">Mail:</span> {{ Auth::user()->email }}</span>
                 </div>
             </div>
-            <span class="ms-4">
+            <span class="ms-4 d-block d-lg-inline">
                 @if (session('success'))
                     <div>
                         <div class="alert notification">
@@ -25,9 +25,9 @@
                 @endif
             </span>
         </div>
-        <div class="col-12 d-flex justify-content-between align-items-center px-5">
+        <div class="col-12 col-lg-10 d-flex justify-content-lg-between justify-content-center align-items-center flex-column flex-lg-row px-5">
             <a href="{{ route('profile.edit', Auth::user()) }}" class="btn eb_btn">Modifica Profilo</a>
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center ">
                 <div class="d-flex justify-content-between align-items-center flex-column px-3">
                     <span class="fw-bold fs_eb">{{ count(Auth::user()->albums) }}</span>
                     <p>
@@ -106,7 +106,7 @@
         }
        .eb_txt h1, .eb_txt span{
             color: rgb(32, 37, 41);;
-            margin: 0;
+            margin: 25px 0 0 0;
         } 
     }
 
