@@ -29,7 +29,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(array $request): RedirectResponse
     {
         Validator::make($request,[
             'name' => ['required', 'string', 'max:255'],
@@ -39,10 +39,10 @@ class RegisteredUserController extends Controller
         ]);
 
         Auth::login($user = User::create([
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'name' => $request['name'],
+            'surname' => $request['surname'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
         ]));
 
         event(new Registered($user));
