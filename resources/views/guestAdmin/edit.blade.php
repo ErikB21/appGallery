@@ -18,7 +18,7 @@
             @csrf
         </form>
 
-        <form method="POST" action="{{ route('guestAdmin.update', Auth::user())}}" class="mt-6 space-y-6"  enctype="multipart/form-data">
+        <form method="POST" action="{{ route('guestAdmin.update', Auth::user()->id)}}" class="mt-6 space-y-6"  enctype="multipart/form-data">
             @csrf
             @method('patch')
             <div class="row justify-content-between align-items-center">
