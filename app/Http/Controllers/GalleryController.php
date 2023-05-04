@@ -11,7 +11,7 @@ class GalleryController extends Controller
     public function index()
     {
         //  \DB::enableQueryLog();
-        $albums =  Album::with('categories')->latest()->simplePaginate(9);
+        $albums =  Album::with('categories')->get();
 
         return view('gallery.albums')->with(['albums' => $albums,   'category_id' => null]);
     }
