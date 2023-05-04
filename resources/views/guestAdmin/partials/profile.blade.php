@@ -59,8 +59,8 @@
 
     .eb_pos{
         position: absolute;
-        bottom: 0;
-        right: 0;
+        top: 15%;
+        right: 5%;
         z-index: 4;
     }
 
