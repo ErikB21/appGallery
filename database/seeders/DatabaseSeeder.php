@@ -9,6 +9,7 @@ use App\Models\AlbumCategory;
 use App\Models\Category;
 use App\Models\Photo;
 use App\Models\User;
+use Database\Factories\PhotoFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -29,7 +30,7 @@ class DatabaseSeeder extends Seeder
         Photo::truncate();
         $this->call(UserSeeder::class);
         $this->call(AlbumSeeder::class);
-        $this->call(PhotoSeeder::class);
+        $this->call(PhotoFactory::class);
         $this->call(CategorySeeder::class);
         $this->call(AlbumCategorySeeder::class);
 
