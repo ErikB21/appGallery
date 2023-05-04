@@ -70,16 +70,19 @@ class GuestAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req)
+    public function update(Request $request)
     {
-        $user = User::whereId(Auth::user()->id);
-        $data = $req->all();
-        $user->name = $req->input('name');
-        $user->surname = $req->input('surname');
-        $user->email = $req->input('email');
-        $user->profile_pic = $req->input('profile_pic');
-
-        $this->processFile($req, $user);
+        $user = User::whereId(Auth::user()->id)->first();
+        $data = $request->all();
+        if (array_key_exists('profile_pic', $data)) {
+            // Elimino il la vecchia img
+            if ($user->profile_pic) {
+                Storage::delete($user->profile_pic);
+            }
+            $profile_pic = Storage::put('profile_pic', $data['profile_pic']);
+            $data['profile_pic'] = $profile_pic;
+        }
+        // $this->processFile($req, $user);
 
         $res = $user->update($data);
         $message = $res ? $user->name . ', hai modificato le tue credenziali con successo!' : $user->name . ', si è creato un errore imprevisto!';
@@ -113,21 +116,21 @@ class GuestAdminController extends Controller
 
 
 
-    public function processFile(Request $req, $user): bool
-    {
-        if (!$req->hasFile('profile_pic')) {
-            return false;
-        }
+    // public function processFile(Request $req, $user): bool
+    // {
+    //     if (!$req->hasFile('profile_pic')) {
+    //         return false;
+    //     }
 
-        $file = $req->file('profile_pic');
-        if (!$file->isValid()) {
-            return false;
-        }
+    //     $file = $req->file('profile_pic');
+    //     if (!$file->isValid()) {
+    //         return false;
+    //     }
 
 
-        $filename = $file->extension();
-        $filename = $file->storeAs(env('IMG_PROFILE'), $filename);
-        $user->profile_pic = $filename;
-        return true;
-    }
+    //     $filename = $file->extension();
+    //     $filename = $file->storeAs(env('IMG_PROFILE'), $filename);
+    //     $user->profile_pic = $filename;
+    //     return true;
+    // }
 }
