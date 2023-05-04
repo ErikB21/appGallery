@@ -23,11 +23,6 @@
                         </div>
                     </div>
                 @endif
-                <span>
-                    @if (session()->has('message'))
-                        <x-alert-info>{{ session()->get('message') }}</x-alert-info>
-                    @endif
-                </span>
             </div>
         </div>
         <div class="col-12 d-flex justify-content-between align-items-center px-5">
