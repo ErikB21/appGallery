@@ -113,8 +113,14 @@ class CategoryController extends Controller
         $res = $category->delete();
         $message = $res ? 'Category deleted' : 'Problem deleting category';
         session()->flash('message', $message);
-        
-        return redirect()->route('categories.index')->with('success', 'Hai cancellato correttamente la tua Categoria');
-
+        if ($request->expectsJson()) {//verifica se ajax è diverso da pjax o da qualsiasi contenuto, oppure che si aspetti come un tipo di risposta json
+            return [
+                'message' => $message,
+                'success' => $res,
+                'data' => $res
+            ];
+        } else {
+            return redirect()->route('categories.index');
+        }
     }
 }
