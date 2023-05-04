@@ -1,6 +1,6 @@
 <div class="container-fluid d-flex justify-content-end flex-column px-4 m-0 eb_cont">
     <div class="row">
-        <div class="col-12 d-flex justify-content-between">
+        <div class="col-12 d-flex justify-content-between flex-column flex-lg-row">
             <div class="d-flex">
                 <div class="eb_square">
                     @if (Auth::user()->profile_pic)
