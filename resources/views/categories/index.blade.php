@@ -4,7 +4,7 @@
     <div class="container-fluid mt-5">
         <div class="row flex-column justify-content-center align-items-center">
             <div class="col-12 col-lg-8 d-flex mt-5 flex-column justify-content-center align-items-center">
-                <div>
+                <div class="d-flex justify-content-between align-items-center">
                     <h1 class="mb-4 text-center text-lg-start">Categorie</h1>
                     @if(session('success'))
                         <div>
@@ -69,7 +69,7 @@
                     </tfoot>
                 </table>
             </div>
-            <div class="col-12 col-lg-8">
+            <div class="col-12 col-lg-8 d-flex justify-content-center align-items-center">
                 <div class="mb-5">
                     <a href="{{ route('categories.create') }}" class="btn btn-primary">Nuova Categoria</a>
                 </div>
