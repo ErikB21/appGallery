@@ -24,6 +24,7 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->prefix('dashboard')->group(function () {
+    Route::get('/', [GuestAdminController::class, 'index'])->name('profile.index');
     Route::get('/guestAdmin', [GuestAdminController::class, 'edit'])->name('profile.edit');
     Route::patch('/guestAdmin', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/guestAdmin', [ProfileController::class, 'destroy'])->name('profile.destroy');
