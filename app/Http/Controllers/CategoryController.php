@@ -98,18 +98,8 @@ class CategoryController extends Controller
     {
         $this->validate($request, $this->rules);
         $category->category_name = $request->category_name;
-        $res = $category->save();
-        $message = $res ? 'Category updated' : 'Problem updating category'.$request->category_name;
-        session()->flash('message', $message);
-        if ($request->expectsJson()) {
-            return [
-                'message' => $message,
-                'success' => $res,
-                'data' => $category
-            ];
-        } else {
-            return redirect()->route('categories.index');
-        }
+        $category->save();
+        return redirect()->route('categories.index')->with('success', 'Hai modificato correttamente la tua Categoria');
     }
 
     /**
@@ -123,14 +113,8 @@ class CategoryController extends Controller
         $res = $category->delete();
         $message = $res ? 'Category deleted' : 'Problem deleting category';
         session()->flash('message', $message);
-        if ($request->expectsJson()) {//verifica se ajax è diverso da pjax o da qualsiasi contenuto, oppure che si aspetti come un tipo di risposta json
-            return [
-                'message' => $message,
-                'success' => $res,
-                'data' => $res
-            ];
-        } else {
-            return redirect()->route('categories.index');
-        }
+        
+        return redirect()->route('categories.index')->with('success', 'Hai cancellato correttamente la tua Categoria');
+
     }
 }

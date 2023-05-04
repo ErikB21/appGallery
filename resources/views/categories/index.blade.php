@@ -72,8 +72,12 @@
             </div>
         </div>
         <div class="container">
-            @if(session()->has('message'))
-                <x-alert-info>{{ session()->get('message') }}</x-alert-info>
+            @if(session('success'))
+                <div class="container">
+                    <div class="alert alert-success">
+                        <i class="fa-solid  fa-circle-check"></i> {{ session('success') }} 
+                    </div>
+                </div>
             @endif
         </div>
     </div>
