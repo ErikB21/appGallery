@@ -12,6 +12,7 @@ class GalleryController extends Controller
     {
         //  \DB::enableQueryLog();
         $albums =  Album::with('categories')->latest();
+        $albums->perPage(9);
 
         return view('gallery.albums')->with(['albums' => $albums,   'category_id' => null]);
     }
