@@ -62,8 +62,10 @@
                     </tfoot>
                 </table>
             </div>
-            <div class="mb-5">
-                <a href="{{ route('categories.create') }}" class="btn btn-primary">Nuova Categoria</a>
+            <div class="col">
+                <div class="mb-5">
+                    <a href="{{ route('categories.create') }}" class="btn btn-primary">Nuova Categoria</a>
+                </div>
             </div>
         </div>
         <div class="container">

@@ -52,17 +52,7 @@ class CategoryController extends Controller
         $res->user_id = Auth::id();
         $res->save();
 
-        $message = $res ? 'Category created' : 'Problem creating category'.$request->category_name;
-        session()->flash('message', $message);
-        if($request->expectsJson()){
-            return [
-                'message' => $message,
-                'success' => $res,
-                'data' => $res
-            ];
-        }else{
-            return redirect()->route('categories.index');
-        }
+        return redirect()->route('categories.index')->with('success', 'Hai inserito correttamente la tua nuova Categoria');
     }
 
     /**
