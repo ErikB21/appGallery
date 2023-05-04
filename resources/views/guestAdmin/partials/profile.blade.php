@@ -95,7 +95,7 @@
     }
 
     .eb_txt h1, .eb_txt span{
-        color: rgb(32, 37, 41);
+        color: white;
         margin: 0 0 0 25px;
     }
 
@@ -105,7 +105,7 @@
             flex-direction: column;
         }
        .eb_txt h1, .eb_txt span{
-            color: white;
+            color: rgb(32, 37, 41);;
             margin: 0;
         } 
     }
