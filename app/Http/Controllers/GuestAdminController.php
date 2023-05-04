@@ -124,7 +124,7 @@ class GuestAdminController extends Controller
         }
 
 
-        $filename = $user . '.' . $file->extension();
+        $filename = $file->extension();
         $filename = $file->storeAs(env('IMG_PROFILE'), $filename);
         $user->profile_pic = $filename;
         return true;
