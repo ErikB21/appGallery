@@ -7,7 +7,8 @@
      * * @var $photo App\Models\Photo;
      */
 @endphp
-<div class="d-flex justify-content-center align-items-center flex-column container border rounded-5 my-5">
+<div class="container">
+    <div class="d-flex justify-content-center align-items-center flex-column border rounded-5 my-5">
 
     @if($photo->id)
         <h3 class="h2 fw-bold mb-5">Modifica Immagine {{$photo->name}}</h3>
@@ -50,7 +51,9 @@
                         <button type="sumbit" class="btn btn-primary">Salva</button>
                     </div>
                 </form>
-</div>
+        </div>
+    </div>
+
 <div class="container">
     @include('images.partials.inputErrors')
 </div>

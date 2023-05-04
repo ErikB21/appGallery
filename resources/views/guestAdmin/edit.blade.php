@@ -4,7 +4,7 @@
 @section('content')
 
     <section class="container mt-5">
-        <header class="mb-3">
+        <header class="mb-3 text-center text-md-start">
             <h1 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                 {{ __('Informazioni Profilo') }}
             </h1>
@@ -21,9 +21,9 @@
         <form method="POST" action="{{ route('profile.update', Auth::user())}}" class="mt-6 space-y-6"  enctype="multipart/form-data">
             @csrf
             @method('patch')
-            <div class="row justify-content-between align-items-center">
-                <div class="col-6">
-                    <div class="mb-3">
+            <div class="row justify-content-between align-items-center flex-md-row flex-column">
+                <div class="col-10 col-md-6 d-flex align-items-sm-start flex-column align-items-center">
+                    <div class="mb-3 form-group">
                         {{-- NAME --}}
                         <label for="name" class="form-label"><h5>Nome</h5></label>
                         <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{old('name', Auth::user()->name)}}" required autofocus autocomplete="name"/>
@@ -34,7 +34,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 form-group">
                         {{-- SURNAME --}} 
                         <label for="surname" class="form-label"><h5>Cognome</h5></label>
                         <input type="text" id="surname" name="surname" class="form-control @error('surname') is-invalid @enderror" value="{{old('surname', Auth::user()->surname)}}" required autofocus autocomplete="surname"/>
@@ -45,7 +45,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 form-group">
                         {{-- EMAIL --}}
                         
                         <label for="email" class="form-label"><h5>Email</h5></label>
@@ -57,14 +57,12 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="">
-                        <div class="mb-3 form-group">
-                            <label for="profile_pic"  class="form-label"><h5>Foto Profilo</h5></label>
-                            <input type="file" class="form-control" name="profile_pic" id="profile_pic" value="{{Auth::user()->profile_pic}}" required>
-                        </div>
+                    <div class="mb-3 form-group">
+                        <label for="profile_pic"  class="form-label"><h5>Foto Profilo</h5></label>
+                        <input type="file" class="form-control" name="profile_pic" id="profile_pic" value="{{Auth::user()->profile_pic}}" required>
                     </div>
                 </div>
-                <div class="col-6 d-flex justify-content-center">
+                <div class="col-10 col-md-6 d-flex justify-content-center">
                     <div class="mb-3 d-flex justify-content-center">
                         {{-- PROFILE_PIC --}}
                         @if($profileEdit['profile_pic'])

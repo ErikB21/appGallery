@@ -1,46 +1,49 @@
-<div class="container-fluid d-flex justify-content-end flex-column px-0 px-lg-4 mx-0 eb_cont">
-    <span class="d-block d-lg-inline">
+<div class="container-fluid d-flex flex-column eb_cont">
+    <span class="d-block d-lg-inline eb_pos">
         @if (session('success'))
             <span class="alert notification">
                 <i class="fa-solid  fa-circle-check"></i> {{ session('success') }}
             </span>
         @endif
     </span>
-    <div class="row">
-        <div class="col-12 col-lg-10 d-flex justify-content-lg-between justify-content-center">
-            <div class="eb_display">
-                <div class="eb_square">
-                    @if (Auth::user()->profile_pic)
-                        <img src="{{ asset('storage/' . Auth::user()->profile_pic) }}" />
-                    @else
-                        <img src="{{ asset('images/avatar.png') }}">
-                    @endif
-                </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 d-flex justify-content-lg-between justify-content-center">
+                <div class="eb_display">
+                    <div class="eb_square">
+                        @if (Auth::user()->profile_pic)
+                            <img src="{{ asset('storage/' . Auth::user()->profile_pic) }}" />
+                        @else
+                            <img src="{{ asset('images/avatar.png') }}">
+                        @endif
+                    </div>
 
-                <div class="eb_txt">
-                    <h1 class="">{{ Auth::user()->name }} {{ Auth::user()->surname }}</h1>
-                    <span class=""><span class="m-0 font-weight-bold">Mail:</span> {{ Auth::user()->email }}</span>
+                    <div class="eb_txt">
+                        <h1 class="">{{ Auth::user()->name }} {{ Auth::user()->surname }}</h1>
+                        <span class=""><span class="m-0 font-weight-bold">Mail:</span> {{ Auth::user()->email }}</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-lg-10 d-flex justify-content-lg-between justify-content-center align-items-center flex-column flex-lg-row px-3 pt-3 pt-lg-0 pb-3 pb-lg-0">
-            <a href="{{ route('profile.edit', Auth::user()) }}" class="btn eb_btn">Modifica Profilo</a>
-            <div class="d-none d-lg-flex justify-content-between align-items-center ">
-                <div class="d-flex justify-content-between align-items-center flex-column px-3">
-                    <span class="fw-bold fs_eb">{{ count(Auth::user()->albums) }}</span>
-                    <p>
-                        <i class="bi bi-journal-album pe-1 fs-5"></i>{{ count(Auth::user()->albums) === 1 ? 'Album' : 'Albums' }}
-                    </p>
-                </div>
-                <div class="d-flex justify-content-between align-items-center flex-column px-3">
-                    <span class="fs_eb fw-bold">{{ count(Auth::user()->categories) }}</span>
-                    <p>
-                        <i class="bi bi-tag pe-1 fs-5"></i>{{ count(Auth::user()->categories) === 1 ? 'Categoria' : 'Categorie' }}
-                    </p>
+            <div class="col-12 d-flex justify-content-sm-between justify-content-center align-items-center flex-column flex-sm-row pt-3 pt-lg-0 pb-3 pb-lg-0">
+                <a href="{{ route('profile.edit', Auth::user()) }}" class="btn eb_btn">Modifica Profilo</a>
+                <div class="d-none d-sm-flex justify-content-between align-items-center ">
+                    <div class="d-flex justify-content-between align-items-center flex-column me-3">
+                        <span class="fw-bold fs_eb">{{ count(Auth::user()->albums) }}</span>
+                        <p>
+                            <i class="bi bi-journal-album me-1 fs-5"></i>{{ count(Auth::user()->albums) === 1 ? 'Album' : 'Albums' }}
+                        </p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center flex-column ms-3">
+                        <span class="fs_eb fw-bold">{{ count(Auth::user()->categories) }}</span>
+                        <p>
+                            <i class="bi bi-tag me-1 fs-5"></i>{{ count(Auth::user()->categories) === 1 ? 'Categoria' : 'Categorie' }}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    
 </div>
 
 @section('footer')
@@ -53,6 +56,12 @@
 @endsection
 
 <style>
+
+    .eb_pos{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
 
     .eb_display{
         display: flex;
@@ -98,7 +107,7 @@
         margin: 0 0 0 25px;
     }
 
-    @media screen and (max-width:425px){
+    @media screen and (max-width:660px){
 
         .eb_display{
             flex-direction: column;

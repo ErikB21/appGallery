@@ -13,7 +13,7 @@
     <div class="form-check">
         <div class="row">
             @foreach($categories as $cat)
-                <div class="col-4 d-flex align-items-center">
+                <div class="col-8 col-sm-4 d-flex align-items-center">
                     <input {{ in_array($cat->id, $selectedCategories, true)? 'checked' : ''  }} name="categories[]" type="checkbox" class="form-check-input circle_input" id="categories_{{$cat->id}}" value="{{$cat->id}}">
                     <label class="form-check-label ps-2" for="categories">{{ Ucwords($cat->category_name) }}</label>
                 </div>

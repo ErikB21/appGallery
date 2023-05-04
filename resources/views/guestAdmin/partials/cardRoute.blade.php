@@ -1,6 +1,6 @@
 @include('guestAdmin.partials.profile')
 
-<div class="container-fluid mt-3">
+<div class="container mt-3">
         <div class="row">
             <div class="col-xl-4 col-md-6 justify-content-center d-flex">
                 <div class="cards">
