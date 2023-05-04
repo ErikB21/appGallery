@@ -1,7 +1,7 @@
 <div class="container-fluid d-flex justify-content-end flex-column px-2 m-0 eb_cont">
     <div class="row">
         <div class="col-12 d-flex justify-content-between flex-column flex-lg-row">
-            <div class="d-flex flex-column flex-lg-row align-items-center align-items-lg-start">
+            <div class="eb_display">
                 <div class="eb_square">
                     @if (Auth::user()->profile_pic)
                         <img src="{{ asset('storage/' . Auth::user()->profile_pic) }}" />
@@ -11,8 +11,8 @@
                 </div>
 
                 <div class="ps-3 ms-3 eb_txt">
-                    <h1 class="text-dark text-lg-light">{{ Auth::user()->name }} {{ Auth::user()->surname }}</h1>
-                    <span class="text-dark text-lg-light"><span class="font-weight-bold">Mail:</span> {{ Auth::user()->email }}</span>
+                    <h1 class="text-dark">{{ Auth::user()->name }} {{ Auth::user()->surname }}</h1>
+                    <span class="text-dark"><span class="font-weight-bold">Mail:</span> {{ Auth::user()->email }}</span>
                 </div>
             </div>
             <span class="ms-4">
@@ -55,6 +55,12 @@
 @endsection
 
 <style>
+
+    .eb_display{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
     .eb_cont {
         padding: 120px 0 0 0;
         background: rgb(32, 37, 41);
@@ -87,6 +93,21 @@
 
     .fs_eb {
         font-size: 1.8rem;
+    }
+
+    .eb_txt h1, .eb_txt span{
+        color: rgb(32, 37, 41);
+    }
+
+    @media screen and (max-width:640px){
+
+        .eb_display{
+            flex-direction: column;
+            align-items: none;
+        }
+       .eb_txt h1, .eb_txt span{
+            color: white;
+        } 
     }
 
 
