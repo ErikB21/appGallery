@@ -10,7 +10,7 @@
                     @endif
                 </div>
 
-                <div class="ps-3 ms-3 eb_txt">
+                <div class="eb_txt">
                     <h1 class="">{{ Auth::user()->name }} {{ Auth::user()->surname }}</h1>
                     <span class=""><span class="font-weight-bold">Mail:</span> {{ Auth::user()->email }}</span>
                 </div>
@@ -59,7 +59,6 @@
     .eb_display{
         display: flex;
         flex-direction: row;
-        align-items: center;
     }
     .eb_cont {
         padding: 120px 0 0 0;
@@ -97,16 +96,17 @@
 
     .eb_txt h1, .eb_txt span{
         color: rgb(32, 37, 41);
+        margin: 0 0 0 25px;
     }
 
-    @media screen and (max-width:640px){
+    @media screen and (max-width:425px){
 
         .eb_display{
             flex-direction: column;
-            align-items: none;
         }
        .eb_txt h1, .eb_txt span{
             color: white;
+            margin: 0;
         } 
     }
 
