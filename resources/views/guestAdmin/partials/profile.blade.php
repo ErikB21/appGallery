@@ -1,6 +1,6 @@
 <div class="container-fluid d-flex justify-content-end flex-column px-2 m-0 eb_cont">
     <div class="row">
-        <div class="col-12 d-flex justify-content-between flex-column flex-lg-row">
+        <div class="col-12 d-flex justify-content-between">
             <div class="eb_display">
                 <div class="eb_square">
                     @if (Auth::user()->profile_pic)
@@ -11,8 +11,8 @@
                 </div>
 
                 <div class="ps-3 ms-3 eb_txt">
-                    <h1 class="text-dark">{{ Auth::user()->name }} {{ Auth::user()->surname }}</h1>
-                    <span class="text-dark"><span class="font-weight-bold">Mail:</span> {{ Auth::user()->email }}</span>
+                    <h1 class="">{{ Auth::user()->name }} {{ Auth::user()->surname }}</h1>
+                    <span class=""><span class="font-weight-bold">Mail:</span> {{ Auth::user()->email }}</span>
                 </div>
             </div>
             <span class="ms-4">
