@@ -48,7 +48,7 @@
         </div>
     </div>
     <div class="container-fluid bg-dark py-1">
-        <p>{{ $albums->links('pagination::bootstrap-5') }}</p>
+        <p>{{ $albums->links('pagination.bootstrap-5') }}</p>
     </div>
 @endsection
 
