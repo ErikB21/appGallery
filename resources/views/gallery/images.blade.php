@@ -1,4 +1,4 @@
-@extends('templates\default')
+@extends('templates.default')
 
 @section('content')
     <div class="container pt-5">
