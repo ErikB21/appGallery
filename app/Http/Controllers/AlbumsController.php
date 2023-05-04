@@ -109,10 +109,8 @@ class AlbumsController extends Controller
             }
         }
         //$res =  Album::create($data);
-        $name = request()->input('name');
-        $messaggio = $res ? 'Album   ' . $name . ' Created' : 'Album ' . $name. ' was not crerated';
-        session()->flash('message', $messaggio);
-        return redirect()->route('albums.index');
+        request()->input('name');
+        return redirect()->route('albums.index')->with('success', "Hai creato l/'album correttamente");
         
         //query grezza
         // $data = $request->only(['album_name', 'description']);
@@ -210,13 +208,12 @@ class AlbumsController extends Controller
         $album->user_id = Auth::id();
         $this->processFile($id, $req, $album);
 
-        $res = $album->save();
+        $album->save();
         if ($req->has('categories')) {
             $album->categories()->sync($req->input('categories'));
         }
-        $message = $res ? 'Album ' . $album->album_name . ' modificato' : 'Album' . $album->album_name . ' non modificato.';
-        session()->flash('message', $message);
-        return redirect()->route('albums.index');
+        
+        return redirect()->route('albums.index')->with('success', "Hai modificato l/'album correttamente");
 
         // query grezza
         // $data = $request->only(['album_name', 'description']);
@@ -252,8 +249,7 @@ class AlbumsController extends Controller
         if(request()->ajax()){
             return $res;
         }
-        session()->flash('message', 'Album' . $album->album_name . ' deleted!');
-        return redirect()->route('albums.index');
+        return redirect()->route('albums.index')->with('success', "Hai cancellato l/'album in modo corretto");
 
 
         //usare int al posto di Album

@@ -3,8 +3,12 @@
     <div class="container-fluid mt-5">
         <div class="d-flex justify-content-between align-items-center">
             <h1>ALBUMS</h1>
-            @if(session()->has('message'))
-                <x-alert-info>{{ session()->get('message') }}</x-alert-info>
+            @if(session('success'))
+                <span class="ms-2">
+                    <div class="alert alert-success">
+                        <i class="fa-solid  fa-circle-check"></i> {{ session('success') }} 
+                    </div>
+                </span>
             @endif
         </div>
         
