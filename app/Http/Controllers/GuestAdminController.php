@@ -60,7 +60,7 @@ class GuestAdminController extends Controller
     public function edit(User $user)
     {
         $profileEdit = Auth::user();
-        return view('guestAdmin\edit', compact('user', 'profileEdit'));
+        return view('guestAdmin.edit', compact('user', 'profileEdit'));
     }
 
     /**
