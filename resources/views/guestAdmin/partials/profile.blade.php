@@ -25,7 +25,7 @@
                 @endif
             </span>
         </div>
-        <div class="col-12 col-lg-10 d-flex justify-content-lg-between justify-content-center align-items-center flex-column flex-lg-row px-3 pt-3 pt-lg-0">
+        <div class="col-12 col-lg-10 d-flex justify-content-lg-between justify-content-center align-items-center flex-column flex-lg-row px-3 pt-3 pt-lg-0 pb-3 pb-lg-0">
             <a href="{{ route('profile.edit', Auth::user()) }}" class="btn eb_btn">Modifica Profilo</a>
             <div class="d-none d-lg-flex justify-content-between align-items-center ">
                 <div class="d-flex justify-content-between align-items-center flex-column px-3">
@@ -59,6 +59,7 @@
     .eb_display{
         display: flex;
         flex-direction: row;
+        justify-content:center;
     }
     .eb_cont {
         padding: 120px 0 0 0;
