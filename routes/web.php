@@ -46,7 +46,7 @@ Route::group(['prefix' => 'gallery'], function(){
     Route::get('categories/{category}/albums', [GalleryController::class, 'showCategoryAlbums'])->name('gallery.categories.albums');
 });
 
-Route::resource('guestAdmin', GuestAdminController::class);
+Route::resource('guestAdmin/user', GuestAdminController::class);
 
 
 
