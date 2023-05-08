@@ -79,7 +79,7 @@ class GuestAdminController extends Controller
             if ($user->profile_pic) {
                 Storage::delete($user->profile_pic);
             }
-            $profile_pic = Storage::put('profile_pic', $data['profile_pic']);
+            $profile_pic = Storage::put('images/users', $data['profile_pic']);
             $data['profile_pic'] = $profile_pic;
         }
         // $this->processFile($req, $user);
