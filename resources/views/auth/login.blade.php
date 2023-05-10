@@ -49,7 +49,7 @@
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
-                    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center mt-5">
+                    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center mt-5 mb-3">
                         <!-- Checkbox -->
                         <div class="form-check mb-0">
                             <label for="remember_me" class="form-check-label">
