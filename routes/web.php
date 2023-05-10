@@ -4,6 +4,7 @@ use App\Events\NewAlbumCreated;
 use App\Http\Controllers\{AlbumsController, CategoryController, GalleryController, GuestAdminController, PhotosController };
 use App\Mail\TestMd;
 use App\Models\Album;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -48,7 +49,15 @@ Route::group(['prefix' => 'gallery'], function(){
 });
 
 // Route::resource('guestAdmin/user', GuestAdminController::class);
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
 
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
 
 require __DIR__.'/auth.php';
