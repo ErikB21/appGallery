@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 d-flex justify-content-sm-between justify-content-center align-items-center flex-column flex-sm-row pt-3 pt-lg-0 pb-3 pb-lg-0">
+            <div class="col-12 d-flex justify-content-sm-around justify-content-lg-between justify-content-center align-items-center flex-column flex-sm-row pt-3 pt-lg-0 pb-3 pb-lg-0">
                 <a href="{{ route('profile.edit', Auth::user()) }}" class="btn eb_btn">Modifica Profilo</a>
                 <div class="d-none d-sm-flex justify-content-between align-items-center ">
                     <div class="d-flex justify-content-between align-items-center flex-column me-3">
